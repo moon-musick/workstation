@@ -1,0 +1,13 @@
+---
+- name: apt-get update
+  command: apt-get update
+
+- name: restart autofs
+  service: >
+    name=autofs
+    state=restarted
+
+- name: restart ssh
+  service: >
+    name=ssh
+    state=restarted

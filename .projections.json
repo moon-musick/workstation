@@ -1,0 +1,7 @@
+{
+  "tasks/*.yml": {"type": "task"},
+  "templates/*.j2": {"type": "template"},
+  "defaults/*.yml": {"type": "default"},
+  "handlers/*.yml": {"type": "handler"},
+  "vars/*.yml": {"type": "var"}
+}

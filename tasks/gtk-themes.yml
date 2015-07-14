@@ -1,0 +1,61 @@
+---
+- name: ensure ravefinity PPA key present
+  apt_key: >
+    keyserver=keyserver.ubuntu.com
+    id=E2D0EBE9
+    state=present
+
+- name: ensure ravefinity PPA present
+  apt_repository: >
+    repo='ppa:ravefinity-project/ppa'
+    state=present
+    update_cache=yes
+
+- name: ensure theme packages installed
+  apt: >
+    name={{ item }}
+    state=present
+  with_items:
+  - ambiance-colors
+  - radiance-colors
+
+- name: ensure Faenza PPA key present
+  apt_key: >
+    keyserver=keyserver.ubuntu.com
+    id=4631BBEA
+    state=present
+
+- name: ensure Faenza PPA present
+  apt_repository: >
+    repo='ppa:tiheum/equinox'
+    state=present
+    update_cache=yes
+
+- name: ensure Faenza icons installed
+  apt: >
+    name=ravefinity-x-icons
+    state=present
+
+- name: ensure gtkrc-2.0 present
+  copy: >
+    src=gtk-themes/gtkrc-2.0
+    dest=/home/{{ user }}/.gtkrc-2.0
+    owner={{ user }}
+    group={{ user }}
+    mode=0644
+
+- name: ensure gtk-3.0 config dir present
+  file: >
+    path=/home/{{ user }}/.config/gtk-3.0
+    owner={{ user }}
+    group={{ user }}
+    mode=0775
+    state=directory
+
+- name: ensure gtk-3.0 settings present
+  copy: >
+    src=gtk-themes/gtkrc-3.0/settings.ini
+    dest=/home/{{ user }}/.config/gtk-3.0/settings.ini
+    owner={{ user }}
+    group={{ user }}
+    mode=0644

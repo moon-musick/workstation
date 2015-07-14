@@ -1,0 +1,21 @@
+---
+- name: ensure LXD stable PPA key present
+  apt_key: >
+    id=7635B973
+    keyserver=keyserver.ubuntu.com
+    state=present
+
+- name: ensure LXD stable PPA present
+  apt_repository: >
+    repo='ppa:ubuntu-lxc/lxd-stable'
+    state=present
+    update_cache=yes
+
+- name: ensure LXC and LXD packages installed
+  apt: >
+    name={{ item }}
+    state=present
+  with_items:
+    - lxc
+    - lxd
+    - lxd-client

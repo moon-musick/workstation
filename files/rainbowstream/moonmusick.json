@@ -1,0 +1,68 @@
+{
+    "DECORATED_NAME": 14,
+    "CYCLE_COLOR": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        9
+    ],
+    "TWEET": {
+        "mynick": 2,
+        "nick": 4,
+        "clock": 14,
+        "id": 2,
+        "client": 10,
+        "favorited": 3,
+        "retweet_count": 14,
+        "favorite_count": 14,
+        "rt": 14,
+        "link": 6,
+        "hashtag": 4,
+        "mytweet": 14,
+        "keyword": "on_light_green"
+    },
+    "NOTIFICATION": {
+        "source_nick": 112,
+        "notify": 179,
+        "clock": 57
+    },
+    "MESSAGE": {
+        "partner": 112,
+        "me": 112,
+        "partner_frame": 198,
+        "me_frame": 74,
+        "sender": 112,
+        "recipient": 112,
+        "to": 50,
+        "clock": 57,
+        "id": 166
+    },
+    "PROFILE": {
+        "statuses_count": 112,
+        "friends_count": 198,
+        "followers_count": 57,
+        "nick": 198,
+        "profile_image_url": 74,
+        "description": 166,
+        "location": 112,
+        "url": 74,
+        "clock": 57
+    },
+    "TREND": {
+        "url": 74
+    },
+    "CAL": {
+        "days": 57,
+        "today": "on_light_blue"
+    },
+    "GROUP": {
+        "name": 112,
+        "member": 57,
+        "subscriber": 198,
+        "mode": 112,
+        "description": 166,
+        "clock": 57
+    }
+}

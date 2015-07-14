@@ -1,0 +1,35 @@
+---
+- name: ensure Mendeleydesktop PPA key present
+  apt_key: >
+    keyserver=keyserver.ubuntu.com
+    id=6F036044
+    state=present
+
+- name: ensure Mendeleydesktop PPA present
+  apt_repository: >
+    repo='deb http://desktop-download.mendeley.com/download/apt stable main'
+    state=present
+    update_cache=yes
+
+- name: ensure Zeal PPA key present
+  apt_key: >
+    keyserver=keyserver.ubuntu.com
+    id=2FF96FD1
+    state=present
+
+- name: ensure Zeal PPA present
+  apt_repository: >
+    repo='ppa:jerzy-kozera/zeal-ppa'
+    state=present
+    update_cache=yes
+
+- name: ensure packages installed
+  apt: >
+    name={{ item }}
+    state=present
+  with_items:
+    - zeal
+    - zathura
+    - mendeleydesktop
+
+# TODO; Zeal docsets?

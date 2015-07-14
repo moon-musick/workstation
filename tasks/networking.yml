@@ -1,0 +1,28 @@
+---
+- name: ensure packages installed
+  apt: >
+    name={{ item }}
+    state=present
+    update_cache=true
+  with_items:
+    - ethtool
+    - tcpdump
+    - snmp
+    - iftop
+    - iotop
+    - nmap
+    - ftp
+    - arp-scan
+
+- name: ensure wireshark configured
+  debconf: >
+    name=wireshark-common
+    question='wireshark-common/install-setuid'
+    vtype=boolean
+    value=true
+
+- name: ensure wireshark installed
+  apt: >
+    name=wireshark
+    state=present
+    update_cache=true

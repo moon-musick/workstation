@@ -1,0 +1,52 @@
+---
+# taskwarrior-related bug - tab completion crashes zsh
+# backports version is fixed
+- name: ensure zsh installed
+  apt: >
+    name=zsh
+    state=present
+    default_release=trusty-backports
+
+- name: ensure oh-my-zsh installed
+  git: >
+    repo='https://github.com/robbyrussell/oh-my-zsh'
+    dest=/home/{{ user }}/.oh-my-zsh
+    update=no
+  # sudo: yes
+  # sudo_user: "{{ user }}"
+
+- name: ensure proper permissions set
+  command: chown -R {{ user }}:{{ user }} /home/{{ user }}/.oh-my-zsh
+
+- name: ensure zsh custom dir present
+  file: >
+    path=/home/{{ user }}/.zsh
+    owner={{ user }}
+    group={{ user }}
+    mode=0755
+    state=directory
+
+# - name: ensure notification script present
+#   copy: >
+#     src=zsh/notifyosd.zsh
+#     dest=/home/{{ user }}/.zsh/notifyosd.zsh
+#     owner={{ user }}
+#     group={{ user }}
+#     mode=0664
+
+- name: ensure syntax highlighting plugin present
+  git: >
+    repo='https://github.com/zsh-users/zsh-syntax-highlighting'
+    dest=/home/{{ user }}/.zsh/zsh-syntax-highlighting
+    update=no
+  # sudo_user: "{{ user }}"
+
+- name: ensure text-objects plugin present
+  git: >
+    repo='https://github.com/hchbaw/opp.zsh'
+    dest=/home/{{ user }}/.zsh/opp.zsh
+    update=no
+  # sudo_user: "{{ user }}"
+
+- name: ensure proper permissions set
+  command: chown -R {{ user }}:{{ user }} /home/{{ user }}/.zsh

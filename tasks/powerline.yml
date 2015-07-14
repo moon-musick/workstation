@@ -1,0 +1,12 @@
+---
+- name: ensure powerline installed
+  pip: >
+    name=powerline
+    state=present
+
+- name: ensure custom configuration present
+  git: >
+    repo='https://github.com/moon-musick/powerline.git'
+    dest=/home/{{ user }}/.config/powerline
+    update=no
+  sudo_user: "{{ user }}"

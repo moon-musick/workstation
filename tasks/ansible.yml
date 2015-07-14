@@ -1,0 +1,17 @@
+---
+- name: ensure Ansible PPA key present
+  apt_key: >
+    keyserver=keyserver.ubuntu.com
+    id=7BB9C367
+    state=present
+
+- name: ensure Ansible PPA present
+  apt_repository: >
+    repo='ppa:ansible/ansible'
+    state=present
+    update_cache=true
+
+- name: ensure Ansible installed
+  apt: >
+    name=ansible
+    state=present

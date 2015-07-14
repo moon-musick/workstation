@@ -1,0 +1,41 @@
+---
+- name: ensure go downloaded
+  get_url: >
+    url="https://storage.googleapis.com/golang/{{ golang_tarball }}"
+    dest=/root/install/{{ golang_tarball }}
+  register: golang_archive_downloaded
+
+- name: unarchive golang tarball
+  unarchive: >
+    src=/root/install/{{ golang_tarball }}
+    dest=/usr/local/go
+    copy=no
+  when: golang_archive_downloaded.changed
+
+- name: ensure go dir present
+  file: >
+    path=/home/{{ user }}/go
+    owner={{ user }}
+    group={{ user }}
+    mode=0755
+    state=directory
+
+- name: ensure apps installed
+  shell: GOPATH=/home/{{ user }}/go /usr/local/go/bin/go get {{ item.repo }}
+  args:
+    creates: /home/{{ user }}/go/bin/{{ item.exec }}
+  with_items:
+    - exec: orange
+      repo: github.com/noraesae/orange-cat/cmd/orange
+    - exec: wego
+      repo: github.com/schachmat/wego
+    - exec: asciinema
+      repo: github.com/asciinema/asciinema
+  # sudo_user: "{{ user }}"
+
+# FIXME; permissions problem workaround
+- name: fix permissions and ownership
+  command: chown -R {{ user }}:{{ user }} /home/{{ user }}/go
+  changed_when: False
+
+# TODO; wego key

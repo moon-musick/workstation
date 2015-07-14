@@ -1,0 +1,16 @@
+---
+- name: ensure xmonad repo cloned
+  git: >
+    repo='https://github.com/moon-musick/xmonad-ubuntu-conf'
+    dest=/home/{{ user }}/.xmonad
+    update=no
+  # sudo_user: "{{ user }}"
+
+# FIXME; permissions bug
+- name: ensure proper permissions set
+  command: chown -R {{ user }}:{{ user }} /home/{{ user }}/.xmonad
+
+- name: ensure installation script run
+  command: "/home/{{ user }}/.xmonad/install-xmonad"
+  args:
+    creates: "/home/{{ user }}/.xmonad/install.lock"

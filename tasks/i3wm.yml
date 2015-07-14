@@ -1,0 +1,56 @@
+---
+- name: ensure i3wm repository present
+  apt_repository: >
+    repo='deb http://debian.sur5r.net/i3/ trusty universe'
+    state=present
+    update_cache=yes
+
+# FIXME; fix to use allow-unauthenticated somehow
+- name: ensure i3wm keyring installed
+  apt: >
+    name=sur5r-keyring
+    state=present
+    update_cache=yes
+    force=yes
+  notify:
+  - apt-get update
+
+- name: ensure i3wm packages installed
+  apt: >
+    name={{ item }}
+    state=present
+    update_cache=yes
+  with_items:
+  - i3
+  - i3-wm
+  - i3lock
+  - i3status
+  - lxappearance
+  - gtk-chtheme
+  - qt4-qtconfig
+
+- name: ensure i3wm config dir present
+  file: >
+    path=/home/{{ user }}/.i3
+    owner={{ user }}
+    group={{ user }}
+    mode=0755
+    state=directory
+
+- name: ensure i3wm config files present
+  copy: >
+    src=i3/i3config
+    dest=/home/{{ user }}/.i3/config
+    owner={{ user }}
+    group={{ user }}
+    mode=0644
+
+- name: ensure i3status config present
+  copy: >
+    src=i3/i3status.conf
+    dest=/home/{{ user }}/.i3status.conf
+    owner={{ user }}
+    group={{ user }}
+    mode=0644
+
+# TODO; lock & screenshot scripts; other dependencies

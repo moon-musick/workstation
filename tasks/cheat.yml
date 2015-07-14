@@ -1,0 +1,16 @@
+---
+- name: ensure cheat installed
+  pip: >
+    name=cheat
+    state=present
+
+- name: ensure cheat config dir present
+  file: >
+    path=/home/{{ user }}/.cheat
+    owner={{ user }}
+    group={{ user }}
+    mode=0644
+    state=directory
+
+# - name: ensure cheat files present
+  # TODO; provide files

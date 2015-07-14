@@ -1,0 +1,20 @@
+---
+- name: ensure git PPA key present
+  apt_key: >
+    keyserver=keyserver.ubuntu.com
+    id=E1DF1F24
+    state=present
+
+- name: ensure git PPA present
+  apt_repository: >
+    repo='ppa:git-core/ppa'
+    state=present
+    update_cache=yes
+
+- name: ensure git installed
+  apt: >
+    name=git
+    state=present
+
+# - name: ensure gitconfig present
+  # TODO; provide .gitconfig

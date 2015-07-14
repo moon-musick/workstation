@@ -1,0 +1,3 @@
+media       -fstype=nfs,rw,soft,uid=lucas,gid=lucas,intr,rsize=8192,wsize=8192  192.168.0.100:/media/raid/media
+common      -fstype=nfs,rw,soft,intr,rsize=8192,wsize=8192  192.168.0.100:/media/raid/common
+recent      -fstype=nfs,rw,soft,intr,rsize=8192,wsize=8192  192.168.0.100:/media/raid/downloads

@@ -1,0 +1,14 @@
+---
+# TODO; provide self-compiled 2.4+
+- name: ensure taskwarrior installed
+  apt: >
+    name=task
+    state=present
+
+- name: ensure taskrc present
+  copy: >
+    src=taskrc
+    dest=/home/{{ user }}/.taskrc
+    owner={{ user }}
+    group={{ user }}
+    mode=0600

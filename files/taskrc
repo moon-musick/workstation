@@ -1,0 +1,8 @@
+# Use the command 'task show' to see all defaults and overrides
+
+# Files
+data.location=~/.task
+
+# Color themes:
+# include /usr/local/share/doc/task/rc/dark-16.theme
+include /usr/local/share/task/dark-16.theme

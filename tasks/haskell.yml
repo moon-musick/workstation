@@ -1,0 +1,7 @@
+---
+- name: ensure haskell-platform installed
+  apt: >
+    name=haskell-platform
+    state=present
+
+# TODO: any configuration?

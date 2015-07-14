@@ -1,0 +1,22 @@
+---
+- name: ensure ranger installed
+  apt: >
+    name=ranger
+    state=present
+    update_cache=true
+
+- name: ensure ranger configuration dirs present
+  file: >
+    name=/home/{{ user }}/.config/ranger
+    owner={{ user }}
+    group={{ user }}
+    mode=0640
+    state=directory
+
+- name: ensure ranger configuration present
+  copy: >
+    src=ranger/scope.sh
+    dest=/home/{{ user }}/.config/ranger/scope.sh
+    owner={{ user }}
+    group={{ user }}
+    mode=0755

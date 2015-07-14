@@ -1,0 +1,41 @@
+---
+- name: ensure tmp dir present
+  file: >
+    path=/home/{{ user }}/tmp
+    owner={{ user }}
+    group={{ user }}
+    mode=0755
+    state=directory
+
+- name: ensure rcm debfile copied
+  copy: >
+    src={{ rcm_debfile }}
+    dest=/home/{{ user }}/tmp/{{ rcm_debfile }}
+    owner={{ user }}
+    group={{ user }}
+    mode=0644
+
+- name: ensure rcm installed
+  apt: >
+    deb=/home/{{ user }}/tmp/{{ rcm_debfile }}
+    state=present
+
+- name: ensure dotfiles repo cloned
+  git: >
+    repo='https://github.com/moon-musick/.dotfiles.git'
+    dest=/home/{{ user }}/.dotfiles
+    update=no
+  # sudo_user: "{{ user }}"
+
+# FIXME
+- name: ensure proper permissions set
+  command: chown -R {{ user }}:{{ user }} /home/{{ user }}/.dotfiles
+
+# FIXME
+# .haskeline least likely to be present before
+# - name: ensure dotfiles symlinks present
+#   command: rcup -x README.md -f
+#   sudo_user: "{{ user }}"
+#   args:
+#     chdir: /home/{{ user }}
+#     creates: /home/{{ user }}/.haskeline

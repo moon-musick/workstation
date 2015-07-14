@@ -1,0 +1,37 @@
+---
+- name: ensure general dependencies installed
+  apt: >
+    name={{ item }}
+    state=present
+    update_cache=true
+  with_items:
+    - build-essential
+    - autojump
+    - cloc
+    - dict
+    - ncdu
+    - tree
+    - tofrodos
+    - debconf-utils
+    - python-pip
+    - python-dev
+    - tmux
+    - xclip
+    - openvpn
+    - gconf2
+    - jq
+
+- name: ensure zsh installed
+  apt: >
+    name=zsh
+    state=present
+    default_release=trusty-backports
+
+- name: ensure python packages installed
+  pip: >
+    name={{ item }}
+    state=present
+  with_items:
+    - csvkit
+    - ipython
+    # - percol

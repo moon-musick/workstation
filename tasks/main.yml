@@ -1,0 +1,33 @@
+---
+- name: check for compatible OS
+  fail: >
+    msg='Not running Ubuntu Trusty or x86_64'
+  when: ansible_distribution_release != "trusty" or ansible_machine != 'x86_64'
+
+- include: general.yml
+- include: user.yml
+- include: git.yml
+- include: zsh.yml
+- include: hr.yml
+- include: dotfiles.yml
+# - include: powerline-shell.yml
+# - include: powerline.yml
+- include: gnome-terminal.yml
+- include: gtk-themes.yml
+- include: vim.yml
+- include: ansible.yml
+- include: cheat.yml
+- include: doctools.yml
+- include: xmonad.yml
+- include: i3wm.yml
+- include: comm.yml
+- include: media.yml
+- include: networking.yml
+- include: lxc.yml
+- include: ranger.yml
+- include: taskwarrior.yml
+- include: go-tools.yml
+# - include: rbenv.yml
+# - include: haskell.yml
+# - include: postgresql.yml
+# - include: texlive.yml

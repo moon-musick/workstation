@@ -1,0 +1,21 @@
+---
+- name: ensure OpenSSH server installed
+  apt: >
+    name=openssh-server
+    state=present
+
+# FIXME; potentially dangerous if listening port changes && port is not open
+# - name: ensure sshd_config present
+#   copy: >
+#     src=ssh/sshd_config
+#     dest=/etc/ssh/sshd_config
+#     owner=root
+#     group=root
+#     mode=0644
+#   notify:
+#     - restart ssh
+
+# - name: ensure ssh service started
+#   service: >
+#     name=ssh
+#     state=started
