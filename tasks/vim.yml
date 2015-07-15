@@ -13,8 +13,8 @@
     - exuberant-ctags
     - build-essential
     - python-dev # ctrlp-cmatcher
-    - ghc-mod
-    - hdevtools
+    # - ghc-mod
+    # - hdevtools
 
 - name: ensure repo cloned
   git: >
@@ -22,9 +22,9 @@
     dest=/home/{{ user }}/.vim
     update=no
     accept_hostkey=yes
-  # sudo_user: "{{ user }}"
+  sudo_user: "{{ user }}"
 
-# FIXME; split vim configuration to enable this
+# FIXME; does not terminate properly
 # - name: ensure plugins installed
 #   command: vim -u /home/{{ user }}/.vim/custom/vundle.vim +PluginInstall +qall
 #   args:
@@ -32,18 +32,18 @@
 #   sudo_user: "{{ user }}"
 
 # FIXME; permissions bug
-- name: ensure proper permissions set
-  command: chown -R {{ user }}:{{ user }} /home/{{ user }}/.vim
+# - name: ensure proper permissions set
+#   command: chown -R {{ user }}:{{ user }} /home/{{ user }}/.vim
 
 # - name: ensure other dependencies installed
 #   TODO; gem install rcodetools # vim-xmpfilter
 
 # FIXME; permissions bug
-# - name: ensure installation script run
-#   command: "/home/{{ user }}/.vim/install.sh"
-#   args:
-#     creates: /home/{{ user }}/.vim/install.lock
-#   sudo_user: "{{ user }}"
+- name: ensure installation script run
+  command: "/home/{{ user }}/.vim/install.sh"
+  args:
+    creates: "/home/{{ user }}/.vim/install.lock"
+  sudo_user: "{{ user }}"
 
 - name: ensure vimrc symlink created
   file: >

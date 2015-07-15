@@ -1,7 +1,7 @@
 ---
 - name: ensure tmp dir present
   file: >
-    path=/home/{{ user }}/tmp
+    path=/home/{{ user }}/ansible
     owner={{ user }}
     group={{ user }}
     mode=0755
@@ -10,14 +10,14 @@
 - name: ensure rcm debfile copied
   copy: >
     src={{ rcm_debfile }}
-    dest=/home/{{ user }}/tmp/{{ rcm_debfile }}
+    dest=/home/{{ user }}/ansible/{{ rcm_debfile }}
     owner={{ user }}
     group={{ user }}
     mode=0644
 
 - name: ensure rcm installed
   apt: >
-    deb=/home/{{ user }}/tmp/{{ rcm_debfile }}
+    deb=/home/{{ user }}/ansible/{{ rcm_debfile }}
     state=present
 
 - name: ensure dotfiles repo cloned
@@ -25,17 +25,17 @@
     repo='https://github.com/moon-musick/.dotfiles.git'
     dest=/home/{{ user }}/.dotfiles
     update=no
-  # sudo_user: "{{ user }}"
+  sudo_user: "{{ user }}"
 
 # FIXME
-- name: ensure proper permissions set
-  command: chown -R {{ user }}:{{ user }} /home/{{ user }}/.dotfiles
+# - name: ensure proper permissions set
+#   command: chown -R {{ user }}:{{ user }} /home/{{ user }}/.dotfiles
 
 # FIXME
 # .haskeline least likely to be present before
-# - name: ensure dotfiles symlinks present
-#   command: rcup -x README.md -f
-#   sudo_user: "{{ user }}"
-#   args:
-#     chdir: /home/{{ user }}
-#     creates: /home/{{ user }}/.haskeline
+- name: ensure dotfiles symlinks present
+  command: rcup -x README.md -f
+  sudo_user: "{{ user }}"
+  args:
+    chdir: /home/{{ user }}
+    creates: /home/{{ user }}/.haskeline

@@ -4,11 +4,11 @@
     repo='https://github.com/moon-musick/xmonad-ubuntu-conf'
     dest=/home/{{ user }}/.xmonad
     update=no
-  # sudo_user: "{{ user }}"
+  sudo_user: "{{ user }}"
 
 # FIXME; permissions bug
-- name: ensure proper permissions set
-  command: chown -R {{ user }}:{{ user }} /home/{{ user }}/.xmonad
+# - name: ensure proper permissions set
+#   command: chown -R {{ user }}:{{ user }} /home/{{ user }}/.xmonad
 
 - name: ensure installation script run
   command: "/home/{{ user }}/.xmonad/install-xmonad"

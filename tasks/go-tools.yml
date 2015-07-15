@@ -2,13 +2,13 @@
 - name: ensure go downloaded
   get_url: >
     url="https://storage.googleapis.com/golang/{{ golang_tarball }}"
-    dest=/root/install/{{ golang_tarball }}
+    dest=/home/{{ user }}/ansible/{{ golang_tarball }}
   register: golang_archive_downloaded
 
 - name: unarchive golang tarball
   unarchive: >
-    src=/root/install/{{ golang_tarball }}
-    dest=/usr/local/go
+    src=/home/{{ user }}/ansible/{{ golang_tarball }}
+    dest=/usr/local
     copy=no
   when: golang_archive_downloaded.changed
 
@@ -31,11 +31,11 @@
       repo: github.com/schachmat/wego
     - exec: asciinema
       repo: github.com/asciinema/asciinema
-  # sudo_user: "{{ user }}"
+  sudo_user: "{{ user }}"
 
-# FIXME; permissions problem workaround
-- name: fix permissions and ownership
-  command: chown -R {{ user }}:{{ user }} /home/{{ user }}/go
-  changed_when: False
+# # FIXME; permissions problem workaround
+# - name: fix permissions and ownership
+#   command: chown -R {{ user }}:{{ user }} /home/{{ user }}/go
+#   changed_when: False
 
 # TODO; wego key

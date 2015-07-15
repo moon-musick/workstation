@@ -12,11 +12,11 @@
     repo='https://github.com/robbyrussell/oh-my-zsh'
     dest=/home/{{ user }}/.oh-my-zsh
     update=no
-  # sudo: yes
-  # sudo_user: "{{ user }}"
+  sudo: yes
+  sudo_user: "{{ user }}"
 
-- name: ensure proper permissions set
-  command: chown -R {{ user }}:{{ user }} /home/{{ user }}/.oh-my-zsh
+# - name: ensure proper permissions set
+#   command: chown -R {{ user }}:{{ user }} /home/{{ user }}/.oh-my-zsh
 
 - name: ensure zsh custom dir present
   file: >
@@ -39,14 +39,14 @@
     repo='https://github.com/zsh-users/zsh-syntax-highlighting'
     dest=/home/{{ user }}/.zsh/zsh-syntax-highlighting
     update=no
-  # sudo_user: "{{ user }}"
+  sudo_user: "{{ user }}"
 
 - name: ensure text-objects plugin present
   git: >
     repo='https://github.com/hchbaw/opp.zsh'
     dest=/home/{{ user }}/.zsh/opp.zsh
     update=no
-  # sudo_user: "{{ user }}"
+  sudo_user: "{{ user }}"
 
-- name: ensure proper permissions set
-  command: chown -R {{ user }}:{{ user }} /home/{{ user }}/.zsh
+# - name: ensure proper permissions set
+#   command: chown -R {{ user }}:{{ user }} /home/{{ user }}/.zsh

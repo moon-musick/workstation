@@ -12,8 +12,9 @@
     state=present
     update_cache=yes
     force=yes
-  notify:
-  - apt-get update
+  # notify:
+  # - apt-get update
+  # FIXME; flush handlers or register variable
 
 - name: ensure i3wm packages installed
   apt: >

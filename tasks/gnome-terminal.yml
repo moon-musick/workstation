@@ -4,7 +4,7 @@
     path=/home/{{ user }}/ansible
     owner={{ user }}
     group={{ user }}
-    mode=0750
+    mode=0755
     state=directory
 
 - name: ensure gnome-terminal configuration present
@@ -16,9 +16,9 @@
     mode=0644
 
 # FIXME; permissions bug
-# - name: ensure gnome-terminal configuration restored
-#   shell: gconftool-2 --load gnome-terminal-conf.xml && touch gnome-terminal.lock
-#   args:
-#     chdir: /home/{{ user }}
-#     creates: /home/{{ user }}/ansible/gnome-terminal.lock
-#   sudo_user: "{{ user }}"
+- name: ensure gnome-terminal configuration restored
+  shell: gconftool-2 --load gnome-terminal-conf.xml && touch gnome-terminal.lock
+  args:
+    chdir: /home/{{ user }}/ansible/
+    creates: /home/{{ user }}/ansible/gnome-terminal.lock
+  sudo_user: "{{ user }}"

@@ -19,3 +19,5 @@
     - lxc
     - lxd
     - lxd-client
+
+# TODO; add user to lxd group

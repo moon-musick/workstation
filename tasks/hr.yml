@@ -1,12 +1,22 @@
 ---
+- name: ensure user bin directory present
+  file: >
+    path=/home/{{ user }}/bin
+    owner={{ user }}
+    group={{ user }}
+    mode=0755
+    state=directory
+
 - name: ensure hr installed
-  shell: wget https://raw.githubusercontent.com/LuRsT/hr/master/hr -O {{ user }}/bin/hr
-  args: 
-    creates: "{{ user }}/bin/hr"
+  get_url: >
+    url='https://raw.githubusercontent.com/LuRsT/hr/master/hr'
+    dest=/home/{{ user }}/bin/hr
+  # args:
+  #   creates: "/home/{{ user }}/bin/hr"
 
 - name: ensure hr script has proper permissions
   file: >
-    path={{ user }}/bin/hr
+    path=/home/{{ user }}/bin/hr
     owner={{ user }}
     group={{ user }}
     mode=0755

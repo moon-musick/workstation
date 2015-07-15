@@ -19,7 +19,7 @@
 
 - name: ensure Zeal PPA present
   apt_repository: >
-    repo='ppa:jerzy-kozera/zeal-ppa'
+    repo='ppa:zeal-developers/ppa'
     state=present
     update_cache=yes
 

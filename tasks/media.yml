@@ -68,22 +68,23 @@
 #     group={{ user }}
 #     mode=0640
 
-- name: ensure Spotify repo key present
-  apt_key: >
-    keyserver=keyserver.ubuntu.com
-    id=94558F59
-    state=present
+# TODO; fix keys - it's unauthenticated now as it is
+# - name: ensure Spotify repo key present
+#   apt_key: >
+#     keyserver=keyserver.ubuntu.com
+#     id=94558F59
+#     state=present
 
-- name: ensure Spotify repository present
-  apt_repository: >
-    repo='deb http://repository.spotify.com stable non-free'
-    state=present
-    update_cache=yes
+# - name: ensure Spotify repository present
+#   apt_repository: >
+#     repo='deb http://repository.spotify.com stable non-free'
+#     state=present
+#     update_cache=yes
 
-- name: ensure Spotify installed
-  apt: >
-    name=spotify-client
-    state=present
+# - name: ensure Spotify installed
+#   apt: >
+#     name=spotify-client
+#     state=present
 
 - name: ensure mps-youtube installed
   pip: >
