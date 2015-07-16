@@ -4,6 +4,9 @@
     repo='deb http://debian.sur5r.net/i3/ trusty universe'
     state=present
     update_cache=yes
+  tags:
+  - wm
+  - gui
 
 # FIXME; fix to use allow-unauthenticated somehow
 - name: ensure i3wm keyring installed
@@ -12,9 +15,17 @@
     state=present
     update_cache=yes
     force=yes
-  # notify:
-  # - apt-get update
-  # FIXME; flush handlers or register variable
+  register: i3wm_keyring
+  tags:
+  - wm
+  - gui
+
+- name: ensure apt cache is up do date if i3wm keyring was modified
+  command: apt-get update
+  when: i3wm_keyring.changed
+  tags:
+  - wm
+  - gui
 
 - name: ensure i3wm packages installed
   apt: >
@@ -29,6 +40,9 @@
   - lxappearance
   - gtk-chtheme
   - qt4-qtconfig
+  tags:
+  - wm
+  - gui
 
 - name: ensure i3wm config dir present
   file: >
@@ -37,6 +51,9 @@
     group={{ user }}
     mode=0755
     state=directory
+  tags:
+  - wm
+  - gui
 
 - name: ensure i3wm config files present
   copy: >
@@ -45,6 +62,9 @@
     owner={{ user }}
     group={{ user }}
     mode=0644
+  tags:
+  - wm
+  - gui
 
 - name: ensure i3status config present
   copy: >
@@ -53,5 +73,8 @@
     owner={{ user }}
     group={{ user }}
     mode=0644
+  tags:
+  - wm
+  - gui
 
 # TODO; lock & screenshot scripts; other dependencies
