@@ -14,6 +14,9 @@
     - qnapi
     - gimp
     - python3-pip
+  tags:
+  - media
+  - gui
 
 - name: ensure autofs configuration present
   copy: >
@@ -27,11 +30,15 @@
     - nfs
   notify:
   - restart autofs
+  tags:
+  - media
 
 - name: ensure autofs service running
   service: >
     name=autofs
     state=started
+  tags:
+  - media
 
 # handled by dotfiles now
 # - name: ensure moc config dir present
@@ -92,3 +99,6 @@
     name=mps-youtube
     state=present
     executable=pip3
+  tags:
+  - media
+  - gui
