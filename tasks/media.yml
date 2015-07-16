@@ -13,6 +13,7 @@
     - museeq
     - qnapi
     - gimp
+    - python3-pip
 
 - name: ensure autofs configuration present
   copy: >
@@ -90,3 +91,4 @@
   pip: >
     name=mps-youtube
     state=present
+    executable=pip3
