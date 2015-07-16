@@ -3,14 +3,18 @@
   pip: >
     name=cheat
     state=present
+  tags:
+  - shelltools
 
 - name: ensure cheat config dir present
   file: >
     path=/home/{{ user }}/.cheat
     owner={{ user }}
     group={{ user }}
-    mode=0644
+    mode=0755
     state=directory
+  tags:
+  - shelltools
 
 # - name: ensure cheat files present
   # TODO; provide files
