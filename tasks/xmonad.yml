@@ -5,8 +5,16 @@
     dest=/home/{{ user }}/.xmonad
     update=no
   sudo_user: "{{ user }}"
+  tags:
+  - wm
+  - gui
 
+# FIXME; port script contents to Ansible
+# (dependencies installation etc.)
 - name: ensure installation script run
   command: "/home/{{ user }}/.xmonad/install-xmonad"
   args:
     creates: "/home/{{ user }}/.xmonad/install.lock"
+  tags:
+  - wm
+  - gui
