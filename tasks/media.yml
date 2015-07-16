@@ -93,6 +93,13 @@
 #   apt: >
 #     name=spotify-client
 #     state=present
+- name: ensure subliminal installed
+  pip: >
+    name=subliminal
+    state=present
+  tags:
+  - media
+  - gui
 
 - name: ensure mps-youtube installed
   pip: >
