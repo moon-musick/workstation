@@ -7,6 +7,8 @@
   with_items:
   - lxd
   - libvirtd
+  tags:
+  - user
 
 - name: ensure main user exists
   user: >
@@ -16,3 +18,5 @@
     home=/home/{{ user }}
     createhome=yes
     shell=/usr/bin/zsh
+  tags:
+  - user
