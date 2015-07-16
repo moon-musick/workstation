@@ -4,12 +4,16 @@
     id=7635B973
     keyserver=keyserver.ubuntu.com
     state=present
+  tags:
+  - virttools
 
 - name: ensure LXD stable PPA present
   apt_repository: >
     repo='ppa:ubuntu-lxc/lxd-stable'
     state=present
     update_cache=yes
+  tags:
+  - virttools
 
 - name: ensure LXC and LXD packages installed
   apt: >
@@ -19,3 +23,5 @@
     - lxc
     - lxd
     - lxd-client
+  tags:
+  - virttools
