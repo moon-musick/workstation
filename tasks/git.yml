@@ -4,14 +4,26 @@
     keyserver=keyserver.ubuntu.com
     id=E1DF1F24
     state=present
+  tags:
+  - dev
+  - shelltools
+  - dependency
 
 - name: ensure git PPA present
   apt_repository: >
     repo='ppa:git-core/ppa'
     state=present
     update_cache=yes
+  tags:
+  - dev
+  - shelltools
+  - dependency
 
 - name: ensure git installed
   apt: >
     name=git
     state=present
+  tags:
+  - dev
+  - shelltools
+  - dependency

@@ -16,16 +16,32 @@
     - python-pip
     - python-dev
     - tmux
-    - xclip
     - openvpn
-    - gconf2
     - jq
+  tags:
+  - shelltools
+  - dependency
+
+- name: ensure general GUI-dependent packages installed
+  apt: >
+    name={{ item }}
+    state=present
+    update_cache=true
+  with_items:
+    - xclip
+    - gconf2
+  tags:
+  - gui
+  - dependency
 
 - name: ensure zsh installed
   apt: >
     name=zsh
     state=present
     default_release=trusty-backports
+  tags:
+  - shelltools
+  - dependency
 
 - name: ensure python packages installed
   pip: >
@@ -34,4 +50,5 @@
   with_items:
     - csvkit
     - ipython
-    # - percol
+  tags:
+  - shelltools
