@@ -2,15 +2,15 @@
 
 # custom colors
 # solarized:
-set $darkest    #002b36
+set $darkest   #002b36
 set $darker    #073642
 # 'dark' is apparently used as a standard keyword
-# set $dark    #586e75
+# set $dark      #586e75
 # set $base00    #657b83
-set $normal     #839496
-set $bright     #93a1a1
-set $brighter     #eee8d5
-set $brightest     #fdf6e3
+set $normal    #839496
+set $bright    #93a1a1
+set $brighter  #eee8d5
+set $brightest #fdf6e3
 set $yellow    #b58900
 set $orange    #cb4b16
 set $red       #dc322f
@@ -171,16 +171,16 @@ bindsym $mod+u [urgent="latest"] focus
 mode "resize" {
   # These bindings trigger as soon as you enter the resize mode
 
-  bindsym h resize shrink width 10 px or 10 ppt
-  bindsym j resize grow height 10 px or 10 ppt
+  bindsym h resize shrink width  10 px or 10 ppt
+  bindsym j resize grow   height 10 px or 10 ppt
   bindsym k resize shrink height 10 px or 10 ppt
-  bindsym l resize grow width 10 px or 10 ppt
+  bindsym l resize grow   width  10 px or 10 ppt
 
   # same bindings, but for the arrow keys
-  bindsym Left resize shrink width 10 px or 10 ppt
-  bindsym Down resize grow height 10 px or 10 ppt
-  bindsym Up resize shrink height 10 px or 10 ppt
-  bindsym Right resize grow width 10 px or 10 ppt
+  bindsym Left  resize shrink width  10 px or 10 ppt
+  bindsym Down  resize grow   height 10 px or 10 ppt
+  bindsym Up    resize shrink height 10 px or 10 ppt
+  bindsym Right resize grow   width  10 px or 10 ppt
 
   # back to normal: Enter or Escape
   bindsym Return mode "default"
@@ -196,7 +196,6 @@ bindsym XF86AudioMute        exec --no-startup-id amixer -q -D pulse sset Master
 
 # screenshots using gnome-screenshot
 bindsym $mod+x exec --no-startup-id gnome-screenshot -w --file=$HOME/Obrazy/screenshot-$(date '+%Y-%m-%d_%H-%M-%S').png
-# bindsym --release $mod+x exec --no-startup-id import $HOME/Obrazy/screenshot-$(date '+%Y-%m-%d_%H-%M-%S').png
 
 # default layout for workspaces
 workspace_layout tabbed
@@ -206,7 +205,7 @@ assign [class="Firefox"]          2: web
 assign [class="Mendeley"]         3: docs
 assign [class="Zathura"]          3: docs
 assign [class="Skype"]            4: comm
-assign [class="HipChat"]          4: comm
+# assign [class="HipChat"]          4: comm
 assign [class="Spotify"]          5: media
 assign [class="Vlc"]              5: media
 assign [class="Transmission-gtk"] 5: media
@@ -243,5 +242,4 @@ exec --no-startup-id gnome-sound-applet
 # set wallpaper with feh
 # exec --no-startup-id feh --bg-scale /home/lucas/Obrazy/Ariya-1920x1200.png
 # start custom apps
-exec skype
-exec hipchat
+# exec nagstamon
