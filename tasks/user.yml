@@ -1,9 +1,18 @@
 ---
+- name: ensure necessary groups exist
+  group: >
+    name={{ item }}
+    state=present
+    system=yes
+  with_items:
+  - lxd
+  - libvirtd
+
 - name: ensure main user exists
   user: >
     name={{ user }}
-    generate_ssh_key=yes
-    groups=sudo,adm,lpadmin,dip,cdrom,plugdev,sambashare
+    generate_ssh_key=no
+    groups=sudo,adm,lpadmin,dip,cdrom,plugdev,sambashare,libvirtd,lxd
     home=/home/{{ user }}
     createhome=yes
     shell=/usr/bin/zsh
