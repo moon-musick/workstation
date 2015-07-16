@@ -4,24 +4,36 @@
     keyserver=keyserver.ubuntu.com
     id=6F036044
     state=present
+  tags:
+  - gui
+  - doctools
 
 - name: ensure Mendeleydesktop PPA present
   apt_repository: >
     repo='deb http://desktop-download.mendeley.com/download/apt stable main'
     state=present
     update_cache=yes
+  tags:
+  - gui
+  - doctools
 
 - name: ensure Zeal PPA key present
   apt_key: >
     keyserver=keyserver.ubuntu.com
     id=2FF96FD1
     state=present
+  tags:
+  - gui
+  - doctools
 
 - name: ensure Zeal PPA present
   apt_repository: >
     repo='ppa:zeal-developers/ppa'
     state=present
     update_cache=yes
+  tags:
+  - gui
+  - doctools
 
 - name: ensure packages installed
   apt: >
@@ -31,3 +43,6 @@
     - zeal
     - zathura
     - mendeleydesktop
+  tags:
+  - gui
+  - doctools
