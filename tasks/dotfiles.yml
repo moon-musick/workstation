@@ -27,11 +27,6 @@
     update=no
   sudo_user: "{{ user }}"
 
-# FIXME
-# - name: ensure proper permissions set
-#   command: chown -R {{ user }}:{{ user }} /home/{{ user }}/.dotfiles
-
-# FIXME
 # .haskeline least likely to be present before
 - name: ensure dotfiles symlinks present
   command: rcup -x README.md -f

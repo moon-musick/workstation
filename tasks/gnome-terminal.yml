@@ -15,7 +15,6 @@
     group={{ user }}
     mode=0644
 
-# FIXME; permissions bug
 - name: ensure gnome-terminal configuration restored
   shell: gconftool-2 --load gnome-terminal-conf.xml && touch gnome-terminal.lock
   args:

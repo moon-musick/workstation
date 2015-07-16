@@ -31,14 +31,9 @@
 #     creates: /home/{{ user }}/.vim/bundle/YouCompleteMe
 #   sudo_user: "{{ user }}"
 
-# FIXME; permissions bug
-# - name: ensure proper permissions set
-#   command: chown -R {{ user }}:{{ user }} /home/{{ user }}/.vim
-
 # - name: ensure other dependencies installed
 #   TODO; gem install rcodetools # vim-xmpfilter
 
-# FIXME; permissions bug
 - name: ensure installation script run
   command: "/home/{{ user }}/.vim/install.sh"
   args:

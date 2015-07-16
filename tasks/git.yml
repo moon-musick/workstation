@@ -15,6 +15,3 @@
   apt: >
     name=git
     state=present
-
-# - name: ensure gitconfig present
-  # TODO; provide .gitconfig
