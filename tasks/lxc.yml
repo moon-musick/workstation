@@ -6,6 +6,7 @@
     state=present
   tags:
   - virttools
+  - dev
 
 - name: ensure LXD stable PPA present
   apt_repository: >
@@ -14,6 +15,7 @@
     update_cache=yes
   tags:
   - virttools
+  - dev
 
 - name: ensure LXC and LXD packages installed
   apt: >
@@ -25,3 +27,4 @@
     - lxd-client
   tags:
   - virttools
+  - dev
