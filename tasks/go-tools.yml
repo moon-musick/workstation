@@ -1,4 +1,18 @@
 ---
+- name: ensure directories present
+  file: >
+    path=/home/{{ user }}/{{ item }}
+    owner={{ user }}
+    group={{ user }}
+    mode=0755
+    state=directory
+  with_items:
+  - ansible
+  - go
+  tags:
+  - dev
+  - shelltools
+
 - name: ensure go downloaded
   get_url: >
     url="https://storage.googleapis.com/golang/{{ golang_tarball }}"
@@ -14,17 +28,6 @@
     dest=/usr/local
     copy=no
   when: golang_archive_downloaded.changed
-  tags:
-  - dev
-  - shelltools
-
-- name: ensure go dir present
-  file: >
-    path=/home/{{ user }}/go
-    owner={{ user }}
-    group={{ user }}
-    mode=0755
-    state=directory
   tags:
   - dev
   - shelltools
