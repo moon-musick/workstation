@@ -1,0 +1,28 @@
+---
+- name: ensure docker repository key present
+  apt_key: >
+    url='https://get.docker.com/gpg'
+    state=present
+  tags:
+  - virttools
+  - dev
+  - shelltools
+
+- name: ensure docker repository present
+  apt_repository: >
+    repo='deb https://get.docker.com/ubuntu docker main'
+    state=present
+    update_cache=yes
+  tags:
+  - virttools
+  - dev
+  - shelltools
+
+- name: ensure docker installed
+  apt: >
+    name=lxc-docker
+    state=present
+  tags:
+  - virttools
+  - dev
+  - shelltools

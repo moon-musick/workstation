@@ -24,6 +24,7 @@
 - include: media.yml
 - include: networking.yml
 - include: lxc.yml
+- include: docker.yml
 - include: ranger.yml
 - include: taskwarrior.yml
 - include: go-tools.yml
