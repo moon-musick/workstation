@@ -1,0 +1,33 @@
+---
+- name: ensure dependencies are installed
+  apt: >
+    name={{ item }}
+    state=present
+  with_items:
+  - awesome
+  - awesome-extra
+  - unagi
+  tags:
+  - gui
+  - wm
+
+- name: ensure configuration repo configured
+  git: >
+    repo='https://github.com/moon-musick/awesome.git'
+    dest=/home/{{ user }}/.config/awesome
+    update=no
+  sudo_user: "{{ user }}"
+  tags:
+  - gui
+  - wm
+
+- name: ensure startup helper present
+  file: >
+    src=/home/{{ user }}/.config/awesome/run_once
+    dest=/home/{{ user }}/bin/run_once
+    owner={{ user }}
+    group={{ user }}
+    state=link
+  tags:
+  - gui
+  - wm

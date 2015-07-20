@@ -20,6 +20,7 @@
 - include: doctools.yml
 - include: xmonad.yml
 - include: i3wm.yml
+- include: awesome.yml
 - include: comm.yml
 - include: media.yml
 - include: networking.yml
