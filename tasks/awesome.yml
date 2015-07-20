@@ -20,14 +20,3 @@
   tags:
   - gui
   - wm
-
-- name: ensure startup helper present
-  file: >
-    src=/home/{{ user }}/.config/awesome/run_once
-    dest=/home/{{ user }}/bin/run_once
-    owner={{ user }}
-    group={{ user }}
-    state=link
-  tags:
-  - gui
-  - wm
