@@ -30,6 +30,7 @@
   with_items:
     - xclip
     - gconf2
+    - scrot
   tags:
   - gui
   - dependency
