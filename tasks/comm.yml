@@ -18,36 +18,6 @@
     - finch
     - mutt
 
-- name: ensure rainbowstream installed
-  pip: >
-    name=rainbowstream
-    state=present
-
-- name: ensure custom rainbowstream colorscheme present
-  copy: >
-    src=rainbowstream/moonmusick.json
-    dest=/usr/local/lib/python{{ python_version }}/dist-packages/rainbowstream/colorset/moonmusick.json
-    owner=root
-    group=root
-    mode=0644
-
-- name: ensure rainbowstream configuration present
-  copy: >
-    src=rainbowstream/rainbow_config.json
-    dest=/home/{{ user }}/.rainbow_config.json
-    owner={{ user }}
-    group={{ user }}
-    mode=0644
-
-# FIXME; private vars
-# - name: ensure rainbowstream auth file present
-#   template: >
-#     src=rainbowstream/rainbow_oauth.j2
-#     dest=/home/{{ user }}/.rainbow_oauth
-#     owner={{ user }}
-#     group={{ user }}
-#     mode=0600
-
 # - name: ensure Telegram PPA key present
 #   apt_key: >
 #     id=36FD5529

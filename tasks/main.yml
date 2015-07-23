@@ -22,6 +22,7 @@
 - include: i3wm.yml
 - include: awesome.yml
 - include: comm.yml
+- include: rainbowstream.yml
 - include: media.yml
 - include: networking.yml
 - include: lxc.yml
