@@ -10,13 +10,13 @@
 #     state=present
 #     update_cache=yes
 
-# - name: ensure comm apps installed
-#   apt: >
-#     name={{ item }}
-#     state=present
-#   with_items:
-#     - hipchat
-#     - skype
+- name: ensure comm apps installed
+  apt: >
+    name={{ item }}
+    state=present
+  with_items:
+    - finch
+    - mutt
 
 - name: ensure rainbowstream installed
   pip: >
