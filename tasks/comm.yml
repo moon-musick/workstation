@@ -17,6 +17,12 @@
   with_items:
     - finch
     - mutt
+  tags:
+  - commtools
+  - shelltools
+
+# TODO; finch configuration
+# TODO; mutt configuration
 
 # - name: ensure Telegram PPA key present
 #   apt_key: >
