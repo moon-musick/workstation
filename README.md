@@ -9,8 +9,10 @@ TODO:
 * font download & configuration  
 * setup firefox (plugins - vimperator might be enough?)  
 * setup ferm  
-* install vagrant & vagrant-lxc?  
+* install vagrant-lxc?  
+* setup newsbeuter  
 * setup pass (with pinentry-curses @ gpg-agent.conf)  
-* install basic ruby with rbenv  
+* install basic ruby with rbenv, or  
+* install basic ruby with brightbox  
 * setup VPN  
 * setup ssh (config)  
