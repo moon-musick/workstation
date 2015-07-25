@@ -3,6 +3,8 @@
   fail: >
     msg='Not running Ubuntu Trusty or x86_64'
   when: ansible_distribution_release != "trusty" or ansible_machine != 'x86_64'
+  tags:
+  - dependency
 
 - include: general.yml
 - include: user.yml

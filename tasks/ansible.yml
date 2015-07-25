@@ -4,14 +4,23 @@
     keyserver=keyserver.ubuntu.com
     id=7BB9C367
     state=present
+  tags:
+  - shelltools
+  - ansible
 
 - name: ensure Ansible PPA present
   apt_repository: >
     repo='ppa:ansible/ansible'
     state=present
     update_cache=true
+  tags:
+  - shelltools
+  - ansible
 
 - name: ensure Ansible installed
   apt: >
     name=ansible
     state=present
+  tags:
+  - shelltools
+  - ansible

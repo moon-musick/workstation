@@ -4,6 +4,8 @@
   apt: >
     name=task
     state=present
+  tags:
+  - shelltools
 
 - name: ensure taskrc present
   copy: >
@@ -12,3 +14,5 @@
     owner={{ user }}
     group={{ user }}
     mode=0600
+  tags:
+  - shelltools

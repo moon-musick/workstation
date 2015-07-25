@@ -6,6 +6,8 @@
     group={{ user }}
     mode=0755
     state=directory
+  tags:
+  - gui
 
 - name: ensure gnome-terminal configuration present
   copy: >
@@ -14,6 +16,8 @@
     owner={{ user }}
     group={{ user }}
     mode=0644
+  tags:
+  - gui
 
 - name: ensure gnome-terminal configuration restored
   shell: gconftool-2 --load gnome-terminal-conf.xml && touch gnome-terminal.lock
@@ -21,3 +25,5 @@
     chdir: /home/{{ user }}/ansible/
     creates: /home/{{ user }}/ansible/gnome-terminal.lock
   sudo_user: "{{ user }}"
+  tags:
+  - gui

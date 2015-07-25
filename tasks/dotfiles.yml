@@ -6,6 +6,8 @@
     group={{ user }}
     mode=0755
     state=directory
+  tags:
+  - shelltools
 
 - name: ensure rcm debfile copied
   copy: >
@@ -14,11 +16,15 @@
     owner={{ user }}
     group={{ user }}
     mode=0644
+  tags:
+  - shelltools
 
 - name: ensure rcm installed
   apt: >
     deb=/home/{{ user }}/ansible/{{ rcm_debfile }}
     state=present
+  tags:
+  - shelltools
 
 - name: ensure dotfiles repo cloned
   git: >
@@ -26,6 +32,8 @@
     dest=/home/{{ user }}/.dotfiles
     update=no
   sudo_user: "{{ user }}"
+  tags:
+  - shelltools
 
 # .haskeline least likely to be present before
 - name: ensure dotfiles symlinks present
@@ -34,3 +42,5 @@
   args:
     chdir: /home/{{ user }}
     creates: /home/{{ user }}/.haskeline
+  tags:
+  - shelltools

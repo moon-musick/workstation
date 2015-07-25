@@ -6,6 +6,9 @@
     dest=/home/{{ user }}/.rbenv
     update=no
   sudo_user: "{{ user }}"
+  tags:
+  - dev
+  - ruby
 
 # most likely unnecessary
 - name: ensure rbenv plugins dir present
@@ -15,6 +18,9 @@
     group={{ user }}
     mode=0775
     state=directory
+  tags:
+  - dev
+  - ruby
 
 - name: ensure rbenv plugins installed
   git: >
@@ -37,5 +43,8 @@
       repo: https://github.com/rkh/rbenv-whatis.git
     - name: ruby-build
       repo: https://github.com/sstephenson/ruby-build.git
+  tags:
+  - dev
+  - ruby
 
 # TODO; install basic ruby?
