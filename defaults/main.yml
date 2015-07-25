@@ -1,3 +1,4 @@
 ---
 user: lucas
 texlive_version: 2014
+vagrant_debfile: vagrant_1.7.4_x86_64.deb
