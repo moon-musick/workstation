@@ -1,5 +1,5 @@
 ---
-- name: ensure packages installed
+- name: ensure vim packages installed
   apt: >
     name={{ item }}
     state=present
@@ -15,14 +15,22 @@
     - python-dev # ctrlp-cmatcher
     # - ghc-mod
     # - hdevtools
+  tags:
+  - shelltools
+  - dev
+  - vim
 
-- name: ensure repo cloned
+- name: ensure vim repo cloned
   git: >
     repo={{ vim_repo }}
     dest=/home/{{ user }}/.vim
     update=no
     accept_hostkey=yes
   sudo_user: "{{ user }}"
+  tags:
+  - shelltools
+  - dev
+  - vim
 
 # FIXME; does not terminate properly
 # - name: ensure plugins installed
@@ -30,15 +38,27 @@
 #   args:
 #     creates: /home/{{ user }}/.vim/bundle/YouCompleteMe
 #   sudo_user: "{{ user }}"
+  tags:
+  - shelltools
+  - dev
+  - vim
 
 # - name: ensure other dependencies installed
 #   TODO; gem install rcodetools # vim-xmpfilter
+  tags:
+  - shelltools
+  - dev
+  - vim
 
-- name: ensure installation script run
+- name: ensure vim setup script run
   command: "/home/{{ user }}/.vim/install.sh"
   args:
     creates: "/home/{{ user }}/.vim/install.lock"
   sudo_user: "{{ user }}"
+  tags:
+  - shelltools
+  - dev
+  - vim
 
 - name: ensure vimrc symlink created
   file: >
@@ -47,3 +67,7 @@
     owner={{ user }}
     group={{ user }}
     state=link
+  tags:
+  - shelltools
+  - dev
+  - vim

@@ -1,5 +1,5 @@
 ---
-- name: ensure packages installed
+- name: ensure networking packages installed
   apt: >
     name={{ item }}
     state=present
@@ -13,6 +13,9 @@
     - nmap
     - ftp
     - arp-scan
+  tags:
+  - networking
+  - shelltools
 
 - name: ensure wireshark configured
   debconf: >
@@ -20,9 +23,15 @@
     question='wireshark-common/install-setuid'
     vtype=boolean
     value=true
+  tags:
+  - networking
+  - gui
 
 - name: ensure wireshark installed
   apt: >
     name=wireshark
     state=present
     update_cache=true
+  tags:
+  - networking
+  - gui
