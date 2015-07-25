@@ -18,6 +18,7 @@
 - include: ansible.yml
 - include: cheat.yml
 - include: doctools.yml
+- include: utils.yml
 - include: xmonad.yml
 - include: i3wm.yml
 - include: awesome.yml

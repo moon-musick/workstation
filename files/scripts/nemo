@@ -1,0 +1,3 @@
+#!/bin/bash
+
+nautilus --no-default-window --no-desktop $HOME

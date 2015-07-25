@@ -1,0 +1,17 @@
+---
+- name: ensure utility scripts are present
+  copy: >
+    src=scripts/{{ item }}
+    dest=/home/{{ user }}/bin/{{ item }}
+    owner={{ user }}
+    group={{ user }}
+    mode=0755
+  with_items:
+  - freeze
+  - lock
+  - nemo
+  - trash
+  - wlan_reconnect
+  tags:
+  - gui
+  - shelltools

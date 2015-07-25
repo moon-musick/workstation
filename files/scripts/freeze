@@ -1,0 +1,4 @@
+#!/bin/bash
+
+i3lock --color=002b36
+sudo pm-suspend
