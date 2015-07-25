@@ -32,7 +32,7 @@
   - dev
   - shelltools
 
-- name: ensure apps installed
+- name: ensure go apps installed
   shell: GOPATH=/home/{{ user }}/go /usr/local/go/bin/go get {{ item.repo }}
   args:
     creates: /home/{{ user }}/go/bin/{{ item.exec }}
