@@ -4,14 +4,18 @@
     name=ranger
     state=present
     update_cache=true
+  tags:
+  - shelltools
 
 - name: ensure ranger configuration dirs present
   file: >
     name=/home/{{ user }}/.config/ranger
     owner={{ user }}
     group={{ user }}
-    mode=0640
+    mode=0750
     state=directory
+  tags:
+  - shelltools
 
 - name: ensure ranger configuration present
   copy: >
@@ -20,3 +24,5 @@
     owner={{ user }}
     group={{ user }}
     mode=0755
+  tags:
+  - shelltools
