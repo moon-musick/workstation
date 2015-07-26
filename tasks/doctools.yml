@@ -35,7 +35,7 @@
   - gui
   - doctools
 
-- name: ensure packages installed
+- name: ensure doctools packages installed
   apt: >
     name={{ item }}
     state=present

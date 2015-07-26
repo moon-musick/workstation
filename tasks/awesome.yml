@@ -1,5 +1,5 @@
 ---
-- name: ensure dependencies are installed
+- name: ensure Awesome WM dependencies are installed
   apt: >
     name={{ item }}
     state=present
@@ -11,7 +11,7 @@
   - gui
   - wm
 
-- name: ensure configuration repo configured
+- name: ensure Awesome WM configuration repo configured
   git: >
     repo='https://github.com/moon-musick/awesome.git'
     dest=/home/{{ user }}/.config/awesome
