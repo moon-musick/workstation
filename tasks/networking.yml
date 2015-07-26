@@ -4,6 +4,7 @@
     name={{ item }}
     state=present
     update_cache=true
+    cache_valid_time=3600
   with_items:
     - ethtool
     - tcpdump
@@ -32,6 +33,7 @@
     name=wireshark
     state=present
     update_cache=true
+    cache_valid_time=3600
   tags:
   - networking
   - gui
