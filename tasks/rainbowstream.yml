@@ -3,6 +3,7 @@
   pip: >
     name=rainbowstream
     state=present
+    executable=pip2
   tags:
   - news
   - shelltools
