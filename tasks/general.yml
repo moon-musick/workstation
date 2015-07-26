@@ -19,6 +19,7 @@
     - tmux
     - openvpn
     - jq
+    - pmount
   tags:
   - shelltools
   - dependency
