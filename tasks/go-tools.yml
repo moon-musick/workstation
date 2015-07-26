@@ -1,14 +1,11 @@
 ---
 - name: ensure directories present
   file: >
-    path=/home/{{ user }}/{{ item }}
+    path=/home/{{ user }}/go
     owner={{ user }}
     group={{ user }}
     mode=0755
     state=directory
-  with_items:
-  - ansible
-  - go
   tags:
   - dev
   - shelltools

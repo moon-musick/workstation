@@ -1,14 +1,4 @@
 ---
-- name: ensure tmp dir present
-  file: >
-    path=/home/{{ user }}/ansible
-    owner={{ user }}
-    group={{ user }}
-    mode=0755
-    state=directory
-  tags:
-  - shelltools
-
 - name: ensure rcm debfile copied
   copy: >
     src={{ rcm_debfile }}

@@ -9,6 +9,7 @@
   - libvirtd
   tags:
   - user
+  - dependency
 
 - name: ensure main user exists
   user: >
@@ -20,3 +21,19 @@
     shell=/usr/bin/zsh
   tags:
   - user
+  - dependency
+
+- name: ensure necessary directories exist
+  file: >
+    path=/home/{{ user }}/{{ item }}
+    owner={{ user }}
+    group={{ user }}
+    mode=0755
+    state=directory
+  with_items:
+  - ansible
+  - dev
+  - bin
+  tags:
+  - user
+  - dependency

@@ -1,14 +1,4 @@
 ---
-- name: ensure Ansible install dir present
-  file: >
-    path=/home/{{ user }}/ansible
-    owner={{ user }}
-    group={{ user }}
-    mode=0755
-    state=directory
-  tags:
-  - gui
-
 - name: ensure gnome-terminal configuration present
   copy: >
     src=gnome-terminal/gnome-terminal-conf.xml
