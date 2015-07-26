@@ -1,4 +1,4 @@
 #!/bin/bash
 
-i3lock --color=002b36
+i3lock --color=002b36 --dpms
 sudo pm-suspend
