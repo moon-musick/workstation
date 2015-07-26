@@ -32,12 +32,13 @@
   - dev
   - vim
 
-# FIXME; does not terminate properly
-# - name: ensure plugins installed
-#   command: vim -u /home/{{ user }}/.vim/custom/vundle.vim +PluginInstall +qall
-#   args:
-#     creates: /home/{{ user }}/.vim/bundle/YouCompleteMe
-#   sudo_user: "{{ user }}"
+# FIXME; test termination issues
+- name: ensure plugins installed
+  shell: vim -u custom/vundle.vim +PluginInstall +qall
+  args:
+    creates: /home/{{ user }}/.vim/bundle/YouCompleteMe
+    chdir: /home/{{ user }}/.vim
+  sudo_user: "{{ user }}"
   tags:
   - shelltools
   - dev
