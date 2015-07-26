@@ -19,13 +19,15 @@
   - news
   - shelltools
 
+# https://github.com/DTVD/rainbowstream/issues/91
+# 0777 is apparently forced on every rainbowstream invocation
 - name: ensure rainbowstream configuration present
   copy: >
     src=rainbowstream/rainbow_config.json
     dest=/home/{{ user }}/.rainbow_config.json
     owner={{ user }}
     group={{ user }}
-    mode=0644
+    mode=0777
   tags:
   - news
   - shelltools

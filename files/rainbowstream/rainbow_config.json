@@ -1,5 +1,5 @@
 {
-    "THEME": "moonmusick",
+    "THEME": "moonmusick", 
     "IMAGE_ON_TERM": false, 
     "HEARTBEAT_TIMEOUT": 120, 
     "ASCII_ART": true, 
