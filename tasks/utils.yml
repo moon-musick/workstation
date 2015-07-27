@@ -9,9 +9,20 @@
   with_items:
   - freeze
   - lock
+  - locker
   - nemo
   - trash
   - wlan_reconnect
   tags:
   - gui
   - shelltools
+
+- name: ensure lock on sleep script added
+  copy: >
+    src=scripts/10_lock
+    dest=/etc/pm/sleep.d/10_lock
+    owner=root
+    group=root
+    mode=0755
+  tags:
+  - gui
