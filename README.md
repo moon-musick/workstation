@@ -3,16 +3,19 @@ Workstation configuration
 
 TODO:
 
-* fzf configuration  
-* rainbowstream auth  
+* install & setup fzf 
 * test texlive installation  
-* font download & configuration  
+* setup font download & configuration  
 * setup firefox (plugins - vimperator might be enough?)  
-* setup ferm  
+* install & configure ferm  
 * install vagrant-lxc?  
-* setup newsbeuter  
 * setup pass (with pinentry-curses @ gpg-agent.conf)  
 * install basic ruby with rbenv, or  
 * install basic ruby with brightbox  
 * setup VPN  
 * setup ssh (config)  
+* setup mutt  
+* setup finch  
+* setup redshift (or xflux)  
+* setup rainbowstream auth  
+* setup newsbeuter (urls and config handled by dotfiles already)  
