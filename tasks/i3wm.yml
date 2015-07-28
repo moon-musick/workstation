@@ -7,19 +7,21 @@
   tags:
   - wm
   - gui
+  - i3
 
 # FIXME; fix to use allow-unauthenticated somehow
 - name: ensure i3wm keyring installed
   apt: >
     name=sur5r-keyring
     state=present
-    update_cache=yes
-    cache_valid_time=3600
+    # update_cache=yes
+    # cache_valid_time=3600
     force=yes
   register: i3wm_keyring
   tags:
   - wm
   - gui
+  - i3
 
 - name: ensure apt cache is up do date if i3wm keyring was modified
   command: apt-get update
@@ -27,6 +29,7 @@
   tags:
   - wm
   - gui
+  - i3
 
 - name: ensure i3wm packages installed
   apt: >
@@ -45,6 +48,7 @@
   tags:
   - wm
   - gui
+  - i3
 
 - name: ensure i3wm config dir present
   file: >
@@ -56,6 +60,7 @@
   tags:
   - wm
   - gui
+  - i3
 
 - name: ensure i3wm config files present
   copy: >
@@ -67,6 +72,7 @@
   tags:
   - wm
   - gui
+  - i3
 
 - name: ensure i3status config present
   copy: >
@@ -78,3 +84,4 @@
   tags:
   - wm
   - gui
+  - i3
