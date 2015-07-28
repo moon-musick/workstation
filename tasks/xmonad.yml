@@ -8,6 +8,7 @@
   tags:
   - wm
   - gui
+  - xmonad
 
 # FIXME; port script contents to Ansible
 # (dependencies installation etc.)
@@ -18,3 +19,4 @@
   tags:
   - wm
   - gui
+  - xmonad
