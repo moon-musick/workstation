@@ -19,3 +19,4 @@ TODO:
 * setup redshift (or xflux)  
 * setup rainbowstream auth  
 * setup newsbeuter (urls and config handled by dotfiles already)  
+* install fpm  
