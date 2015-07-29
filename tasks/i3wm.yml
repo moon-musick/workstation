@@ -14,8 +14,6 @@
   apt: >
     name=sur5r-keyring
     state=present
-    # update_cache=yes
-    # cache_valid_time=3600
     force=yes
   register: i3wm_keyring
   tags:
