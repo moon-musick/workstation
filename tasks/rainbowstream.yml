@@ -1,4 +1,9 @@
 ---
+- include_vars: rainbowstream.yml
+  tags:
+  - news
+  - shelltools
+
 - name: ensure rainbowstream installed
   pip: >
     name=rainbowstream
@@ -32,14 +37,13 @@
   - news
   - shelltools
 
-# FIXME; private vars
-# - name: ensure rainbowstream auth file present
-#   template: >
-#     src=rainbowstream/rainbow_oauth.j2
-#     dest=/home/{{ user }}/.rainbow_oauth
-#     owner={{ user }}
-#     group={{ user }}
-#     mode=0600
-#   tags:
-#   - news
-#   - shelltools
+- name: ensure rainbowstream auth file present
+  template: >
+    src=rainbowstream/rainbow_oauth.j2
+    dest=/home/{{ user }}/.rainbow_oauth
+    owner={{ user }}
+    group={{ user }}
+    mode=0600
+  tags:
+  - news
+  - shelltools
