@@ -3,7 +3,6 @@ Workstation configuration
 
 TODO:
 
-* install & setup fzf 
 * test texlive installation  
 * setup font download & configuration  
 * setup firefox (plugins - vimperator might be enough?)  

@@ -21,6 +21,7 @@
 - include: cheat.yml
 - include: doctools.yml
 - include: utils.yml
+- include: fzf.yml
 - include: xmonad.yml
 - include: i3wm.yml
 - include: awesome.yml
