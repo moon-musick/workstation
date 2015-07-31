@@ -9,10 +9,20 @@
 
 - name: ensure taskrc present
   copy: >
-    src=taskrc
+    src=task/taskrc
     dest=/home/{{ user }}/.taskrc
     owner={{ user }}
     group={{ user }}
     mode=0600
+  tags:
+  - shelltools
+
+- name: ensure colorscheme present
+  copy: >
+    src=task/dark-16.theme
+    dest=/home/{{ user }}/.task/dark-16.theme
+    owner={{ user }}
+    group={{ user }}
+    mode=0644
   tags:
   - shelltools
