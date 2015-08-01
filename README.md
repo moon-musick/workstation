@@ -16,5 +16,4 @@ TODO:
 * setup mutt  
 * setup finch  
 * setup redshift (or xflux)  
-* setup newsbeuter (urls and config handled by dotfiles already)  
 * install fpm  
