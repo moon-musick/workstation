@@ -9,6 +9,7 @@
   tags:
   - dev
   - shelltools
+  - golang
 
 - name: ensure go downloaded
   get_url: >
@@ -18,6 +19,7 @@
   tags:
   - dev
   - shelltools
+  - golang
 
 - name: unarchive golang tarball
   unarchive: >
@@ -28,6 +30,7 @@
   tags:
   - dev
   - shelltools
+  - golang
 
 - name: ensure go apps installed
   shell: GOPATH=/home/{{ user }}/go /usr/local/go/bin/go get {{ item.repo }}
@@ -43,10 +46,12 @@
   sudo_user: "{{ user }}"
   tags:
   - shelltools
+  - golang
 
 - include_vars: wego.yml
   tags:
   - shelltools
+  - golang
 
 - name: ensure wego configuration file is present
   template: >
@@ -57,3 +62,4 @@
     mode=0600
   tags:
   - shelltools
+  - golang
