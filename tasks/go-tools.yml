@@ -44,4 +44,16 @@
   tags:
   - shelltools
 
-# TODO; wego key
+- include_vars: wego.yml
+  tags:
+  - shelltools
+
+- name: ensure wego configuration file is present
+  template: >
+    src=wego/wegorc.j2
+    dest=/home/{{ user }}/.wegorc
+    owner={{ user }}
+    group={{ user }}
+    mode=0600
+  tags:
+  - shelltools
