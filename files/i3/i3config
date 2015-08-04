@@ -69,8 +69,8 @@ bindsym $mod+d exec dmenu_run -f -i -fn Inconsolata-11:normal -nb \#93a1a1 -nf \
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
-# custom - lock screen with i3lock
-bindsym $mod+g exec /home/lucas/bin/lock
+# custom - lock screen with xautolock
+bindsym $mod+g exec xautolock -locknow
 bindsym $mod+Shift+g exec sleep 1 && xset dpms force off
 
 # change focus
@@ -238,6 +238,8 @@ exec_always --no-startup-id /home/lucas/.i3/startup
 exec --no-startup-id nm-applet
 # start sound applet
 exec --no-startup-id gnome-sound-applet
+# start xautolock wrapper
+exec --no-startup-id /home/lucas/bin/locker
 # set wallpaper with feh
 # exec --no-startup-id feh --bg-scale /home/lucas/Obrazy/Ariya-1920x1200.png
 # start custom apps
