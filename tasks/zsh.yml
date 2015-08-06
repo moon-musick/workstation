@@ -32,13 +32,13 @@
   tags:
   - shelltools
 
-# - name: ensure notification script present
-#   copy: >
-#     src=zsh/notifyosd.zsh
-#     dest=/home/{{ user }}/.zsh/notifyosd.zsh
-#     owner={{ user }}
-#     group={{ user }}
-#     mode=0664
+- name: ensure notification script present
+  copy: >
+    src=zsh/notifyosd.zsh
+    dest=/home/{{ user }}/.zsh/notifyosd.zsh
+    owner={{ user }}
+    group={{ user }}
+    mode=0664
 
 - name: ensure syntax highlighting plugin present
   git: >
