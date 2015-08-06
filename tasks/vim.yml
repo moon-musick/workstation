@@ -24,7 +24,6 @@
   git: >
     repo={{ vim_repo }}
     dest=/home/{{ user }}/.vim
-    update=no
     accept_hostkey=yes
   sudo_user: "{{ user }}"
   tags:

@@ -8,5 +8,4 @@
   git: >
     repo='https://github.com/moon-musick/powerline.git'
     dest=/home/{{ user }}/.config/powerline
-    update=no
   sudo_user: "{{ user }}"

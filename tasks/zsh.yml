@@ -44,7 +44,6 @@
   git: >
     repo='https://github.com/zsh-users/zsh-syntax-highlighting'
     dest=/home/{{ user }}/.zsh/zsh-syntax-highlighting
-    update=no
   sudo_user: "{{ user }}"
   tags:
   - shelltools
@@ -53,7 +52,6 @@
   git: >
     repo='https://github.com/hchbaw/opp.zsh'
     dest=/home/{{ user }}/.zsh/opp.zsh
-    update=no
   sudo_user: "{{ user }}"
   tags:
   - shelltools
