@@ -13,7 +13,7 @@ TODO:
 * install basic ruby with brightbox  
 * setup VPN  
 * setup ssh (config)  
-* setup mutt  
 * setup finch  
 * setup redshift (or xflux)  
 * install fpm  
+* install tmuxinator  
