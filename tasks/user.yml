@@ -7,6 +7,7 @@
   with_items:
   - lxd
   - libvirtd
+  - docker
   tags:
   - user
   - dependency
@@ -15,7 +16,7 @@
   user: >
     name={{ user }}
     generate_ssh_key=no
-    groups=sudo,adm,lpadmin,dip,cdrom,plugdev,sambashare,libvirtd,lxd
+    groups=sudo,adm,lpadmin,dip,cdrom,plugdev,sambashare,libvirtd,lxd,docker
     home=/home/{{ user }}
     createhome=yes
     shell=/usr/bin/zsh
