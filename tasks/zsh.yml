@@ -19,9 +19,6 @@
   tags:
   - shelltools
 
-# - name: ensure proper permissions set
-#   command: chown -R {{ user }}:{{ user }} /home/{{ user }}/.oh-my-zsh
-
 - name: ensure zsh custom dir present
   file: >
     path=/home/{{ user }}/.zsh
@@ -55,6 +52,3 @@
   sudo_user: "{{ user }}"
   tags:
   - shelltools
-
-# - name: ensure proper permissions set
-#   command: chown -R {{ user }}:{{ user }} /home/{{ user }}/.zsh

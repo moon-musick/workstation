@@ -11,11 +11,8 @@
   git: >
     repo='https://github.com/moon-musick/powerline-shell'
     dest=/home/{{ user }}/.powerline/powerline-shell
-  # sudo_user: "{{ user }}"
+  sudo_user: "{{ user }}"
 
-# FIXME
-- name: ensure proper permissions set
-  command: chown -R {{ user }}:{{ user }} /home/{{ user }}/.powerline/
 
 - name: ensure installation config present
   copy: >
@@ -25,10 +22,9 @@
     group={{ user }}
     mode=0640
 
-# FIXME; permissions bug
-# - name: ensure installation script run
-#   command: './install.py'
-#   args:
-#     chdir: "/home/{{ user }}/.powerline/powerline-shell"
-#     creates: "/home/{{ user }}/.powerline/powerline-shell/powerline-shell.py"
-#   sudo_user: "{{ user }}"
+- name: ensure installation script run
+  command: './install.py'
+  args:
+    chdir: "/home/{{ user }}/.powerline/powerline-shell"
+    creates: "/home/{{ user }}/.powerline/powerline-shell/powerline-shell.py"
+  sudo_user: "{{ user }}"
