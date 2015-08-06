@@ -3,7 +3,6 @@
   git: >
     repo='https://github.com/moon-musick/xmonad-ubuntu-conf'
     dest=/home/{{ user }}/.xmonad
-    update=no
   sudo_user: "{{ user }}"
   tags:
   - wm

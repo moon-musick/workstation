@@ -20,7 +20,6 @@
   git: >
     repo='https://github.com/moon-musick/.dotfiles.git'
     dest=/home/{{ user }}/.dotfiles
-    update=no
   sudo_user: "{{ user }}"
   tags:
   - shelltools

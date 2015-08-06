@@ -14,7 +14,6 @@
   git: >
     repo='https://github.com/robbyrussell/oh-my-zsh'
     dest=/home/{{ user }}/.oh-my-zsh
-    update=no
   sudo: yes
   sudo_user: "{{ user }}"
   tags:

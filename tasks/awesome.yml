@@ -52,7 +52,6 @@
   git: >
     repo='https://github.com/moon-musick/awesome.git'
     dest=/home/{{ user }}/.config/awesome
-    update=no
     version={{ ansible_local.awesome.branch }}
   sudo_user: "{{ user }}"
   tags:

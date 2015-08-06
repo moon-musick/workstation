@@ -11,7 +11,6 @@
   git: >
     repo='https://github.com/moon-musick/powerline-shell'
     dest=/home/{{ user }}/.powerline/powerline-shell
-    update=no
   # sudo_user: "{{ user }}"
 
 # FIXME
