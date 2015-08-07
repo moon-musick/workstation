@@ -20,11 +20,15 @@
   - dev
   - vim
 
+# apparently the module returns 'changed' on every checkout
+# even if remote was not updated in any way
 - name: ensure vim repo cloned
   git: >
     repo={{ vim_repo }}
     dest=/home/{{ user }}/.vim
     accept_hostkey=yes
+    track_submodules=no
+  changed_when: False
   sudo_user: "{{ user }}"
   tags:
   - shelltools
