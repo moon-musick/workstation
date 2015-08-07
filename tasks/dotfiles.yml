@@ -18,7 +18,7 @@
 
 - name: ensure dotfiles repo cloned
   git: >
-    repo='https://github.com/moon-musick/.dotfiles.git'
+    repo='git@github.com:moon-musick/.dotfiles.git'
     dest=/home/{{ user }}/.dotfiles
   sudo_user: "{{ user }}"
   tags:
