@@ -7,7 +7,7 @@
 - name: ensure rainbowstream installed
   pip: >
     name=rainbowstream
-    state=present
+    state=latest
     executable=pip2
   tags:
   - news
