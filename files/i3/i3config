@@ -240,6 +240,8 @@ exec --no-startup-id nm-applet
 exec --no-startup-id gnome-sound-applet
 # start xautolock wrapper
 exec --no-startup-id /home/lucas/bin/locker
+# start redshift
+exec --no-startup-id redshift -c /home/lucas/.config/redshift.conf
 # set wallpaper with feh
 # exec --no-startup-id feh --bg-scale /home/lucas/Obrazy/Ariya-1920x1200.png
 # start custom apps
