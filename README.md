@@ -14,6 +14,5 @@ TODO:
 * setup VPN  
 * setup ssh (config)  
 * setup finch  
-* setup redshift (or xflux)  
 * install fpm  
 * install tmuxinator  
