@@ -16,7 +16,6 @@
     - debconf-utils
     - python-pip
     - python-dev
-    - tmux
     - openvpn
     - jq
     - pmount

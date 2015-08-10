@@ -1,0 +1,49 @@
+---
+- name: ensure tmux PPA key is configured
+  apt_key: >
+    keyserver=keyserver.ubuntu.com
+    id=779C27D7
+    state=present
+  tags:
+  - shelltools
+  - tmux
+
+- name: ensure tmux PPA is configured
+  apt_repository: >
+    repo='ppa:pi-rho/dev'
+    state=present
+    update_cache=yes
+  tags:
+  - shelltools
+  - tmux
+
+- name: ensure tmux is installed
+  apt: >
+    name=tmux
+    state=present
+  tags:
+  - shelltools
+  - tmux
+
+- name: ensure tmux configuration directory is present
+  file: >
+    path=/home/{{ user }}/{{ item }}
+    owner={{ user }}
+    group={{ user }}
+    mode=0755
+    state=directory
+  with_items:
+  - '.tmux'
+  - '.tmux/plugins'
+  tags:
+  - shelltools
+  - tmux
+
+- name: ensure tpm repo was cloned
+  git: >
+    repo='https://github.com/tmux-plugins/tpm'
+    dest=/home/{{ user }}/.tmux/plugins/tpm
+  sudo_user: "{{ user }}"
+  tags:
+  - shelltools
+  - tmux

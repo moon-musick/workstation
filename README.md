@@ -16,3 +16,4 @@ TODO:
 * setup finch  
 * install fpm  
 * install tmuxinator  
+* extract pi-rho PPA to separate file and tag with both vim and tmux
