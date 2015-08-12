@@ -16,6 +16,7 @@
 # - include: powerline.yml
 - include: gnome-terminal.yml
 - include: gtk-themes.yml
+- include: pi-rho-ppa.yml
 - include: vim.yml
 - include: tmux.yml
 - include: ansible.yml
