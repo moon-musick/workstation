@@ -16,3 +16,4 @@ TODO:
 * setup finch  
 * install fpm  
 * install tmuxinator  
+* setup NTP  
