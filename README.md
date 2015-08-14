@@ -17,4 +17,3 @@ TODO:
 * install fpm  
 * install tmuxinator  
 * setup NTP  
-* upgrade [Docker repository](http://blog.docker.com/2015/07/new-apt-and-yum-repos/)
