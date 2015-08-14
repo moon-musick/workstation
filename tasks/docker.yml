@@ -8,6 +8,7 @@
   - virttools
   - dev
   - shelltools
+  - docker
 
 - name: ensure docker repository present
   apt_repository: >
@@ -18,6 +19,7 @@
   - virttools
   - dev
   - shelltools
+  - docker
 
 - name: ensure docker installed
   apt: >
@@ -27,3 +29,4 @@
   - virttools
   - dev
   - shelltools
+  - docker
