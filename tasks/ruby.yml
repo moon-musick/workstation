@@ -1,0 +1,54 @@
+---
+- name: ensure brightbox PPA key is configured
+  apt_key: >
+    keyserver=keyserver.ubuntu.com
+    id='C3173AA6'
+    state=present
+  tags:
+  - ruby
+  - dev
+  - dependency
+
+- name: ensure brightbox PPA is configured
+  apt_repository: >
+    repo='ppa:brightbox/ruby-ng'
+    state=present
+    update_cache=yes
+  tags:
+  - ruby
+  - dev
+  - dependency
+
+- name: ensure brightbox ruby is installed
+  apt: >
+    name={{ item }}
+    state=present
+  with_items:
+  - ruby2.2
+  - ruby2.2-dev
+  tags:
+  - ruby
+  - dev
+  - dependency
+
+- name: ensure bundler is installed
+  gem: >
+    name=bundler
+    state=present
+    user_install=no
+  tags:
+  - ruby
+  - dev
+
+- name: ensure ruby-dependent tools are installed
+  gem: >
+    name={{ item }}
+    state=present
+    user_install=no
+  with_items:
+  - fpm
+  - tmuxinator
+  tags:
+  - ruby
+  - dev
+  - shelltools
