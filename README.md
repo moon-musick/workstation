@@ -12,4 +12,3 @@ TODO:
 * setup VPN  
 * setup ssh (config)  
 * setup finch  
-* setup NTP  
