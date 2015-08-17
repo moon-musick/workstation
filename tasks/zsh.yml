@@ -52,3 +52,11 @@
   sudo_user: "{{ user }}"
   tags:
   - shelltools
+
+- name: ensure additional completions are available
+  git: >
+    repo='https://github.com/zsh-users/zsh-completions'
+    dest=/home/{{ user }}/.oh-my-zsh/custom/plugins/zsh-completions
+  sudo_user: "{{ user }}"
+  tags:
+  - shelltools
