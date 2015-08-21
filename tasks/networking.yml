@@ -14,6 +14,7 @@
     - nmap
     - ftp
     - arp-scan
+    - ipmitool
   tags:
   - networking
   - shelltools
