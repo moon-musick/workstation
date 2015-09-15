@@ -2,3 +2,6 @@
 user: lucas
 texlive_version: 2014
 vagrant_debfile: vagrant_1.7.4_x86_64.deb
+gtd_remote: origin
+gtd_branch: master
+gtd_relative_path: Dokumenty/gtd
