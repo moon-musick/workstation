@@ -16,8 +16,3 @@
   service: >
     name=ntp
     state=restarted
-
-- name: restart supervisord
-  service: >
-    name=supervisord
-    state=restarted
