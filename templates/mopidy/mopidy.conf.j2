@@ -1,0 +1,40 @@
+# vim: ft=cfg
+[core]
+cache_dir  = /home/{{ user }}/.mopidy/cache/
+config_dir = /home/{{ user }}/.config/mopidy/
+data_dir   = /home/{{ user }}/.mopidy/data/
+
+[logging]
+config_file = /home/{{ user }}/.config/mopidy/logging.conf
+debug_file  = /home/{{ user }}/.mopidy/log/debug.log
+
+[local]
+enabled = false
+
+[m3u]
+playlists_dir = /home/{{ user }}/.mopidy/playlists/
+
+[mpd]
+hostname = ::
+
+[audio]
+mixer        = alsamixer
+output       = alsasink
+mixer_volume = 50
+
+[alsamixer]
+card    = 0
+control = PCM
+
+[softwaremixer]
+enabled = false
+
+[spotify]
+enabled  = true
+bitrate  = 320
+username = {{ spotify_username }}
+password = {{ spotify_password }}
+
+[scrobbler]
+username = {{ lastfm_username }}
+password = {{ lastfm_password }}

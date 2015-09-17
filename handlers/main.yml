@@ -16,3 +16,8 @@
   service: >
     name=ntp
     state=restarted
+
+- name: restart mopidy
+  service: >
+    name=mopidy
+    state=restarted

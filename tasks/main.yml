@@ -41,6 +41,7 @@
 - include: taskwarrior.yml
 - include: go-tools.yml
 - include: rbenv.yml
+- include: mopidy.yml
 # - include: haskell.yml
 # - include: postgresql.yml
 # - include: texlive.yml
