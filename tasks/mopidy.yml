@@ -69,10 +69,6 @@
     group={{ item.owner }}
     mode={{ item.mode }}
   with_items:
-  - name: 'mopidy'
-    basepath: '/etc/init.d'
-    mode: '0755' }
-    owner: root
   - name: 'mopidy.conf'
     basepath: '/home/{{ user }}/.config/mopidy'
     mode: '0600'
@@ -87,18 +83,19 @@
   - media
   - music
 
-- name: ensure mopidy service was enabled
+# run as user with window manager start
+- name: ensure mopidy system service is disabled
   service: >
     name=mopidy
-    enabled=yes
+    enabled=no
   tags:
   - media
   - music
 
-- name: ensure mopidy service is running
+- name: ensure mopidy system service is not running
   service: >
     name=mopidy
-    state=started
+    state=stopped
   tags:
   - media
   - music
