@@ -43,6 +43,8 @@
       repo: github.com/schachmat/wego
     - exec: asciinema
       repo: github.com/asciinema/asciinema
+    - exec: sift
+      repo: github.com/svent/sift
   sudo_user: "{{ user }}"
   tags:
   - shelltools
