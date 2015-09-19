@@ -1,5 +1,5 @@
 ---
 python_version: 2.7
-rcm_debfile: rcm_1.2.3-1_all.deb
-golang_tarball: go1.4.2.linux-amd64.tar.gz
-vim_repo: 'git@github.com:moon-musick/.vim'
+rcm_debfile:    rcm_1.2.3-1_all.deb
+golang_tarball: go1.5.1.linux-amd64.tar.gz
+vim_repo:       'git@github.com:moon-musick/.vim'
