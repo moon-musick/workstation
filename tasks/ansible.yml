@@ -1,5 +1,5 @@
 ---
-- name: ensure Ansible PPA key present
+- name: ensure Ansible PPA key is present
   apt_key: >
     keyserver=keyserver.ubuntu.com
     id=7BB9C367
@@ -8,7 +8,7 @@
   - shelltools
   - ansible
 
-- name: ensure Ansible PPA present
+- name: ensure Ansible PPA is present
   apt_repository: >
     repo='ppa:ansible/ansible'
     state=present
@@ -17,9 +17,18 @@
   - shelltools
   - ansible
 
-- name: ensure Ansible installed
+- name: ensure Ansible is installed
   apt: >
     name=ansible
+    state=present
+  tags:
+  - shelltools
+  - ansible
+
+- name: ensure ansible-lint is installed
+  pip: >
+    name=ansible-lint
+    executable=pip2
     state=present
   tags:
   - shelltools
