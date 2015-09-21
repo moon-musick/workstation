@@ -6,21 +6,25 @@
     update_cache=true
     cache_valid_time=3600
   with_items:
-    - build-essential
-    - autojump
-    - cloc
-    - dict
-    - ncdu
-    - tree
-    - tofrodos
-    - debconf-utils
-    - python-pip
-    - python-dev
-    - openvpn
-    - jq
-    - pmount
-    - ntp
-    - subversion
+  - build-essential
+  - autojump
+  - cloc
+  - dict
+  - ncdu
+  - tree
+  - tofrodos
+  - debconf-utils
+  - python-pip
+  - python-dev
+  - python-jedi
+  - python3-pip
+  - python3-dev
+  - python3-jedi
+  - openvpn
+  - jq
+  - pmount
+  - ntp
+  - subversion
   tags:
   - shelltools
   - dependency
@@ -32,10 +36,10 @@
     update_cache=true
     cache_valid_time=3600
   with_items:
-    - xclip
-    - xautolock
-    - gconf2
-    - scrot
+  - xclip
+  - xautolock
+  - gconf2
+  - scrot
   tags:
   - gui
   - dependency
@@ -52,9 +56,23 @@
 - name: ensure python packages installed
   pip: >
     name={{ item }}
+    executable=pip2
     state=present
   with_items:
-    - csvkit
-    - ipython
+  - csvkit
+  - ipython
+  - gcalcli
   tags:
   - shelltools
+  - python
+
+- name: ensure python3 packages installed
+  pip: >
+    name={{ item }}
+    executable=pip3
+    state=present
+  with_items:
+  - ipython
+  tags:
+  - shelltools
+  - python
