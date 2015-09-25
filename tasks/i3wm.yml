@@ -1,5 +1,5 @@
 ---
-- name: ensure i3wm repository present
+- name: ensure i3wm repository is present
   apt_repository: >
     repo='deb http://debian.sur5r.net/i3/ trusty universe'
     state=present
@@ -10,7 +10,7 @@
   - i3
 
 # FIXME; fix to use allow-unauthenticated somehow
-- name: ensure i3wm keyring installed
+- name: ensure i3wm keyring is installed
   apt: >
     name=sur5r-keyring
     state=present
@@ -21,7 +21,7 @@
   - gui
   - i3
 
-- name: ensure apt cache is up do date if i3wm keyring was modified
+- name: ensure apt cache is up-do-date if i3wm keyring was modified
   command: apt-get update
   when: i3wm_keyring.changed
   tags:
@@ -29,7 +29,7 @@
   - gui
   - i3
 
-- name: ensure i3wm packages installed
+- name: ensure i3wm packages are installed
   apt: >
     name={{ item }}
     state=present
@@ -48,7 +48,7 @@
   - gui
   - i3
 
-- name: ensure i3wm config dir present
+- name: ensure i3wm config dir is present
   file: >
     path=/home/{{ user }}/.i3
     owner={{ user }}
@@ -60,7 +60,7 @@
   - gui
   - i3
 
-- name: ensure i3wm config files present
+- name: ensure i3wm config files are present
   copy: >
     src=i3/i3config
     dest=/home/{{ user }}/.i3/config
@@ -72,7 +72,7 @@
   - gui
   - i3
 
-- name: ensure i3status config present
+- name: ensure i3status config is present
   copy: >
     src=i3/i3status.conf
     dest=/home/{{ user }}/.i3status.conf
