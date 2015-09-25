@@ -48,37 +48,63 @@
   - gui
   - i3
 
-- name: ensure i3wm config dir is present
+# FIXME; use Dropbox dir directly
+- include_vars: dropbox.yml
+  tags:
+  - wm
+  - gui
+  - i3
+
+# FIXME; use Dropbox dir directly
+# FIXME; get_url downloads HTML/JS
+- name: download self-compiled i3 packages if needed
+  command: wget -O /home/{{ user }}/ansible/{{ item.deb }} "{{ item.url }}"
+  sudo_user: "{{ user }}"
+  args:
+    creates: /home/{{ user }}/ansible/{{ item.deb }}
+  with_items:
+  - { deb: "{{ i3gaps_debfile }}",   url: "{{ i3gaps_dropbox_url }}" }
+  - { deb: "{{ i3blocks_debfile }}", url: "{{ i3blocks_dropbox_url }}" }
+  tags:
+  - wm
+  - gui
+  - i3
+
+# FIXME; use Dropbox dir directly
+- name: ensure self-compiled i3 packages are installed
+  apt: >
+    deb=/home/{{ user }}/ansible/{{ item }}
+    state=present
+  with_items:
+  - "{{ i3gaps_debfile }}"
+  - "{{ i3blocks_debfile }}"
+  tags:
+  - wm
+  - gui
+  - i3
+
+- name: ensure i3 configuration is synchronized
+  git: >
+    repo='git@github.com:moon-musick/i3.git'
+    dest=/home/{{ user }}/.i3
+  sudo_user: "{{ user }}"
+  tags:
+  - wm
+  - gui
+  - i3
+
+- name: ensure i3status and i3blocks symlinks exist
   file: >
-    path=/home/{{ user }}/.i3
+    src=/home/{{ user }}/.i3/{{ item.src }}
+    dest=/home/{{ user }}/{{ item.dest }}
     owner={{ user }}
     group={{ user }}
-    mode=0755
-    state=directory
-  tags:
-  - wm
-  - gui
-  - i3
-
-- name: ensure i3wm config files are present
-  copy: >
-    src=i3/i3config
-    dest=/home/{{ user }}/.i3/config
-    owner={{ user }}
-    group={{ user }}
-    mode=0644
-  tags:
-  - wm
-  - gui
-  - i3
-
-- name: ensure i3status config is present
-  copy: >
-    src=i3/i3status.conf
-    dest=/home/{{ user }}/.i3status.conf
-    owner={{ user }}
-    group={{ user }}
-    mode=0644
+    state=link
+  with_items:
+  - src:  i3blocks/conf
+    dest: .config/i3blocks
+  - src:  i3status.conf
+    dest: .i3status.conf
   tags:
   - wm
   - gui
