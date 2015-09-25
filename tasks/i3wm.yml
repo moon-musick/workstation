@@ -70,14 +70,23 @@
   - gui
   - i3
 
+# apt module fails with weird errors when using 'with_items' with deb files
+# https://github.com/ansible/ansible/issues/8314
 # FIXME; use Dropbox dir directly
-- name: ensure self-compiled i3 packages are installed
+- name: ensure self-compiled i3 is installed
   apt: >
-    deb=/home/{{ user }}/ansible/{{ item }}
+    deb="/home/{{ user }}/ansible/{{ i3gaps_debfile }}"
     state=present
-  with_items:
-  - "{{ i3gaps_debfile }}"
-  - "{{ i3blocks_debfile }}"
+  tags:
+  - wm
+  - gui
+  - i3
+
+# FIXME; use Dropbox dir directly
+- name: ensure self-compiled i3blocks is installed
+  apt: >
+    deb="/home/{{ user }}/ansible/{{ i3blocks_debfile }}"
+    state=present
   tags:
   - wm
   - gui
