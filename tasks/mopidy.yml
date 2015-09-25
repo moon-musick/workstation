@@ -39,6 +39,7 @@
   - mopidy-scrobbler
   - mopidy-alsamixer
   - ncmpcpp
+  - mpc
   tags:
   - media
   - music
