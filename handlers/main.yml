@@ -21,3 +21,6 @@
   service: >
     name=mopidy
     state=restarted
+
+- name: restart notify-osd
+  command: pkill notify-osd

@@ -1,0 +1,45 @@
+---
+- name: ensure apt keys for patched libnotify and notifyosdconfig are configured
+  apt_key: >
+    keyserver=keyserver.ubuntu.com
+    id={{ item }}
+    state=present
+  with_items:
+  - 'E21DD54D' 
+  - '4C9D234C'
+  tags:
+  - gui
+  - i3
+  - awesome
+  - xmonad
+
+- name: ensure repos for patched libnotify and notifyosdconfig are configured
+  apt_repository: >
+    repo="{{ item }}"
+    state=present
+    update_cache=yes
+  with_items:
+  - 'ppa:leolik/leolik'
+  - 'ppa:nilarimogard/webupd8'
+  tags:
+  - gui
+  - i3
+  - awesome
+  - xmonad
+
+- name: ensure patched libnotify and notifyosdconfig are installed
+  apt: >
+    name={{ item }}
+    state=present
+    update_cache=yes
+    cache_valid_time=3600
+  with_items:
+  - libnotify-bin
+  - notifyosdconfig
+  notify:
+  - restart notify-osd
+  tags:
+  - gui
+  - i3
+  - awesome
+  - xmonad
