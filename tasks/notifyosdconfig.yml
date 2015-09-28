@@ -27,15 +27,25 @@
   - awesome
   - xmonad
 
-- name: ensure patched libnotify and notifyosdconfig are installed
+- name: ensure patched notify-osd is installed from ppa
   apt: >
-    name={{ item }}
+    name=notify-osd
+    default_release='o=LP-PPA-leolik-leolik'
     state=present
     update_cache=yes
     cache_valid_time=3600
-  with_items:
-  - libnotify-bin
-  - notifyosdconfig
+  tags:
+  - gui
+  - i3
+  - awesome
+  - xmonad
+
+- name: ensure notifyosdconfig is installed
+  apt: >
+    name=notifyosdconfig
+    state=present
+    update_cache=yes
+    cache_valid_time=3600
   notify:
   - restart notify-osd
   tags:
