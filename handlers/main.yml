@@ -24,3 +24,5 @@
 
 - name: restart notify-osd
   command: pkill notify-osd
+  sudo: yes
+  sudo_user: "{{ user }}"
