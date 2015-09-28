@@ -8,6 +8,7 @@
 
 - include: general.yml
 - include: user.yml
+- include: dropbox.yml
 - include: git.yml
 - include: zsh.yml
 - include: hr.yml
