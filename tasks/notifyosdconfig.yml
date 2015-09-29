@@ -1,5 +1,5 @@
 ---
-- name: ensure apt keys for patched libnotify and notifyosdconfig are configured
+- name: notify-osd | ensure apt keys for patched libnotify and notifyosdconfig are configured
   apt_key: >
     keyserver=keyserver.ubuntu.com
     id={{ item }}
@@ -7,13 +7,9 @@
   with_items:
   - 'E21DD54D' 
   - '4C9D234C'
-  tags:
-  - gui
-  - i3
-  - awesome
-  - xmonad
+  tags: ['gui', 'i3', 'awesome', 'xmonad']
 
-- name: ensure repos for patched libnotify and notifyosdconfig are configured
+- name: notify-osd | ensure repos for patched libnotify and notifyosdconfig are configured
   apt_repository: >
     repo="{{ item }}"
     state=present
@@ -21,26 +17,18 @@
   with_items:
   - 'ppa:leolik/leolik'
   - 'ppa:nilarimogard/webupd8'
-  tags:
-  - gui
-  - i3
-  - awesome
-  - xmonad
+  tags: ['gui', 'i3', 'awesome', 'xmonad']
 
-- name: ensure patched notify-osd is installed from ppa
+- name: notify-osd | ensure patched notify-osd is installed from ppa
   apt: >
     name=notify-osd
     default_release='o=LP-PPA-leolik-leolik'
     state=present
     update_cache=yes
     cache_valid_time=3600
-  tags:
-  - gui
-  - i3
-  - awesome
-  - xmonad
+  tags: ['gui', 'i3', 'awesome', 'xmonad']
 
-- name: ensure notifyosdconfig is installed
+- name: notify-osd | ensure notifyosdconfig is installed
   apt: >
     name=notifyosdconfig
     state=present
@@ -48,8 +36,4 @@
     cache_valid_time=3600
   notify:
   - restart notify-osd
-  tags:
-  - gui
-  - i3
-  - awesome
-  - xmonad
+  tags: ['gui', 'i3', 'awesome', 'xmonad']

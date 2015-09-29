@@ -1,21 +1,15 @@
 ---
-- name: ensure xmonad repo cloned
+- name: xmonad | ensure xmonad repo cloned
   git: >
     repo='https://github.com/moon-musick/xmonad-ubuntu-conf'
     dest=/home/{{ user }}/.xmonad
   sudo_user: "{{ user }}"
-  tags:
-  - wm
-  - gui
-  - xmonad
+  tags: ['wm', 'gui', 'xmonad']
 
 # FIXME; port script contents to Ansible
 # (dependencies installation etc.)
-- name: ensure installation script run
+- name: xmonad | ensure installation script run
   command: "/home/{{ user }}/.xmonad/install-xmonad"
   args:
     creates: "/home/{{ user }}/.xmonad/install.lock"
-  tags:
-  - wm
-  - gui
-  - xmonad
+  tags: ['wm', 'gui', 'xmonad']

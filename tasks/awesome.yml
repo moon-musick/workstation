@@ -1,60 +1,43 @@
 ---
-- include_vars: awesome.yml
-  tags:
-  - gui
-  - wm
-  - awesome
+- name: awesome | include vars file
+  include_vars: awesome.yml
+  tags: ['gui', 'wm', 'awesome']
 
-- name: ensure Awesome WM dependencies are installed
+- name: awesome | ensure dependencies are installed
   apt: >
     name={{ item }}
     state=present
   with_items:
   - unagi
-  tags:
-  - gui
-  - wm
-  - awesome
+  tags: ['gui', 'wm', 'awesome']
 
-- name: ensure Awesome 3.5 PPA key is configured
+- name: awesome | ensure Awesome 3.5 PPA key is configured
   apt_key: >
     keyserver=keyserver.ubuntu.com
     id=D36FE61D
     state=present
   when: ansible_local.awesome.branch == '3.5'
-  tags:
-  - gui
-  - wm
-  - awesome
+  tags: ['gui', 'wm', 'awesome']
 
-- name: ensure Awesome 3.5 PPA is configured
+- name: awesome | ensure Awesome 3.5 PPA is configured
   apt_repository: >
     repo='ppa:klaus-vormweg/awesome'
     state=present
     update_cache=yes
   when: ansible_local.awesome.branch == '3.5'
-  tags:
-  - gui
-  - wm
-  - awesome
+  tags: ['gui', 'wm', 'awesome']
 
-- name: ensure Awesome WM installed
+- name: awesome | ensure Awesome WM is installed
   apt: >
     name={{ item }}
     state=present
   with_items: awesome_packages[ansible_local.awesome.branch]
-  tags:
-  - gui
-  - wm
-  - awesome
+  tags: ['gui', 'wm', 'awesome']
 
-- name: ensure Awesome WM configuration repo configured
+- name: awesome | ensure configuration repo is configured
   git: >
     repo='https://github.com/moon-musick/awesome.git'
     dest=/home/{{ user }}/.config/awesome
     version={{ ansible_local.awesome.branch }}
   sudo_user: "{{ user }}"
-  tags:
-  - gui
-  - wm
-  - awesome
+  tags: ['gui', 'wm', 'awesome']
