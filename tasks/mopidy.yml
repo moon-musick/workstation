@@ -1,21 +1,18 @@
 ---
-- include_vars: '{{ item }}'
+- name: mopidy | include vars files
+  include_vars: '{{ item }}'
   with_items:
   - lastfm.yml
   - spotify.yml
-  tags:
-  - media
-  - music
+  tags: ['media', 'music']
 
-- name: ensure mopidy repo key is present
+- name: mopidy | ensure mopidy repo key is present
   apt_key: >
     url='https://apt.mopidy.com/mopidy.gpg'
     state=present
-  tags:
-  - media
-  - music
+  tags: ['media', 'music']
 
-- name: ensure mopidy repo is configured
+- name: mopidy | ensure mopidy repo is configured
   apt_repository: >
     repo={{ item }}
     state=present
@@ -23,11 +20,9 @@
   with_items:
   - "'deb http://apt.mopidy.com/ jessie main contrib non-free'"
   - "'deb-src http://apt.mopidy.com/ jessie main contrib non-free'"
-  tags:
-  - media
-  - music
+  tags: ['media', 'music']
 
-- name: ensure mopidy is installed
+- name: mopidy | ensure mopidy is installed
   apt: >
     name={{ item }}
     state=present
@@ -40,11 +35,9 @@
   - mopidy-alsamixer
   - ncmpcpp
   - mpc
-  tags:
-  - media
-  - music
+  tags: ['media', 'music']
 
-- name: ensure mopidy directories are present
+- name: mopidy | ensure mopidy directories are present
   file: >
     path=/home/{{ user }}/{{ item.path }}
     owner={{ user }}
@@ -58,11 +51,9 @@
   - { path: '.mopidy/cache',     mode: '0700' }
   - { path: '.mopidy/data',      mode: '0700' }
   - { path: '.mopidy/playlists', mode: '0700' }
-  tags:
-  - media
-  - music
+  tags: ['media', 'music']
 
-- name: ensure templated mopidy configuration is up to date
+- name: mopidy | ensure templated configuration is up to date
   template: >
     src=mopidy/{{ item.name }}.j2
     dest={{ item.basepath }}/{{ item.name }}
@@ -70,33 +61,27 @@
     group={{ item.owner }}
     mode={{ item.mode }}
   with_items:
-  - name: 'mopidy.conf'
+  - name: mopidy | 'mopidy.conf'
     basepath: '/home/{{ user }}/.config/mopidy'
     mode: '0600'
     owner: '{{ user }}'
-  - name: 'logging.conf'
+  - name: mopidy | 'logging.conf'
     basepath: '/home/{{ user }}/.config/mopidy'
     mode: '0600'
     owner: '{{ user }}'
   notify:
   - restart mopidy
-  tags:
-  - media
-  - music
+  tags: ['media', 'music']
 
 # run as user with window manager start
-- name: ensure mopidy system service is disabled
+- name: mopidy | ensure system service is disabled
   service: >
     name=mopidy
     enabled=no
-  tags:
-  - media
-  - music
+  tags: ['media', 'music']
 
-- name: ensure mopidy system service is not running
+- name: mopidy | ensure system service is not running
   service: >
     name=mopidy
     state=stopped
-  tags:
-  - media
-  - music
+  tags: ['media', 'music']
