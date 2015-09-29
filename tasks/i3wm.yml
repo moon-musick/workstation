@@ -49,23 +49,34 @@
   - gui
   - i3
 
-# FIXME; use Dropbox dir directly
-- include_vars: dropbox.yml
+- include_vars: i3wm.yml
   tags:
   - wm
   - gui
   - i3
 
-# FIXME; use Dropbox dir directly
-# FIXME; get_url downloads HTML/JS
-- name: download self-compiled i3 packages if needed
-  command: wget -O /home/{{ user }}/ansible/{{ item.deb }} "{{ item.url }}"
+- name: check dropbox status
+  command: dropbox.py status
+  sudo: yes
   sudo_user: "{{ user }}"
-  args:
-    creates: /home/{{ user }}/ansible/{{ item.deb }}
-  with_items:
-  - { deb: "{{ i3gaps_debfile }}",   url: "{{ i3gaps_dropbox_url }}" }
-  - { deb: "{{ i3blocks_debfile }}", url: "{{ i3blocks_dropbox_url }}" }
+  register: dropbox_status
+  changed_when: False
+  tags:
+  - wm
+  - gui
+  - i3
+
+- name: print dropbox status if not up-to-date
+  debug: var=dropbox_status.stdout
+  when: dropbox_status.stdout not in ['Aktualny', 'Up to date']
+  tags:
+  - wm
+  - gui
+  - i3
+
+- name: wait for dropbox if needed
+  pause: prompt='Ensure Dropbox is ready before proceeding.'
+  when: dropbox_status.stdout not in ['Aktualny', 'Up to date']
   tags:
   - wm
   - gui
@@ -73,20 +84,18 @@
 
 # apt module fails with weird errors when using 'with_items' with deb files
 # https://github.com/ansible/ansible/issues/8314
-# FIXME; use Dropbox dir directly
 - name: ensure self-compiled i3 is installed
   apt: >
-    deb="/home/{{ user }}/ansible/{{ i3gaps_debfile }}"
+    deb="/home/{{ user }}/Dropbox/packages/{{ i3gaps_debfile }}"
     state=present
   tags:
   - wm
   - gui
   - i3
 
-# FIXME; use Dropbox dir directly
 - name: ensure self-compiled i3blocks is installed
   apt: >
-    deb="/home/{{ user }}/ansible/{{ i3blocks_debfile }}"
+    deb="/home/{{ user }}/Dropbox/packages/{{ i3blocks_debfile }}"
     state=present
   tags:
   - wm
