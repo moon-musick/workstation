@@ -61,11 +61,11 @@
     group={{ item.owner }}
     mode={{ item.mode }}
   with_items:
-  - name: mopidy | 'mopidy.conf'
+  - name: 'mopidy.conf'
     basepath: '/home/{{ user }}/.config/mopidy'
     mode: '0600'
     owner: '{{ user }}'
-  - name: mopidy | 'logging.conf'
+  - name: 'logging.conf'
     basepath: '/home/{{ user }}/.config/mopidy'
     mode: '0600'
     owner: '{{ user }}'
