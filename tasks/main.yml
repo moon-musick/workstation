@@ -30,6 +30,7 @@
 - include: i3wm.yml
 - include: awesome.yml
 - include: notifyosdconfig.yml
+- include: fonts.yml
 - include: ntp.yml
 - include: comm.yml
 - include: news.yml

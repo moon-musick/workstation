@@ -26,3 +26,8 @@
   command: pkill notify-osd
   sudo: yes
   sudo_user: "{{ user }}"
+
+- name: rescan fonts
+  command: fc-cache -fv
+  sudo: yes
+  sudo_user: "{{ user }}"

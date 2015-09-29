@@ -1,0 +1,29 @@
+---
+- name: fonts | check dropbox status
+  command: dropbox.py status
+  sudo: yes
+  sudo_user: "{{ user }}"
+  register: dropbox_status
+  changed_when: False
+  tags: ['gui', 'fonts']
+
+- name: fonts | print dropbox status if not up-to-date
+  debug: var=dropbox_status.stdout
+  when: dropbox_status.stdout not in ['Aktualny', 'Up to date']
+  tags: ['gui', 'fonts']
+
+- name: fonts | wait for dropbox if needed
+  pause: prompt='Ensure Dropbox is ready before proceeding.'
+  when: dropbox_status.stdout not in ['Aktualny', 'Up to date']
+  tags: ['gui', 'fonts']
+
+- name: fonts | ensure fonts directory is linked to Dropbox contents
+  file: >
+    path=/home/{{ user }}/.fonts
+    src=/home/{{ user }}/Dropbox/ansible/fonts
+    owner={{ user }}
+    group={{ user }}
+    state=link
+  tags: ['gui', 'fonts']
+  notify:
+  - rescan fonts
