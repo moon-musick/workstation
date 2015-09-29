@@ -1,23 +1,19 @@
 ---
-- name: ensure LXD stable PPA key present
+- name: lxc | ensure LXD stable PPA key is configured
   apt_key: >
     id=7635B973
     keyserver=keyserver.ubuntu.com
     state=present
-  tags:
-  - virttools
-  - dev
+  tags: ['virttools', 'dev']
 
-- name: ensure LXD stable PPA present
+- name: lxc | ensure LXD stable PPA is configured
   apt_repository: >
     repo='ppa:ubuntu-lxc/lxd-stable'
     state=present
     update_cache=yes
-  tags:
-  - virttools
-  - dev
+  tags: ['virttools', 'dev']
 
-- name: ensure LXC and LXD packages installed
+- name: lxc | ensure LXC and LXD packages are installed
   apt: >
     name={{ item }}
     state=present
@@ -25,6 +21,4 @@
     - lxc
     - lxd
     - lxd-client
-  tags:
-  - virttools
-  - dev
+  tags: ['virttools', 'dev']

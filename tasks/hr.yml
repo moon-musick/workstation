@@ -1,27 +1,24 @@
 ---
-- name: ensure user bin directory present
+- name: hr | ensure user bin directory is present
   file: >
     path=/home/{{ user }}/bin
     owner={{ user }}
     group={{ user }}
     mode=0755
     state=directory
-  tags:
-  - shelltools
+  tags: ['shelltools']
 
-- name: ensure hr installed
+- name: hr | ensure hr is installed
   get_url: >
     url='https://raw.githubusercontent.com/LuRsT/hr/master/hr'
     dest=/home/{{ user }}/bin/hr
-  tags:
-  - shelltools
+  tags: ['shelltools']
 
-- name: ensure hr script has proper permissions
+- name: hr | ensure hr script has proper permissions
   file: >
     path=/home/{{ user }}/bin/hr
     owner={{ user }}
     group={{ user }}
     mode=0755
     state=file
-  tags:
-  - shelltools
+  tags: ['shelltools']

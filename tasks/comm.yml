@@ -1,16 +1,18 @@
 ---
-# - name: ensure Hipchat repo key added
+# - name: comm apps | ensure Hipchat repo key is configured
 #   apt_key: >
 #     key='https://www.hipchat.com/keys/hipchat-linux.key'
 #     state=present
+#   tags: ['commtools', 'gui']
 # 
-# - name: ensure Hipchat repo added
+# - name: comm apps | ensure Hipchat repo is configured
 #   apt_repository: >
 #     repo='deb http://downloads.hipchat.com/linux/apt stable main'
 #     state=present
 #     update_cache=yes
+#   tags: ['commtools', 'gui']
 
-- name: ensure comm apps installed
+- name: comm apps | ensure comm apps are installed
   apt: >
     name={{ item }}
     state=present
@@ -19,34 +21,36 @@
   with_items:
     - finch
     - mutt
-  tags:
-  - commtools
-  - shelltools
+  tags: ['commtools', 'shelltools']
 
 # TODO; finch configuration
 # TODO; mutt configuration
 
-# - name: ensure Telegram PPA key present
+# - name: comm apps | ensure Telegram PPA key is configured
 #   apt_key: >
 #     id=36FD5529
 #     keyserver=keyserver.ubuntu.com
 #     state=present
+#   tags: ['commtools', 'gui']
 # 
-# - name: ensure Telegram PPA present
+# - name: comm apps | ensure Telegram PPA is configured
 #   apt_repository: >
 #     repo='ppa:atareao/telegram'
 #     state=present
 #     update_cache=yes
+#   tags: ['commtools', 'gui']
 # 
-# - name: ensure Telegram installed
+# - name: comm apps | ensure Telegram is installed
 #   apt: >
 #     name=telegram
 #     state=present
+#   tags: ['commtools', 'gui']
 # 
-# - name: ensure Telegram is in PATH
+# - name: comm apps | ensure Telegram is in PATH
 #   file: >
 #     src=/opt/telegram/Telegram
 #     path=/usr/local/bin/telegram
 #     owner=root
 #     group=root
 #     state=link
+#   tags: ['commtools', 'gui']

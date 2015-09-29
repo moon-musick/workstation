@@ -1,5 +1,5 @@
 ---
-- name: ensure networking packages installed
+- name: networking | ensure networking packages are installed
   apt: >
     name={{ item }}
     state=present
@@ -15,26 +15,20 @@
     - ftp
     - arp-scan
     - ipmitool
-  tags:
-  - networking
-  - shelltools
+  tags: ['networking', 'shelltools']
 
-- name: ensure wireshark configured
+- name: networking | ensure wireshark is pre-configured
   debconf: >
     name=wireshark-common
     question='wireshark-common/install-setuid'
     vtype=boolean
     value=true
-  tags:
-  - networking
-  - gui
+  tags: ['networking', 'shelltools']
 
-- name: ensure wireshark installed
+- name: networking | ensure wireshark is installed
   apt: >
     name=wireshark
     state=present
     update_cache=true
     cache_valid_time=3600
-  tags:
-  - networking
-  - gui
+  tags: ['networking', 'shelltools']

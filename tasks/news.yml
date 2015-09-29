@@ -1,5 +1,5 @@
 ---
-- name: ensure news tools are installed
+- name: news apps | ensure news apps are installed
   apt: >
     name={{ item }}
     state=present
@@ -7,6 +7,4 @@
     cache_valid_time=3600
   with_items:
   - newsbeuter
-  tags:
-  - shelltools
-  - news
+  tags: ['shelltools', 'news']

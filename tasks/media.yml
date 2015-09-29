@@ -1,5 +1,5 @@
 ---
-- name: ensure media packages installed
+- name: media | ensure media packages are installed
   apt: >
     name={{ item }}
     state=present
@@ -15,11 +15,9 @@
     - qnapi
     - gimp
     - python3-pip
-  tags:
-  - media
-  - gui
+  tags: ['media', 'gui']
 
-- name: ensure autofs configuration present
+- name: media | ensure autofs configuration is present
   copy: >
     src=autofs/auto.{{ item }}
     dest=/etc/auto.{{ item }}
@@ -31,82 +29,44 @@
     - nfs
   notify:
   - restart autofs
-  tags:
-  - media
+  tags: ['media']
 
-- name: ensure autofs service running
+- name: media | ensure autofs service is running
   service: >
     name=autofs
     state=started
-  tags:
-  - media
-
-# handled by dotfiles now
-# - name: ensure moc config dir present
-#   file: >
-#     path=/home/{{ user }}/.moc
-#     owner={{ user }}
-#     group={{ user }}
-#     mode=0750
-#     state=directory
-
-# - name: ensure moc themes dirs present
-#   file: >
-#     path=/home/{{ user }}/.moc/themes
-#     owner={{ user }}
-#     group={{ user }}
-#     mode=0750
-#     state=directory
-
-# - name: ensure moc config files present
-#   copy: >
-#     src=moc/{{ item }}
-#     dest=/home/{{ user }}/.moc/{{ item }}
-#     owner={{ user }}
-#     group={{ user }}
-#     mode=0640
-#   with_items:
-#     - config
-#     - keymap
-
-# - name: ensure moc theme present
-#   copy: >
-#     src=moc/theme/simple-colored
-#     dest=/home/{{ user }}/.moc/themes/simple-colored
-#     owner={{ user }}
-#     group={{ user }}
-#     mode=0640
+  tags: ['media']
 
 # TODO; fix keys - it's unauthenticated now as it is
-# - name: ensure Spotify repo key present
+# - name: media | ensure Spotify repo key is configured
 #   apt_key: >
 #     keyserver=keyserver.ubuntu.com
 #     id=94558F59
 #     state=present
+#   tags: ['media', 'gui']
 
-# - name: ensure Spotify repository present
+# - name: media | ensure Spotify repository is configured
 #   apt_repository: >
 #     repo='deb http://repository.spotify.com stable non-free'
 #     state=present
 #     update_cache=yes
+#   tags: ['media', 'gui']
 
-# - name: ensure Spotify installed
+# - name: media | ensure Spotify is installed
 #   apt: >
 #     name=spotify-client
 #     state=present
-- name: ensure subliminal installed
+#   tags: ['media', 'gui']
+
+- name: media | ensure subliminal is installed
   pip: >
     name=subliminal
     state=present
-  tags:
-  - media
-  - gui
+  tags: ['media', 'gui']
 
-- name: ensure mps-youtube installed
+- name: media | ensure mps-youtube is installed
   pip: >
     name=mps-youtube
     state=present
     executable=pip3
-  tags:
-  - media
-  - gui
+  tags: ['media', 'gui']

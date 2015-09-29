@@ -1,88 +1,70 @@
 ---
-- name: ensure ravefinity PPA key present
+- name: gtk-themes | ensure ravefinity PPA key is configured
   apt_key: >
     keyserver=keyserver.ubuntu.com
     id=E2D0EBE9
     state=present
-  tags:
-  - wm
-  - gui
+  tags: ['wm', 'gui']
 
-- name: ensure ravefinity PPA present
+- name: gtk-themes | ensure ravefinity PPA is configured
   apt_repository: >
     repo='ppa:ravefinity-project/ppa'
     state=present
     update_cache=yes
-  tags:
-  - wm
-  - gui
+  tags: ['wm', 'gui']
 
-- name: ensure theme packages installed
+- name: gtk-themes | ensure theme packages installed
   apt: >
     name={{ item }}
     state=present
   with_items:
   - ambiance-colors
   - radiance-colors
-  tags:
-  - wm
-  - gui
+  tags: ['wm', 'gui']
 
-- name: ensure Faenza PPA key present
+- name: gtk-themes | ensure Faenza PPA key is configured
   apt_key: >
     keyserver=keyserver.ubuntu.com
     id=4631BBEA
     state=present
-  tags:
-  - wm
-  - gui
+  tags: ['wm', 'gui']
 
-- name: ensure Faenza PPA present
+- name: gtk-themes | ensure Faenza PPA is configured
   apt_repository: >
     repo='ppa:tiheum/equinox'
     state=present
     update_cache=yes
-  tags:
-  - wm
-  - gui
+  tags: ['wm', 'gui']
 
-- name: ensure Faenza icons installed
+- name: gtk-themes | ensure Faenza icons installed
   apt: >
     name=ravefinity-x-icons
     state=present
-  tags:
-  - wm
-  - gui
+  tags: ['wm', 'gui']
 
-- name: ensure gtkrc-2.0 present
+- name: gtk-themes | ensure gtkrc-2.0 file is present
   copy: >
     src=gtk-themes/gtkrc-2.0
     dest=/home/{{ user }}/.gtkrc-2.0
     owner={{ user }}
     group={{ user }}
     mode=0644
-  tags:
-  - wm
-  - gui
+  tags: ['wm', 'gui']
 
-- name: ensure gtk-3.0 config dir present
+- name: gtk-themes | ensure gtk-3.0 config dir present
   file: >
     path=/home/{{ user }}/.config/gtk-3.0
     owner={{ user }}
     group={{ user }}
     mode=0775
     state=directory
-  tags:
-  - wm
-  - gui
+  tags: ['wm', 'gui']
 
-- name: ensure gtk-3.0 settings present
+- name: gtk-themes | ensure gtk-3.0 settings files are present
   copy: >
     src=gtk-themes/gtkrc-3.0/settings.ini
     dest=/home/{{ user }}/.config/gtk-3.0/settings.ini
     owner={{ user }}
     group={{ user }}
     mode=0644
-  tags:
-  - wm
-  - gui
+  tags: ['wm', 'gui']

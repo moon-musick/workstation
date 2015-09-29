@@ -1,5 +1,5 @@
 ---
-- name: ensure utility scripts are present
+- name: utilities | ensure utility scripts are present
   copy: >
     src=scripts/{{ item }}
     dest=/home/{{ user }}/bin/{{ item }}
@@ -14,16 +14,13 @@
   - trash
   - wlan_reconnect
   - fx
-  tags:
-  - gui
-  - shelltools
+  tags: ['gui', 'shelltools']
 
-- name: ensure lock on sleep script added
+- name: utilities | ensure lock on sleep script added
   copy: >
     src=scripts/10_lock
     dest=/etc/pm/sleep.d/10_lock
     owner=root
     group=root
     mode=0755
-  tags:
-  - gui
+  tags: ['gui']

@@ -1,27 +1,23 @@
 ---
 # activation stuff already added to shell rc files
-- name: ensure rbenv cloned
+- name: rbenv | ensure rbenv was cloned
   git: >
     repo='https://github.com/sstephenson/rbenv.git'
     dest=/home/{{ user }}/.rbenv
   sudo_user: "{{ user }}"
-  tags:
-  - dev
-  - ruby
+  tags: ['dev', 'ruby']
 
 # most likely unnecessary
-- name: ensure rbenv plugins dir present
+- name: rbenv | ensure rbenv plugins dir is present
   file: >
     path=/home/{{ user }}/.rbenv/plugins
     owner={{ user }}
     group={{ user }}
     mode=0775
     state=directory
-  tags:
-  - dev
-  - ruby
+  tags: ['dev', 'ruby']
 
-- name: ensure rbenv plugins installed
+- name: rbenv | ensure rbenv plugins are installed
   git: >
     repo={{ item.repo }}
     dest=/home/{{ user }}/.rbenv/plugins/{{ item.name }}
@@ -41,6 +37,4 @@
       repo: https://github.com/rkh/rbenv-whatis.git
     - name: ruby-build
       repo: https://github.com/sstephenson/ruby-build.git
-  tags:
-  - dev
-  - ruby
+  tags: ['dev', 'ruby']

@@ -1,5 +1,5 @@
 ---
-- name: ensure ntp configuration file is available
+- name: ntp | ensure ntp configuration file is available
   template: >
     src=ntp/ntp.conf.j2
     dest=/etc/ntp.conf
@@ -8,12 +8,10 @@
     mode=0644
   notify:
   - restart ntp
-  tags:
-  - ntp
+  tags: ['ntp']
 
-- name: ensure ntp service is running
+- name: ntp | ensure ntp service is running
   service: >
     name=ntp
     state=started
-  tags:
-  - ntp
+  tags: ['ntp']

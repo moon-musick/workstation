@@ -1,33 +1,27 @@
 ---
-- name: ensure dropbox control script is installed
+- name: dropbox | ensure dropbox control script is installed
   get_url: >
     dest=/usr/local/bin/dropbox.py
     url='https://www.dropbox.com/download?dl=packages/dropbox.py'
     mode=0755
-  tags:
-  - dropbox
-  - dependency
+  tags: ['dropbox', 'dependency']
 
-- name: ensure dropbox is installed
+- name: dropbox | ensure dropbox is installed
   shell: >
     curl -L "https://www.dropbox.com/download?plat=lnx.{{ansible_architecture}}" | tar -C /home/{{ user }} -xzf -
   args:
     creates: /home/{{ user }}/.dropbox-dist
   sudo: yes
   sudo_user: "{{ user }}"
-  tags:
-  - dropbox
-  - dependency
+  tags: ['dropbox', 'dependency']
 
-- name: check if dropbox setup lock exists
+- name: dropbox | check if dropbox setup lock exists
   stat: path=/home/{{ user }}/ansible/dropbox.lock
   register: dropbox_lock
   changed_when: False
-  tags:
-  - dropbox
-  - dependency
+  tags: ['dropbox', 'dependency']
 
-- name: start dropboxd the first time
+- name: dropbox | start dropboxd the first time
   shell: /home/{{ user }}/.dropbox-dist/dropboxd 2>&1 >/home/{{ user }}/ansible/dropbox_setup.log
   async: 15
   poll: 0
@@ -35,57 +29,43 @@
   sudo_user: "{{ user }}"
   when: not dropbox_lock.stat.exists|bool
   ignore_errors: True
-  tags:
-  - dropbox
-  - dependency
+  tags: ['dropbox', 'dependency']
 
-- name: wait for dropbox to register activation link in log
+- name: dropbox | wait for dropbox to register activation link in log
   pause: seconds=10
   when: not dropbox_lock.stat.exists|bool
-  tags:
-  - dropbox
-  - dependency
+  tags: ['dropbox', 'dependency']
 
-- name: print dropbox setup information
+- name: dropbox | print dropbox setup information
   command: tail -n 1 /home/{{ user }}/ansible/dropbox_setup.log
   when: not dropbox_lock.stat.exists|bool
-  tags:
-  - dropbox
-  - dependency
+  tags: ['dropbox', 'dependency']
 
-- name: wait for dropbox account confirmation
+- name: dropbox | wait for dropbox account confirmation
   pause:
   when: not dropbox_lock.stat.exists|bool
-  tags:
-  - dropbox
-  - dependency
+  tags: ['dropbox', 'dependency']
 
-- name: confirm dropbox activation
+- name: dropbox | confirm dropbox activation
   command: tail -n 1 /home/{{ user }}/ansible/dropbox_setup.log
   when: not dropbox_lock.stat.exists|bool
-  tags:
-  - dropbox
-  - dependency
+  tags: ['dropbox', 'dependency']
 
-- name: restart dropbox if just activated
+- name: dropbox | restart dropbox if just activated
   shell: dropbox.py stop && dropbox.py start
   sudo: yes
   sudo_user: "{{ user }}"
   when: not dropbox_lock.stat.exists|bool
-  tags:
-  - dropbox
-  - dependency
+  tags: ['dropbox', 'dependency']
 
-- name: remove dropbox setup log if not needed anymore
+- name: dropbox | remove dropbox setup log if not needed anymore
   file: >
     path=/home/{{ user }}/ansible/dropbox_setup.log
     state=absent
   when: not dropbox_lock.stat.exists|bool
-  tags:
-  - dropbox
-  - dependency
+  tags: ['dropbox', 'dependency']
 
-- name: create a dropbox setup lock if dropbox activated
+- name: dropbox | create a dropbox setup lock if dropbox activated
   file: >
     path=/home/{{ user }}/ansible/dropbox.lock
     owner={{ user }}
@@ -93,25 +73,19 @@
     mode=0600
     state=touch
   when: not dropbox_lock.stat.exists|bool
-  tags:
-  - dropbox
-  - dependency
+  tags: ['dropbox', 'dependency']
 
-- name: check if dropbox is running
+- name: dropbox | check if dropbox is running
   command: dropbox.py status
   sudo: yes
   sudo_user: "{{ user }}"
   register: dropbox_status
   changed_when: False
-  tags:
-  - dropbox
-  - dependency
+  tags: ['dropbox', 'dependency']
 
-- name: start dropbox if not running
+- name: dropbox | start dropbox if not running
   command: dropbox.py start
   sudo: yes
   sudo_user: "{{ user }}"
   when: dropbox_status.stdout == "Dropbox isn't running!"
-  tags:
-  - dropbox
-  - dependency
+  tags: ['dropbox', 'dependency']

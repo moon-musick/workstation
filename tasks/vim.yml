@@ -1,5 +1,5 @@
 ---
-- name: ensure vim packages installed
+- name: vim | ensure vim packages are installed
   apt: >
     name={{ item }}
     state=present
@@ -15,14 +15,11 @@
     - python-dev # ctrlp-cmatcher
     # - ghc-mod
     # - hdevtools
-  tags:
-  - shelltools
-  - dev
-  - vim
+  tags: ['shelltools', 'dev', 'vim']
 
 # apparently the module returns 'changed' on every checkout
 # even if remote was not updated in any way
-- name: ensure vim repo cloned
+- name: vim | ensure vim repo was cloned
   git: >
     repo={{ vim_repo }}
     dest=/home/{{ user }}/.vim
@@ -30,48 +27,29 @@
     track_submodules=no
   changed_when: False
   sudo_user: "{{ user }}"
-  tags:
-  - shelltools
-  - dev
-  - vim
+  tags: ['shelltools', 'dev', 'vim']
 
 # FIXME; test termination issues
-- name: ensure plugins installed
+- name: vim | ensure plugins are installed
   shell: vim -u custom/vundle.vim +PluginInstall +qall
   args:
     creates: /home/{{ user }}/.vim/bundle/YouCompleteMe
     chdir: /home/{{ user }}/.vim
   sudo_user: "{{ user }}"
-  tags:
-  - shelltools
-  - dev
-  - vim
+  tags: ['shelltools', 'dev', 'vim']
 
-# - name: ensure other dependencies installed
-#   TODO; gem install rcodetools # vim-xmpfilter
-  tags:
-  - shelltools
-  - dev
-  - vim
-
-- name: ensure vim setup script run
+- name: vim | ensure vim setup script was run
   command: "/home/{{ user }}/.vim/install.sh"
   args:
     creates: "/home/{{ user }}/.vim/install.lock"
   sudo_user: "{{ user }}"
-  tags:
-  - shelltools
-  - dev
-  - vim
+  tags: ['shelltools', 'dev', 'vim']
 
-- name: ensure vimrc symlink created
+- name: vim | ensure vimrc symlink is in place
   file: >
     src=/home/{{ user }}/.vim/.vimrc
     path=/home/{{ user }}/.vimrc
     owner={{ user }}
     group={{ user }}
     state=link
-  tags:
-  - shelltools
-  - dev
-  - vim
+  tags: ['shelltools', 'dev', 'vim']

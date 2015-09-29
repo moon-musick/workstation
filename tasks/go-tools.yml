@@ -1,48 +1,36 @@
 ---
-- name: ensure directories present
+- name: go | ensure directories present
   file: >
     path=/home/{{ user }}/go
     owner={{ user }}
     group={{ user }}
     mode=0755
     state=directory
-  tags:
-  - dev
-  - shelltools
-  - golang
+  tags: ['dev', 'shelltools', 'golang']
 
-- name: ensure go downloaded
+- name: go | ensure go downloaded
   get_url: >
     url="https://storage.googleapis.com/golang/{{ golang_tarball }}"
     dest=/home/{{ user }}/ansible/{{ golang_tarball }}
   register: golang_archive_downloaded
-  tags:
-  - dev
-  - shelltools
-  - golang
+  tags: ['dev', 'shelltools', 'golang']
 
 # remnants of old installation cause errors
 # http://stackoverflow.com/questions/32115229/go-1-5-error-imports-runtime-c-source-files-not-allowed-when-not-using-cgo-o
-- name: remove old go if new version downloaded
+- name: go | remove old go if new version downloaded
   shell: test -d /usr/local/go && rm -rf /usr/local/go/
   when: golang_archive_downloaded.changed
-  tags:
-  - dev
-  - shelltools
-  - golang
+  tags: ['dev', 'shelltools', 'golang']
 
-- name: unarchive golang tarball
+- name: go | unarchive golang tarball
   unarchive: >
     src=/home/{{ user }}/ansible/{{ golang_tarball }}
     dest=/usr/local
     copy=no
   when: golang_archive_downloaded.changed
-  tags:
-  - dev
-  - shelltools
-  - golang
+  tags: ['dev', 'shelltools', 'golang']
 
-- name: ensure go apps installed
+- name: go | ensure go apps installed
   shell: GOPATH=/home/{{ user }}/go /usr/local/go/bin/go get {{ item.repo }}
   args:
     creates: /home/{{ user }}/go/bin/{{ item.exec }}
@@ -56,22 +44,17 @@
     - exec: sift
       repo: github.com/svent/sift
   sudo_user: "{{ user }}"
-  tags:
-  - shelltools
-  - golang
+  tags: ['dev', 'shelltools', 'golang']
 
-- include_vars: wego.yml
-  tags:
-  - shelltools
-  - golang
+- name: go | include wego vars file
+  include_vars: wego.yml
+  tags: ['shelltools', 'golang']
 
-- name: ensure wego configuration file is present
+- name: go | ensure wego configuration file is present
   template: >
     src=wego/wegorc.j2
     dest=/home/{{ user }}/.wegorc
     owner={{ user }}
     group={{ user }}
     mode=0600
-  tags:
-  - shelltools
-  - golang
+  tags: ['shelltools', 'golang']

@@ -1,20 +1,14 @@
 ---
-- name: ensure tmux PPA key is configured
+- name: ph-rho | ensure tmux PPA key is configured
   apt_key: >
     keyserver=keyserver.ubuntu.com
     id=779C27D7
     state=present
-  tags:
-  - shelltools
-  - vim
-  - tmux
+  tags: ['shelltools', 'vim', 'tmux']
 
-- name: ensure tmux PPA is configured
+- name: ph-rho | ensure tmux PPA is configured
   apt_repository: >
     repo='ppa:pi-rho/dev'
     state=present
     update_cache=yes
-  tags:
-  - shelltools
-  - vim
-  - tmux
+  tags: ['shelltools', 'vim', 'tmux']

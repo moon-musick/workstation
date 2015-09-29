@@ -1,13 +1,11 @@
 ---
-- name: ensure tmux is installed
+- name: tmux | ensure tmux is installed
   apt: >
     name=tmux
     state=present
-  tags:
-  - shelltools
-  - tmux
+  tags: ['shelltools', 'tmux']
 
-- name: ensure tmux configuration directory is present
+- name: tmux | ensure tmux configuration directory is present
   file: >
     path=/home/{{ user }}/{{ item }}
     owner={{ user }}
@@ -17,15 +15,11 @@
   with_items:
   - '.tmux'
   - '.tmux/plugins'
-  tags:
-  - shelltools
-  - tmux
+  tags: ['shelltools', 'tmux']
 
-- name: ensure tpm repo was cloned
+- name: tmux | ensure tpm repo was cloned
   git: >
     repo='https://github.com/tmux-plugins/tpm'
     dest=/home/{{ user }}/.tmux/plugins/tpm
   sudo_user: "{{ user }}"
-  tags:
-  - shelltools
-  - tmux
+  tags: ['shelltools', 'tmux']

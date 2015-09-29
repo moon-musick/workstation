@@ -1,62 +1,56 @@
 ---
 # taskwarrior-related bug - tab completion crashes zsh
 # backports version is fixed
-- name: ensure zsh installed
+- name: zsh | ensure zsh is installed
   apt: >
     name=zsh
     state=present
     default_release=trusty-backports
-  tags:
-  - shelltools
-  - dependency
+  tags: ['shelltools', 'dependency']
 
-- name: ensure oh-my-zsh installed
+- name: zsh | ensure oh-my-zsh is installed
   git: >
     repo='https://github.com/robbyrussell/oh-my-zsh'
     dest=/home/{{ user }}/.oh-my-zsh
   sudo: yes
   sudo_user: "{{ user }}"
-  tags:
-  - shelltools
+  tags: ['shelltools']
 
-- name: ensure zsh custom dir present
+- name: zsh | ensure zsh custom dir is present
   file: >
     path=/home/{{ user }}/.zsh
     owner={{ user }}
     group={{ user }}
     mode=0755
     state=directory
-  tags:
-  - shelltools
+  tags: ['shelltools']
 
-- name: ensure notification script present
+- name: zsh | ensure notification script is present
   copy: >
     src=zsh/notifyosd.zsh
     dest=/home/{{ user }}/.zsh/notifyosd.zsh
     owner={{ user }}
     group={{ user }}
     mode=0664
+  tags: ['shelltools']
 
-- name: ensure syntax highlighting plugin present
+- name: zsh | ensure syntax highlighting plugin is present
   git: >
     repo='https://github.com/zsh-users/zsh-syntax-highlighting'
     dest=/home/{{ user }}/.zsh/zsh-syntax-highlighting
   sudo_user: "{{ user }}"
-  tags:
-  - shelltools
+  tags: ['shelltools']
 
-- name: ensure text-objects plugin present
+- name: zsh | ensure text-objects plugin is present
   git: >
     repo='https://github.com/hchbaw/opp.zsh'
     dest=/home/{{ user }}/.zsh/opp.zsh
   sudo_user: "{{ user }}"
-  tags:
-  - shelltools
+  tags: ['shelltools']
 
-- name: ensure additional completions are available
+- name: zsh | ensure additional completions are available
   git: >
     repo='https://github.com/zsh-users/zsh-completions'
     dest=/home/{{ user }}/.oh-my-zsh/custom/plugins/zsh-completions
   sudo_user: "{{ user }}"
-  tags:
-  - shelltools
+  tags: ['shelltools']

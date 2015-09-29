@@ -1,35 +1,31 @@
 ---
-- name: ensure rcm debfile copied
+- name: dotfiles | ensure rcm debfile is available
   copy: >
     src={{ rcm_debfile }}
     dest=/home/{{ user }}/ansible/{{ rcm_debfile }}
     owner={{ user }}
     group={{ user }}
     mode=0644
-  tags:
-  - shelltools
+  tags: ['shelltools']
 
-- name: ensure rcm installed
+- name: dotfiles | ensure rcm is installed
   apt: >
     deb=/home/{{ user }}/ansible/{{ rcm_debfile }}
     state=present
-  tags:
-  - shelltools
+  tags: ['shelltools']
 
-- name: ensure dotfiles repo cloned
+- name: dotfiles | ensure dotfiles repo was cloned
   git: >
     repo='git@github.com:moon-musick/.dotfiles.git'
     dest=/home/{{ user }}/.dotfiles
   sudo_user: "{{ user }}"
-  tags:
-  - shelltools
+  tags: ['shelltools']
 
 # .haskeline least likely to be present before
-- name: ensure dotfiles symlinks present
+- name: dotfiles | ensure dotfiles symlinks are in place
   command: rcup -x README.md -f
   sudo_user: "{{ user }}"
   args:
     chdir: /home/{{ user }}
     creates: /home/{{ user }}/.haskeline
-  tags:
-  - shelltools
+  tags: ['shelltools']

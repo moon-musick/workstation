@@ -1,29 +1,26 @@
 ---
-- name: ensure ranger installed
+- name: ranger | ensure ranger is installed
   apt: >
     name=ranger
     state=present
     update_cache=true
     cache_valid_time=3600
-  tags:
-  - shelltools
+  tags: ['shelltools']
 
-- name: ensure ranger configuration dirs present
+- name: ranger | ensure configuration directories are present
   file: >
     name=/home/{{ user }}/.config/ranger
     owner={{ user }}
     group={{ user }}
     mode=0750
     state=directory
-  tags:
-  - shelltools
+  tags: ['shelltools']
 
-- name: ensure ranger configuration present
+- name: ranger | ensure ranger configuration is up-to-date
   copy: >
     src=ranger/scope.sh
     dest=/home/{{ user }}/.config/ranger/scope.sh
     owner={{ user }}
     group={{ user }}
     mode=0755
-  tags:
-  - shelltools
+  tags: ['shelltools']

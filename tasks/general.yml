@@ -1,5 +1,5 @@
 ---
-- name: ensure general dependencies installed
+- name: dependencies | ensure general dependencies are installed
   apt: >
     name={{ item }}
     state=present
@@ -25,11 +25,9 @@
   - pmount
   - ntp
   - subversion
-  tags:
-  - shelltools
-  - dependency
+  tags: ['shelltools', 'dependency']
 
-- name: ensure general GUI-dependent packages installed
+- name: dependencies | ensure general GUI-dependent packages installed
   apt: >
     name={{ item }}
     state=present
@@ -40,20 +38,16 @@
   - xautolock
   - gconf2
   - scrot
-  tags:
-  - gui
-  - dependency
+  tags: ['gui', 'dependency']
 
-- name: ensure zsh installed
+- name: dependencies | ensure zsh installed
   apt: >
     name=zsh
     state=present
     default_release=trusty-backports
-  tags:
-  - shelltools
-  - dependency
+  tags: ['shelltools', 'dependency']
 
-- name: ensure python packages installed
+- name: dependencies | ensure python packages installed
   pip: >
     name={{ item }}
     executable=pip2
@@ -62,17 +56,13 @@
   - csvkit
   - ipython
   - gcalcli
-  tags:
-  - shelltools
-  - python
+  tags: ['shelltools', 'python']
 
-- name: ensure python3 packages installed
+- name: dependencies | ensure python3 packages installed
   pip: >
     name={{ item }}
     executable=pip3
     state=present
   with_items:
   - ipython
-  tags:
-  - shelltools
-  - python
+  tags: ['shelltools', 'python']

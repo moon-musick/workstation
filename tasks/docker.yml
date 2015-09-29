@@ -1,32 +1,20 @@
 ---
-- name: ensure docker repository key present
+- name: docker | ensure docker repository key is configured
   apt_key: >
     id=58118E89F3A912897C070ADBF76221572C52609D
     keyserver="hkp://p80.pool.sks-keyservers.net:80"
     state=present
-  tags:
-  - virttools
-  - dev
-  - shelltools
-  - docker
+  tags: ['virttools', 'dev', 'shelltools', 'docker']
 
-- name: ensure docker repository present
+- name: docker | ensure docker repository is configured
   apt_repository: >
     repo='deb https://apt.dockerproject.com/repo ubuntu-trusty main'
     state=present
     update_cache=yes
-  tags:
-  - virttools
-  - dev
-  - shelltools
-  - docker
+  tags: ['virttools', 'dev', 'shelltools', 'docker']
 
-- name: ensure docker installed
+- name: docker | ensure docker is installed
   apt: >
     name=docker-engine
     state=present
-  tags:
-  - virttools
-  - dev
-  - shelltools
-  - docker
+  tags: ['virttools', 'dev', 'shelltools', 'docker']

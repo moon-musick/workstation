@@ -1,41 +1,33 @@
 ---
-- name: ensure Mendeleydesktop PPA key present
+- name: doctools | ensure Mendeleydesktop PPA key is configured
   apt_key: >
     keyserver=keyserver.ubuntu.com
     id=6F036044
     state=present
-  tags:
-  - gui
-  - doctools
+  tags: ['gui', 'doctools']
 
-- name: ensure Mendeleydesktop PPA present
+- name: doctools | ensure Mendeleydesktop PPA is configured
   apt_repository: >
     repo='deb http://desktop-download.mendeley.com/download/apt stable main'
     state=present
     update_cache=yes
-  tags:
-  - gui
-  - doctools
+  tags: ['gui', 'doctools']
 
-- name: ensure Zeal PPA key present
+- name: doctools | ensure Zeal PPA key is configured
   apt_key: >
     keyserver=keyserver.ubuntu.com
     id=2FF96FD1
     state=present
-  tags:
-  - gui
-  - doctools
+  tags: ['gui', 'doctools']
 
-- name: ensure Zeal PPA present
+- name: doctools | ensure Zeal PPA is configured
   apt_repository: >
     repo='ppa:zeal-developers/ppa'
     state=present
     update_cache=yes
-  tags:
-  - gui
-  - doctools
+  tags: ['gui', 'doctools']
 
-- name: ensure doctools packages installed
+- name: doctools | ensure doctools packages are installed
   apt: >
     name={{ item }}
     state=present
@@ -43,6 +35,4 @@
     - zeal
     - zathura
     - mendeleydesktop
-  tags:
-  - gui
-  - doctools
+  tags: ['gui', 'doctools']

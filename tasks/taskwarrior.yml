@@ -1,28 +1,25 @@
 ---
 # TODO; provide self-compiled 2.4+
-- name: ensure taskwarrior installed
+- name: taskwarrior | ensure taskwarrior is installed
   apt: >
     name=task
     state=present
-  tags:
-  - shelltools
+  tags: ['shelltools']
 
-- name: ensure taskrc present
+- name: taskwarrior | ensure taskrc is present
   copy: >
     src=task/taskrc
     dest=/home/{{ user }}/.taskrc
     owner={{ user }}
     group={{ user }}
     mode=0600
-  tags:
-  - shelltools
+  tags: ['shelltools']
 
-- name: ensure colorscheme present
+- name: taskwarrior | ensure colorscheme is present
   copy: >
     src=task/dark-16.theme
     dest=/home/{{ user }}/.task/dark-16.theme
     owner={{ user }}
     group={{ user }}
     mode=0644
-  tags:
-  - shelltools
+  tags: ['shelltools']

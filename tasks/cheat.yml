@@ -1,26 +1,23 @@
 ---
-- name: ensure cheat installed
+- name: cheat | ensure cheat is installed
   pip: >
     name=cheat
     state=present
-  tags:
-  - shelltools
+  tags: ['shelltools']
 
-- name: ensure cheat config dir present
+- name: cheat | ensure cheat config dir is present
   file: >
     path=/home/{{ user }}/.cheat
     owner={{ user }}
     group={{ user }}
     mode=0755
     state=directory
-  tags:
-  - shelltools
+  tags: ['shelltools']
 
-- name: ensure cheat repository was cloned
+- name: cheat | ensure cheat repository was cloned
   git: >
     repo='git@github.com:moon-musick/.cheat.git'
     dest=/home/{{ user }}/.cheat
     accept_hostkey=True
-  tags:
-  - shelltools
+  tags: ['shelltools']
   sudo_user: "{{ user }}"
