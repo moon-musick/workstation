@@ -61,16 +61,19 @@
 
 # apt module fails with weird errors when using 'with_items' with deb files
 # https://github.com/ansible/ansible/issues/8314
+# also, use force - those packages are likely to be held manually
 - name: i3 | ensure self-compiled i3 is installed
   apt: >
     deb="/home/{{ user }}/Dropbox/packages/{{ i3gaps_debfile }}"
     state=present
+    force=yes
   tags: ['wm', 'gui', 'i3']
 
 - name: i3 | ensure self-compiled i3blocks is installed
   apt: >
     deb="/home/{{ user }}/Dropbox/packages/{{ i3blocks_debfile }}"
     state=present
+    force=yes
   tags: ['wm', 'gui', 'i3']
 
 - name: i3 | ensure i3 configuration is synchronized

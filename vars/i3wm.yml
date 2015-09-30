@@ -1,4 +1,4 @@
 ---
 # vim: ft=ansible
-i3gaps_debfile:   'i3_4.10.4-699-g3851e25_amd64.deb'
+i3gaps_debfile:   'i3_4.11-370-g31a2aab_amd64.deb'
 i3blocks_debfile: 'i3blocks_1.4-8-g6cec173_amd64.deb'
