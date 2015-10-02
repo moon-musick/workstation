@@ -18,3 +18,9 @@
     name=git
     state=present
   tags: ['dev', 'shelltools', 'dependency']
+
+- name: git | ensure additional tools are installed
+  pip: >
+    name=joe
+    state=present
+  tags: ['dev', 'shelltools']
