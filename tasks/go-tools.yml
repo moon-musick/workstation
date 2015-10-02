@@ -43,6 +43,8 @@
       repo: github.com/asciinema/asciinema
     - exec: sift
       repo: github.com/svent/sift
+    - exec: hostess
+      repo: github.com/cbednarski/hostess/cmd/hostess
   sudo_user: "{{ user }}"
   tags: ['dev', 'shelltools', 'golang']
 
