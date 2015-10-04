@@ -22,6 +22,8 @@
   - csvkit
   - ipython
   - gcalcli
+  - thefuck
+  - yapf
   tags: ['dev', 'shelltools', 'python']
 
 - name: dependencies | ensure python3 packages installed
