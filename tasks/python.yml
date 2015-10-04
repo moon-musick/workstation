@@ -1,0 +1,34 @@
+---
+- name: python | ensure python dependencies and development packages are installed
+  apt: >
+    name={{ item }}
+    state=present
+    update_cache=true
+    cache_valid_time=3600
+  with_items:
+  - build-essential
+  - python-dev
+  - python-jedi
+  - python3-jedi
+  - python3.4-venv
+  tags: ['dev', shelltools', 'python']
+
+- name: dependencies | ensure python packages installed
+  pip: >
+    name={{ item }}
+    executable=pip2
+    state=present
+  with_items:
+  - csvkit
+  - ipython
+  - gcalcli
+  tags: ['dev', 'shelltools', 'python']
+
+- name: dependencies | ensure python3 packages installed
+  pip: >
+    name={{ item }}
+    executable=pip3
+    state=present
+  with_items:
+  - ipython
+  tags: ['dev', 'shelltools', 'python']

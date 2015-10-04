@@ -13,6 +13,7 @@
 - include: zsh.yml
 - include: hr.yml
 - include: dotfiles.yml
+- include: python.yml
 - include: ruby.yml
 # - include: powerline-shell.yml
 # - include: powerline.yml
