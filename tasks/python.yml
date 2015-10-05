@@ -24,6 +24,7 @@
   - gcalcli
   - thefuck
   - yapf
+  - mycli
   tags: ['dev', 'shelltools', 'python']
 
 - name: dependencies | ensure python3 packages installed
