@@ -45,6 +45,8 @@
       repo: github.com/svent/sift
     - exec: hostess
       repo: github.com/cbednarski/hostess/cmd/hostess
+    - exec: peco
+      repo: github.com/peco/peco/cmd/peco
   sudo_user: "{{ user }}"
   tags: ['dev', 'shelltools', 'golang']
 
