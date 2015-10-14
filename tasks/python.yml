@@ -25,6 +25,7 @@
   - thefuck
   - yapf
   - mycli
+  - ohmu
   tags: ['dev', 'shelltools', 'python']
 
 - name: dependencies | ensure python3 packages installed
