@@ -1,0 +1,6 @@
+---
+- name: yank | ensure yank is installed
+  apt: >
+    deb=/home/{{ user }}/Dropbox/ansible/packages/{{ yank_debfile }}
+    state=present
+  tags: ['shelltools', 'yank', 'dropbox']

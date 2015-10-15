@@ -3,3 +3,4 @@ python_version: 2.7
 rcm_debfile:    rcm_1.2.3-1_all.deb
 golang_tarball: go1.5.1.linux-amd64.tar.gz
 vim_repo:       'git@github.com:moon-musick/.vim'
+yank_debfile:   yank_0.4.0-1-gd8db62a_amd64.deb

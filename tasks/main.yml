@@ -27,6 +27,7 @@
 - include: doctools.yml
 - include: utils.yml
 - include: fzf.yml
+- include: yank.yml
 - include: xmonad.yml
 - include: i3wm.yml
 - include: awesome.yml
