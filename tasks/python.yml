@@ -8,8 +8,6 @@
   with_items:
   - build-essential
   - python-dev
-  - python-jedi
-  - python3-jedi
   - python3.4-venv
   tags: ['dev', shelltools', 'python']
 
@@ -22,10 +20,7 @@
   - csvkit
   - ipython
   - gcalcli
-  - thefuck
   - yapf
-  - mycli
-  - ohmu
   tags: ['dev', 'shelltools', 'python']
 
 - name: dependencies | ensure python3 packages installed

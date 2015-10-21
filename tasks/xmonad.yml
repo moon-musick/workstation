@@ -6,7 +6,7 @@
   sudo_user: "{{ user }}"
   tags: ['wm', 'gui', 'xmonad']
 
-# FIXME; port script contents to Ansible
+# TODO; port script contents to Ansible
 # (dependencies installation etc.)
 - name: xmonad | ensure installation script run
   command: "/home/{{ user }}/.xmonad/install-xmonad"

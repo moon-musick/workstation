@@ -11,8 +11,6 @@
     - mplayer
     - vlc
     - comix
-    - museeq
-    - qnapi
     - gimp
     - python3-pip
   tags: ['media', 'gui']

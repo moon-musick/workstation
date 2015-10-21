@@ -1,4 +1,5 @@
 ---
+# TODO; replace with shell function where possible
 - name: utilities | ensure utility scripts are present
   copy: >
     src=scripts/{{ item }}

@@ -15,8 +15,6 @@
 - include: dotfiles.yml
 - include: python.yml
 - include: ruby.yml
-# - include: powerline-shell.yml
-# - include: powerline.yml
 - include: gnome-terminal.yml
 - include: gtk-themes.yml
 - include: pi-rho-ppa.yml
@@ -27,7 +25,6 @@
 - include: doctools.yml
 - include: utils.yml
 - include: fzf.yml
-- include: yank.yml
 - include: xmonad.yml
 - include: i3wm.yml
 - include: awesome.yml
@@ -43,10 +40,6 @@
 - include: docker.yml
 - include: vagrant.yml
 - include: ranger.yml
-- include: taskwarrior.yml
 - include: go-tools.yml
 - include: rbenv.yml
 - include: mopidy.yml
-# - include: haskell.yml
-# - include: postgresql.yml
-# - include: texlive.yml
