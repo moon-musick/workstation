@@ -31,3 +31,8 @@
   command: fc-cache -fv
   sudo: yes
   sudo_user: "{{ user }}"
+
+- name: restart chrony
+  service:
+    name:  chrony
+    state: restarted

@@ -31,7 +31,7 @@
 - include: notifyosdconfig.yml
 - include: rofi.yml
 - include: fonts.yml
-- include: ntp.yml
+- include: chrony.yml
 - include: comm.yml
 - include: news.yml
 - include: rainbowstream.yml

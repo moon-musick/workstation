@@ -1,0 +1,23 @@
+---
+- name: chrony | ensure chrony is installed
+  apt:
+    name:  chrony
+    state: present
+  tags: ['chrony']
+
+- name: chrony | provide configuration file
+  template:
+    src:   chrony/chrony.conf.j2
+    dest:  /etc/chrony/chrony.conf
+    owner: root
+    group: root
+    mode:  '0644'
+  notify:
+  - restart chrony
+  tags: ['chrony']
+
+- name: chrony | ensure chrony service is running
+  service:
+    name:  chrony
+    state: started
+  tags: ['chrony']
