@@ -35,6 +35,7 @@
   - gtk-chtheme
   - qt4-qtconfig
   - compton
+  - suckless-tools
   tags: ['wm', 'gui', 'i3']
 
 - name: i3 | include vars file
