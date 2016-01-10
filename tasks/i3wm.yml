@@ -47,6 +47,7 @@
   sudo: yes
   sudo_user: "{{ user }}"
   register: dropbox_status
+  always_run: True
   changed_when: False
   tags: ['wm', 'gui', 'i3']
 

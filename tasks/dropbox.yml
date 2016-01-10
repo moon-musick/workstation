@@ -81,6 +81,7 @@
   sudo_user: "{{ user }}"
   register: dropbox_status
   changed_when: False
+  always_run: True
   tags: ['dropbox', 'dependency']
 
 - name: dropbox | start dropbox if not running
