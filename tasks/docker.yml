@@ -8,7 +8,7 @@
 
 - name: docker | ensure docker repository is configured
   apt_repository: >
-    repo='deb https://apt.dockerproject.com/repo ubuntu-trusty main'
+    repo='deb http://apt.dockerproject.com/repo ubuntu-trusty main'
     state=present
     update_cache=yes
   tags: ['virttools', 'dev', 'shelltools', 'docker']
