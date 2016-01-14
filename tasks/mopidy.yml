@@ -13,13 +13,13 @@
   tags: ['media', 'music']
 
 - name: mopidy | ensure mopidy repo is configured
-  apt_repository: >
-    repo={{ item }}
-    state=present
-    update_cache=yes
+  apt_repository:
+    repo:         "{{ item }}"
+    state:        present
+    update_cache: yes
   with_items:
-  - "'deb http://apt.mopidy.com/ jessie main contrib non-free'"
-  - "'deb-src http://apt.mopidy.com/ jessie main contrib non-free'"
+  - 'deb http://apt.mopidy.com/ jessie main contrib non-free'
+  - 'deb-src http://apt.mopidy.com/ jessie main contrib non-free'
   tags: ['media', 'music']
 
 - name: mopidy | ensure mopidy is installed
