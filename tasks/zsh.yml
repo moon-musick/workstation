@@ -12,8 +12,8 @@
   git: >
     repo='https://github.com/robbyrussell/oh-my-zsh'
     dest=/home/{{ user }}/.oh-my-zsh
-  sudo: yes
-  sudo_user: "{{ user }}"
+  become: yes
+  become_user: "{{ user }}"
   tags: ['shelltools']
 
 - name: zsh | ensure zsh custom dir is present
@@ -38,19 +38,19 @@
   git: >
     repo='https://github.com/zsh-users/zsh-syntax-highlighting'
     dest=/home/{{ user }}/.zsh/zsh-syntax-highlighting
-  sudo_user: "{{ user }}"
+  become_user: "{{ user }}"
   tags: ['shelltools']
 
 - name: zsh | ensure text-objects plugin is present
   git: >
     repo='https://github.com/hchbaw/opp.zsh'
     dest=/home/{{ user }}/.zsh/opp.zsh
-  sudo_user: "{{ user }}"
+  become_user: "{{ user }}"
   tags: ['shelltools']
 
 - name: zsh | ensure additional completions are available
   git: >
     repo='https://github.com/zsh-users/zsh-completions'
     dest=/home/{{ user }}/.oh-my-zsh/custom/plugins/zsh-completions
-  sudo_user: "{{ user }}"
+  become_user: "{{ user }}"
   tags: ['shelltools']

@@ -1,8 +1,8 @@
 ---
 - name: fonts | check dropbox status
   command: dropbox.py status
-  sudo: yes
-  sudo_user: "{{ user }}"
+  become: yes
+  become_user: "{{ user }}"
   always_run: yes
   register: dropbox_status
   changed_when: False

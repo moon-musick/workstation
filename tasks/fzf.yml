@@ -5,12 +5,12 @@
     dest=/home/{{ user }}/.fzf
     depth=1
     update=no
-  sudo_user: "{{ user }}"
+  become_user: "{{ user }}"
   tags: ['shelltools']
 
 - name: fzf | ensure installation script was run
   shell: /home/{{ user }}/.fzf/install < /dev/null
   args:
     creates: /home/{{ user }}/.fzf/bin/fzf
-  sudo_user: "{{ user }}"
+  become_user: "{{ user }}"
   tags: ['shelltools']

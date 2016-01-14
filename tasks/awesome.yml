@@ -39,5 +39,5 @@
     repo='https://github.com/moon-musick/awesome.git'
     dest=/home/{{ user }}/.config/awesome
     version={{ ansible_local.awesome.branch }}
-  sudo_user: "{{ user }}"
+  become_user: "{{ user }}"
   tags: ['gui', 'wm', 'awesome']

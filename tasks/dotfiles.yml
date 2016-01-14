@@ -18,13 +18,13 @@
   git: >
     repo='git@github.com:moon-musick/.dotfiles.git'
     dest=/home/{{ user }}/.dotfiles
-  sudo_user: "{{ user }}"
+  become_user: "{{ user }}"
   tags: ['shelltools']
 
 # .haskeline least likely to be present before
 - name: dotfiles | ensure dotfiles symlinks are in place
   command: rcup -x README.md -f
-  sudo_user: "{{ user }}"
+  become_user: "{{ user }}"
   args:
     chdir: /home/{{ user }}
     creates: /home/{{ user }}/.haskeline

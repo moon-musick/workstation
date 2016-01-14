@@ -24,13 +24,13 @@
 
 - name: restart notify-osd
   command: pkill notify-osd
-  sudo: yes
-  sudo_user: "{{ user }}"
+  become: yes
+  become_user: "{{ user }}"
 
 - name: rescan fonts
   command: fc-cache -fv
-  sudo: yes
-  sudo_user: "{{ user }}"
+  become: yes
+  become_user: "{{ user }}"
 
 - name: restart chrony
   service:

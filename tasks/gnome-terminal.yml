@@ -13,5 +13,5 @@
   args:
     chdir: /home/{{ user }}/ansible/
     creates: /home/{{ user }}/ansible/gnome-terminal.lock
-  sudo_user: "{{ user }}"
+  become_user: "{{ user }}"
   tags: ['gui']

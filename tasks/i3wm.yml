@@ -44,8 +44,8 @@
 
 - name: i3 | check dropbox status
   command: dropbox.py status
-  sudo: yes
-  sudo_user: "{{ user }}"
+  become: yes
+  become_user: "{{ user }}"
   register: dropbox_status
   always_run: True
   changed_when: False
@@ -82,7 +82,7 @@
   git: >
     repo='git@github.com:moon-musick/i3.git'
     dest=/home/{{ user }}/.i3
-  sudo_user: "{{ user }}"
+  become_user: "{{ user }}"
   tags: ['wm', 'gui', 'i3']
 
 - name: i3 | ensure i3status and i3blocks symlinks exist

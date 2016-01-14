@@ -3,7 +3,7 @@
   git: >
     repo='https://github.com/moon-musick/xmonad-ubuntu-conf'
     dest=/home/{{ user }}/.xmonad
-  sudo_user: "{{ user }}"
+  become_user: "{{ user }}"
   tags: ['wm', 'gui', 'xmonad']
 
 # TODO; port script contents to Ansible
