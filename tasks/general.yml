@@ -23,6 +23,7 @@
   - pmount
   - ntp
   - subversion
+  - apt-file
   tags: ['shelltools', 'dependency']
 
 - name: dependencies | ensure general GUI-dependent packages installed
