@@ -18,7 +18,9 @@
 # remnants of old installation cause errors
 # http://stackoverflow.com/questions/32115229/go-1-5-error-imports-runtime-c-source-files-not-allowed-when-not-using-cgo-o
 - name: go | remove old go if new version downloaded
-  shell: test -d /usr/local/go && rm -rf /usr/local/go/
+  file:
+    path:  /usr/local/go
+    state: absent
   when: golang_archive_downloaded.changed
   tags: ['dev', 'shelltools', 'golang']
 
