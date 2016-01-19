@@ -37,6 +37,8 @@
   - gconf2
   - scrot
   - xdotool
+  - feh
+  - xbacklight
   tags: ['gui', 'dependency']
 
 - name: dependencies | ensure zsh installed
