@@ -36,3 +36,10 @@
     - zathura
     - mendeleydesktop
   tags: ['gui', 'doctools']
+
+# https://github.com/zealdocs/zeal/issues/134
+- name: doctools | ensure appmenu-qt5 is not installed
+  apt:
+    name:  appmenu-qt5
+    state: absent
+  tags: ['gui', 'doctools']
