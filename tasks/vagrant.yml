@@ -1,8 +1,8 @@
 ---
 - name: vagrant | ensure vagrant deb file is locally available
   get_url: >
-    url='https://dl.bintray.com/mitchellh/vagrant/{{ vagrant_debfile }}'
-    dest=/home/{{ user }}/ansible/{{ vagrant_debfile }}
+    url='https://releases.hashicorp.com/vagrant/{{ vagrant_version }}/vagrant_{{ vagrant_version }}_{{ ansible_architecture }}.deb'
+    dest=/home/{{ user }}/ansible/vagrant_{{ vagrant_version }}_{{ ansible_architecture }}.deb
     owner={{ user }}
     group={{ user }}
     mode=0644
@@ -10,6 +10,6 @@
 
 - name: vagrant | ensure vagrant is installed
   apt: >
-    deb=/home/{{ user }}/ansible/{{ vagrant_debfile }}
+    deb=/home/{{ user }}/ansible/vagrant_{{ vagrant_version }}_{{ ansible_architecture }}.deb
     state=present
   tags: ['virttools', 'dev']
