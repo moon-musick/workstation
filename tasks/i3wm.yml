@@ -38,6 +38,12 @@
   - suckless-tools
   tags: ['wm', 'gui', 'i3']
 
+- name: i3 | ensure dunst is not installed
+  apt:
+    name:  dunst
+    state: absent
+  tags: ['wm', 'gui', 'i3']
+
 - name: i3 | include vars file
   include_vars: i3wm.yml
   tags: ['wm', 'gui', 'i3']
