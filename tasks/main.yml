@@ -45,3 +45,4 @@
 - include: go-tools.yml
 - include: rbenv.yml
 - include: mopidy.yml
+- include: tomate.yml

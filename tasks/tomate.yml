@@ -1,0 +1,20 @@
+---
+- name: ensure tomate ppa key is configured
+  apt_key:
+    id:        E6B312F2
+    keyserver: keyserver.ubuntu.com
+    state:     present
+  tags: ['gui', 'dev', 'tomate']
+
+- name: ensure tomate ppa is configured
+  apt_repository:
+    repo:         "ppa:stvs/tomate"
+    state:        present
+    update_cache: yes
+  tags: ['gui', 'dev', 'tomate']
+
+- name: ensure tomate is installed
+  apt:
+    name:  tomate
+    state: present
+  tags: ['gui', 'dev', 'tomate']
