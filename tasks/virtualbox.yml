@@ -1,0 +1,22 @@
+---
+- name: virtualbox | ensure virtualbox repo key is configured
+  apt_key:
+    url:   "https://www.virtualbox.org/download/oracle_vbox.asc"
+    state: present
+  tags: ['virttools', 'virtualbox', 'dev']
+
+- name: virtualbox | ensure virtualbox repo is configured
+  apt_repository:
+    repo:  "deb http://download.virtualbox.org/virtualbox/debian {{ ansible_distribution_release }} contrib"
+    state: present
+    update_cache: yes
+  tags: ['virttools', 'virtualbox', 'dev']
+
+- name: virtualbox | ensure virtualbox is installed
+  apt:
+    name:  "{{ item }}"
+    state: present
+  with_items:
+  - virtualbox
+  - virtualbox-dkms
+  tags: ['virttools', 'virtualbox', 'dev']

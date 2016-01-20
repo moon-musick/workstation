@@ -39,6 +39,7 @@
 - include: networking.yml
 - include: lxc.yml
 - include: docker.yml
+- include: virtualbox.yml
 - include: vagrant.yml
 - include: ranger.yml
 - include: go-tools.yml
