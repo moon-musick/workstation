@@ -32,6 +32,14 @@
   when: golang_archive_downloaded.changed
   tags: ['dev', 'shelltools', 'golang']
 
+- name: go | add apt prerequisites
+  apt:
+    name:  "{{ item }}"
+    state: present
+  with_items:
+  - libxrandr-dev
+  tags: ['dev', 'shelltools', 'golang']
+
 - name: go | ensure go apps installed
   shell: GOPATH=/home/{{ user }}/go /usr/local/go/bin/go get {{ item.repo }}
   args:
@@ -49,6 +57,10 @@
       repo: github.com/cbednarski/hostess/cmd/hostess
     - exec: peco
       repo: github.com/peco/peco/cmd/peco
+    - exec: sct
+      repo: github.com/d4l3k/go-sct/sct
+    - exec: weather
+      repo: github.com/jfrazelle/weather
   become_user: "{{ user }}"
   tags: ['dev', 'shelltools', 'golang']
 
