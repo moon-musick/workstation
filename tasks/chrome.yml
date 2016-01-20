@@ -1,0 +1,19 @@
+---
+- name: chrome | ensure google ppa key is configured
+  apt_key:
+    url:   "https://dl.google.com/linux/linux_signing_key.pub"
+    state: present
+  tags: ['gui', 'chrome']
+
+- name: chrome | ensure google ppa is configured
+  apt_repository:
+    repo:         "deb http://dl.google.com/linux/chrome/deb/ stable main"
+    state:        present
+    update_cache: yes
+  tags: ['gui', 'chrome']
+
+- name: chrome | ensure chrome is installed
+  apt:
+    name:  google-chrome-stable
+    state: present
+  tags: ['gui', 'chrome']
