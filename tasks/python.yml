@@ -21,6 +21,8 @@
   - ipython
   - gcalcli
   - yapf
+  - httpie
+  - httpie-oauth
   tags: ['dev', 'shelltools', 'python']
 
 - name: dependencies | ensure python3 packages installed
