@@ -29,7 +29,7 @@
 - include: i3wm.yml
 - include: awesome.yml
 - include: chrome.yml
-- include: notifyosdconfig.yml
+# - include: notifyosdconfig.yml
 - include: rofi.yml
 - include: fonts.yml
 - include: chrony.yml

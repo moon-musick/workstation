@@ -38,10 +38,22 @@
   - suckless-tools
   tags: ['wm', 'gui', 'i3']
 
-- name: i3 | ensure dunst is not installed
-  apt:
-    name:  dunst
-    state: absent
+- name: i3 | ensure dunst configuration directory exists
+  file:
+    path:  /home/{{ user }}/.config/dunst
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode:  '0755'
+    state: directory
+  tags: ['wm', 'gui', 'i3']
+
+- name: i3 | ensure dunst configuration is up to date
+  template:
+    dest:  /home/{{ user }}/.config/dunst/dunstrc
+    src:   dunst/dunstrc.j2
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode:  '0644'
   tags: ['wm', 'gui', 'i3']
 
 - name: i3 | include vars file
