@@ -1,6 +1,6 @@
 #!/bin/bash
 
 exec xautolock -detectsleep \
-  -time 5 -locker "slock" \
+  -time 5 -locker "killall -SIGUSR1 dunst; xset dpms force off; i3lock --color=002b36 -n; killall -SIGUSR2 dunst" \
   -notify 10 \
   -notifier "notify-send -u critical -t 10000 -- 'Locking screen in 10 seconds'"
