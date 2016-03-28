@@ -1,17 +1,17 @@
 ---
 - name: i3 | ensure i3wm repository is present
-  apt_repository: >
-    repo='deb http://debian.sur5r.net/i3/ trusty universe'
-    state=present
-    update_cache=yes
+  apt_repository:
+    repo: 'deb http://debian.sur5r.net/i3/ trusty universe'
+    state: present
+    update_cache: yes
   tags: ['wm', 'gui', 'i3']
 
 # FIXME; fix to use allow-unauthenticated somehow
 - name: i3 | ensure i3wm keyring is installed
-  apt: >
-    name=sur5r-keyring
-    state=present
-    force=yes
+  apt:
+    name: sur5r-keyring
+    state: present
+    force: yes
   register: i3wm_keyring
   tags: ['wm', 'gui', 'i3']
 
@@ -21,11 +21,11 @@
   tags: ['wm', 'gui', 'i3']
 
 - name: i3 | ensure i3wm packages are installed
-  apt: >
-    name={{ item }}
-    state=present
-    update_cache=yes
-    cache_valid_time=3600
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+    cache_valid_time: 3600
   with_items:
   - i3
   - i3-wm
@@ -83,33 +83,33 @@
 # https://github.com/ansible/ansible/issues/8314
 # also, use force - those packages are likely to be held manually
 - name: i3 | ensure self-compiled i3 is installed
-  apt: >
-    deb="/home/{{ user }}/Dropbox/ansible/packages/{{ i3gaps_debfile }}"
-    state=present
-    force=yes
+  apt:
+    deb: "/home/{{ user }}/Dropbox/ansible/packages/{{ i3gaps_debfile }}"
+    state: present
+    force: yes
   tags: ['wm', 'gui', 'i3']
 
 - name: i3 | ensure self-compiled i3blocks is installed
-  apt: >
-    deb="/home/{{ user }}/Dropbox/ansible/packages/{{ i3blocks_debfile }}"
-    state=present
-    force=yes
+  apt:
+    deb: "/home/{{ user }}/Dropbox/ansible/packages/{{ i3blocks_debfile }}"
+    state: present
+    force: yes
   tags: ['wm', 'gui', 'i3']
 
 - name: i3 | ensure i3 configuration is synchronized
-  git: >
-    repo='git@github.com:moon-musick/i3.git'
-    dest=/home/{{ user }}/.i3
+  git:
+    repo: 'git@github.com:moon-musick/i3.git'
+    dest: /home/{{ user }}/.i3
   become_user: "{{ user }}"
   tags: ['wm', 'gui', 'i3']
 
 - name: i3 | ensure i3status and i3blocks symlinks exist
-  file: >
-    src=/home/{{ user }}/.i3/{{ item.src }}
-    dest=/home/{{ user }}/{{ item.dest }}
-    owner={{ user }}
-    group={{ user }}
-    state=link
+  file:
+    src: /home/{{ user }}/.i3/{{ item.src }}
+    dest: /home/{{ user }}/{{ item.dest }}
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    state: link
   with_items:
   - src:  i3blocks/conf
     dest: .config/i3blocks
