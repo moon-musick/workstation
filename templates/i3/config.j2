@@ -346,7 +346,7 @@ bindsym $mod+y        exec --no-startup-id /home/{{ user }}/bin/tptoggle enable
 bindsym $mod+shift+y  exec --no-startup-id /home/{{ user }}/bin/tptoggle disable
 
 # custom initialization (screensavers, touchpad etc.)
-exec_always --no-startup-id /home/{{ user }}/.i3/startup
+exec_always --no-startup-id /home/{{ user }}/.i3/bin/startup
 # start NetworkManager applet
 exec --no-startup-id nm-applet
 # start sound applet
