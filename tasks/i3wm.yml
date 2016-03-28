@@ -62,6 +62,15 @@
   - wifi
   tags: ['wm', 'gui', 'i3']
 
+- name: i3 | provide the wallpaper
+  copy:
+    dest:  "/home/{{ user }}/.i3/wallpaper.png"
+    src:   "i3/wallpaper.png"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode:  "0644"
+  tags: ['wm', 'gui', 'i3']
+
 # FIXME; fix to use allow-unauthenticated somehow
 - name: i3 | ensure i3wm keyring is installed
   apt:
