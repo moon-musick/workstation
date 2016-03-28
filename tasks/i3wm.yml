@@ -1,9 +1,64 @@
 ---
-- name: i3 | ensure i3wm repository is present
-  apt_repository:
-    repo: 'deb http://debian.sur5r.net/i3/ trusty universe'
-    state: present
-    update_cache: yes
+- name: i3 | ensure configuration directory exists
+  file:
+    path:  "/home/{{ user }}/{{ item }}"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode:  "0755"
+    state: directory
+  with_items:
+  - .i3/
+  - .i3/bin
+  - .i3/i3blocks
+  - .i3/i3blocks/bin
+  - .i3/i3blocks/conf
+  tags: ['wm', 'gui', 'i3']
+
+- name: i3 | render configuration files
+  template:
+    dest: "/home/{{ user }}/.i3/{{ item }}"
+    src:  "i3/{{ item }}.j2"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode:  "0644"
+  with_items:
+  - config
+  - i3blocks/conf/config
+  tags: ['wm', 'gui', 'i3']
+
+- name: i3 | render supporting scripts
+  template:
+    dest:  "/home/{{ user }}/.i3/bin/{{ item }}"
+    src:   "i3/bin/{{ item }}.j2"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode:  "0755"
+  with_items:
+  - dmenu_marks
+  - focus_mark
+  - locker
+  - mark
+  - move_to_workspace
+  - rename_workspace
+  - workspace
+  tags: ['wm', 'gui', 'i3']
+
+- name: i3 | render i3blocks scripts
+  template:
+    dest: "/home/{{ user }}/.i3/i3blocks/bin/{{ item }}"
+    src:  "i3/i3blocks/bin/{{ item }}.j2"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: "0755"
+  with_items:
+  - battery
+  - disk
+  - iface
+  - mpc
+  - newmail
+  - scratchpad
+  - volume
+  - wifi
   tags: ['wm', 'gui', 'i3']
 
 # FIXME; fix to use allow-unauthenticated somehow
@@ -96,13 +151,6 @@
     force: yes
   tags: ['wm', 'gui', 'i3']
 
-- name: i3 | ensure i3 configuration is synchronized
-  git:
-    repo: 'git@github.com:moon-musick/i3.git'
-    dest: /home/{{ user }}/.i3
-  become_user: "{{ user }}"
-  tags: ['wm', 'gui', 'i3']
-
 - name: i3 | ensure i3status and i3blocks symlinks exist
   file:
     src: /home/{{ user }}/.i3/{{ item.src }}
@@ -113,6 +161,4 @@
   with_items:
   - src:  i3blocks/conf
     dest: .config/i3blocks
-  - src:  i3status.conf
-    dest: .i3status.conf
   tags: ['wm', 'gui', 'i3']

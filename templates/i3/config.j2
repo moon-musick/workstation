@@ -1,0 +1,366 @@
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+
+# custom colors
+# solarized:
+set $darkest   #002b36
+set $darker    #073642
+# 'dark' is apparently used as a standard keyword
+set $base0     #586e75
+set $base00    #657b83
+set $normal    #839496
+set $bright    #93a1a1
+set $brighter  #eee8d5
+set $brightest #fdf6e3
+set $yellow    #b58900
+set $orange    #cb4b16
+set $red       #dc322f
+set $magenta   #d33682
+set $violet    #6c71c4
+set $blue      #268bd2
+set $cyan      #2aa198
+set $green     #859900
+
+# set some nice colors  border   background text
+client.focused          $blue    $blue      $brightest
+client.unfocused        $darkest $darkest   $bright
+client.focused_inactive $bright  $bright    $darkest
+client.urgent           $red     $red       $darkest
+
+# main function key
+set $mod Mod4
+
+# disable borders
+# https://faq.i3wm.org/question/291/title-and-no-border/
+new_window normal 0 px
+# https://github.com/Airblader/i3
+for_window [class="^.*"] border pixel 2
+# gaps inner 5
+# gaps outer 5
+# smart_gaps off
+smart_borders on
+
+# return automatically to last focused workspace after jump
+workspace_auto_back_and_forth yes
+
+# disable mouse warping on monitor focus change
+mouse_warping none
+
+# disable screen edge borders
+# hide_edge_borders both
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below. ISO 10646 = Unicode
+font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+# The font above is very space-efficient, that is, it looks good, sharp and
+# clear in small sizes. However, if you need a lot of unicode glyphs or
+# right-to-left text rendering, you should instead use pango for rendering and
+# chose a FreeType font, such as:
+# font pango:DejaVu Sans Mono 10
+font pango: Ubuntu 10
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+# bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec uxterm
+
+# kill focused window
+bindsym $mod+Shift+c kill
+
+# rofi - window selection
+bindsym $mod+d exec rofi -show window
+# rofi - command selection - use $mod+p for compatibility with xmonad and awesome config
+bindsym $mod+p exec rofi -show run
+# There also is the (new) i3-dmenu-desktop which only displays applications
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# installed.
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+#
+bindsym $mod+i        exec /home/lucas/.i3/bin/workspace
+bindsym $mod+Shift+i  exec /home/lucas/.i3/bin/move_to_workspace
+
+# custom - lock screen with xautolock
+bindsym $mod+g        exec xautolock -locknow
+bindsym $mod+Shift+g  exec sleep 1 && xset dpms force off
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left  focus left
+bindsym $mod+Down  focus down
+bindsym $mod+Up    focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left  move left
+bindsym $mod+Shift+Down  move down
+bindsym $mod+Shift+Up    move up
+bindsym $mod+Shift+Right move right
+
+# move to next or previous workspace
+bindsym $mod+period       workspace next_on_output
+bindsym $mod+comma        workspace prev_on_output
+bindsym $mod+Shift+period move container to workspace next_on_output
+bindsym $mod+Shift+comma  move container to workspace prev_on_output
+
+# split in horizontal orientation
+bindsym $mod+semicolon  split h
+# split in vertical orientation
+bindsym $mod+v          split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# move workspace between monitors (effectively toggle if using only two)
+bindsym $mod+z move workspace to output right
+
+# focus the parent container
+bindsym $mod+a       focus parent
+# focus the child container
+bindsym $mod+Shift+a focus child
+
+# switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+# reload the configuration file
+bindsym $mod+Shift+q reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# focus urgent
+bindsym $mod+u [urgent="latest"] focus
+
+# focus outputs
+# bindsym $mod+i focus output left
+bindsym $mod+o focus output right
+
+# use scratchpad to hide windows
+bindsym $mod+n move scratchpad
+bindsym $mod+Shift+n scratchpad show; floating toggle
+
+# use an empty window as a placeholder
+# bindsym $mod+y open
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+  # These bindings trigger as soon as you enter the resize mode
+
+  bindsym h resize shrink width  10 px or 10 ppt
+  bindsym j resize grow   height 10 px or 10 ppt
+  bindsym k resize shrink height 10 px or 10 ppt
+  bindsym l resize grow   width  10 px or 10 ppt
+
+  bindsym Shift+h resize shrink width  1 px or 1 ppt
+  bindsym Shift+j resize grow   height 1 px or 1 ppt
+  bindsym Shift+k resize shrink height 1 px or 1 ppt
+  bindsym Shift+l resize grow   width  1 px or 1 ppt
+
+  # same bindings, but for the arrow keys
+  bindsym Left  resize shrink width  10 px or 10 ppt
+  bindsym Down  resize grow   height 10 px or 10 ppt
+  bindsym Up    resize shrink height 10 px or 10 ppt
+  bindsym Right resize grow   width  10 px or 10 ppt
+
+  # back to normal: Enter or Escape
+  bindsym ctrl+bracketleft mode "default"
+  bindsym Return           mode "default"
+  bindsym Escape           mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+mode "mopidy" {
+  bindsym j      exec --no-startup-id mpc next
+  bindsym k      exec --no-startup-id mpc prev
+  bindsym s      exec --no-startup-id mpc stop
+  bindsym p      exec --no-startup-id mpc play
+  bindsym h      exec --no-startup-id mpc seek -2
+  bindsym l      exec --no-startup-id mpc seek +2
+  bindsym comma  exec --no-startup-id mpc volume -2
+  bindsym period exec --no-startup-id mpc volume +2
+  bindsym space  exec --no-startup-id mpc toggle
+
+  bindsym ctrl+bracketleft mode "default"
+  bindsym Return           mode "default"
+  bindsym Escape           mode "default"
+}
+
+bindsym $mod+shift+m mode "mopidy"
+
+mode "mocp" {
+  bindsym j      exec --no-startup-id mocp --next
+  bindsym k      exec --no-startup-id mocp --previous
+  bindsym s      exec --no-startup-id mocp --stop
+  bindsym p      exec --no-startup-id mocp --play
+  bindsym h      exec --no-startup-id mocp --seek -2
+  bindsym l      exec --no-startup-id mocp --seek +2
+  bindsym comma  exec --no-startup-id mocp --volume -2
+  bindsym period exec --no-startup-id mocp --volume +2
+  bindsym space  exec --no-startup-id mocp --toggle-pause
+
+  bindsym ctrl+bracketleft mode "default"
+  bindsym Return           mode "default"
+  bindsym Escape           mode "default"
+}
+
+bindsym $mod+shift+p mode "mocp"
+
+mode "volume" {
+  bindsym period exec --no-startup-id pactl set-sink-volume 0 -- +2% # && killall -SIGUSR1 i3status
+  bindsym comma  exec --no-startup-id pactl set-sink-volume 0 -- -2% # && killall -SIGUSR1 i3status
+  bindsym m      exec --no-startup-id amixer -q -D pulse sset Master toggle
+
+  bindsym ctrl+bracketleft mode "default"
+  bindsym Return           mode "default"
+  bindsym Escape           mode "default"
+}
+
+bindsym $mod+shift+v mode "volume"
+
+mode "brightness" {
+  bindsym period exec --no-startup-id light -A 2
+  bindsym comma  exec --no-startup-id light -U 2
+
+  bindsym ctrl+bracketleft mode "default"
+  bindsym Return           mode "default"
+  bindsym Escape           mode "default"
+}
+
+bindsym $mod+shift+b mode "brightness"
+
+# volume adjustment
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 -- +10% # && killall -SIGUSR1 i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -- -10% # && killall -SIGUSR1 i3status
+bindsym XF86AudioMute        exec --no-startup-id amixer -q -D pulse sset Master toggle
+
+# screenshots using gnome-screenshot
+bindsym $mod+x exec --no-startup-id gnome-screenshot -w --file=$HOME/Obrazy/screenshot-$(date '+%Y-%m-%d_%H-%M-%S').png
+
+# move mouse cursor out of the way
+bindsym $mod+m exec xdotool mousemove 0 0
+
+# show borders in order to view window titles and marks
+bindsym $mod+Shift+t border pixel 2
+bindsym $mod+t       border normal
+
+# mark windows and focus marks
+bindsym $mod+question       exec /home/lucas/.i3/bin/focus_mark
+bindsym $mod+Shift+question exec /home/lucas/.i3/bin/mark
+
+# move between last focused workspaces
+bindsym $mod+Escape workspace back_and_forth
+
+# rename workspaces shortcut
+bindsym $mod+c exec --no-startup-id /home/lucas/.i3/bin/rename_workspace
+
+# default layout for workspaces
+workspace_layout tabbed
+
+# workspace / application assginment
+# assign [class="Firefox"]          2: web
+# assign [class="Mendeley"]         3: docs
+# assign [class="Zathura"]          3: docs
+# assign [class="Skype"]            4: comm
+# assign [class="Thunderbird"]      4: comm
+# assign [class="Kadu"]             4: comm
+# assign [class="HipChat"]          4: comm
+# assign [class="Spotify"]          5: media
+# assign [class="Vlc"]              5: media
+# assign [class="Transmission-gtk"] 5: media
+# assign [class="VirtualBox"]       6: aux
+# assign [class="Gimp"]             6: aux
+
+# set 'ftpane' terminal (selecting tmux panes with fzf) to floating
+# avoids resizing panes and thus moving lines and prompt around
+for_window [title="ftpane"] floating enable
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+  status_command   i3blocks
+  position         top
+  font pango:      Hack 9
+  separator_symbol "|"
+
+  colors {
+    background          $darkest
+    statusline          $bright
+    separator           $base0
+    focused_workspace   $blue       $blue        $brightest
+    active_workspace    $bright     $bright      $darkest
+    inactive_workspace  $darker     $darkest     $normal
+    urgent_workspace    $red        $red         $darkest
+  }
+}
+
+# toggle status bar visibility
+bindsym $mod+b bar mode toggle
+
+# enable / disable touchpad
+bindsym $mod+y        exec --no-startup-id /home/lucas/bin/tptoggle enable
+bindsym $mod+shift+y  exec --no-startup-id /home/lucas/bin/tptoggle disable
+
+# custom initialization (screensavers, touchpad etc.)
+exec_always --no-startup-id /home/lucas/.i3/startup
+# start NetworkManager applet
+exec --no-startup-id nm-applet
+# start sound applet
+exec --no-startup-id gnome-sound-applet
+# start xautolock wrapper
+exec --no-startup-id /home/lucas/bin/locker
+# set wallpaper with feh
+exec --no-startup-id feh --bg-scale /home/lucas/.i3/wallpaper.jpg
+exec nagstamon
+# composition stuff (transparency etc.)
+exec compton -b
+# mopidy
+exec --no-startup-id mopidy --quiet --config /home/lucas/.config/mopidy/mopidy.conf
+# dropbox
+exec --no-startup-id /home/lucas/.dropbox-dist/dropboxd
+# sct
+exec --no-startup-id sct
