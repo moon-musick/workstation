@@ -77,8 +77,8 @@ bindsym $mod+p exec rofi -show run
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 #
-bindsym $mod+i        exec /home/lucas/.i3/bin/workspace
-bindsym $mod+Shift+i  exec /home/lucas/.i3/bin/move_to_workspace
+bindsym $mod+i        exec /home/{{ user }}/.i3/bin/workspace
+bindsym $mod+Shift+i  exec /home/{{ user }}/.i3/bin/move_to_workspace
 
 # custom - lock screen with xautolock
 bindsym $mod+g        exec xautolock -locknow
@@ -251,8 +251,8 @@ mode "mocp" {
 bindsym $mod+shift+p mode "mocp"
 
 mode "volume" {
-  bindsym period exec --no-startup-id pactl set-sink-volume 0 -- +2% # && killall -SIGUSR1 i3status
-  bindsym comma  exec --no-startup-id pactl set-sink-volume 0 -- -2% # && killall -SIGUSR1 i3status
+  bindsym period exec --no-startup-id pactl set-sink-volume {{ default_audio_sink }} -- +2% # && killall -SIGUSR1 i3status
+  bindsym comma  exec --no-startup-id pactl set-sink-volume {{ default_audio_sink }} -- -2% # && killall -SIGUSR1 i3status
   bindsym m      exec --no-startup-id amixer -q -D pulse sset Master toggle
 
   bindsym ctrl+bracketleft mode "default"
@@ -274,8 +274,8 @@ mode "brightness" {
 bindsym $mod+shift+b mode "brightness"
 
 # volume adjustment
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 -- +10% # && killall -SIGUSR1 i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -- -10% # && killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume {{ default_audio_sink }} -- +10% # && killall -SIGUSR1 i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume {{ default_audio_sink }} -- -10% # && killall -SIGUSR1 i3status
 bindsym XF86AudioMute        exec --no-startup-id amixer -q -D pulse sset Master toggle
 
 # screenshots using gnome-screenshot
@@ -289,14 +289,14 @@ bindsym $mod+Shift+t border pixel 2
 bindsym $mod+t       border normal
 
 # mark windows and focus marks
-bindsym $mod+question       exec /home/lucas/.i3/bin/focus_mark
-bindsym $mod+Shift+question exec /home/lucas/.i3/bin/mark
+bindsym $mod+question       exec /home/{{ user }}/.i3/bin/focus_mark
+bindsym $mod+Shift+question exec /home/{{ user }}/.i3/bin/mark
 
 # move between last focused workspaces
 bindsym $mod+Escape workspace back_and_forth
 
 # rename workspaces shortcut
-bindsym $mod+c exec --no-startup-id /home/lucas/.i3/bin/rename_workspace
+bindsym $mod+c exec --no-startup-id /home/{{ user }}/.i3/bin/rename_workspace
 
 # default layout for workspaces
 workspace_layout tabbed
@@ -342,25 +342,25 @@ bar {
 bindsym $mod+b bar mode toggle
 
 # enable / disable touchpad
-bindsym $mod+y        exec --no-startup-id /home/lucas/bin/tptoggle enable
-bindsym $mod+shift+y  exec --no-startup-id /home/lucas/bin/tptoggle disable
+bindsym $mod+y        exec --no-startup-id /home/{{ user }}/bin/tptoggle enable
+bindsym $mod+shift+y  exec --no-startup-id /home/{{ user }}/bin/tptoggle disable
 
 # custom initialization (screensavers, touchpad etc.)
-exec_always --no-startup-id /home/lucas/.i3/startup
+exec_always --no-startup-id /home/{{ user }}/.i3/startup
 # start NetworkManager applet
 exec --no-startup-id nm-applet
 # start sound applet
 exec --no-startup-id gnome-sound-applet
 # start xautolock wrapper
-exec --no-startup-id /home/lucas/bin/locker
+exec --no-startup-id /home/{{ user }}/bin/locker
 # set wallpaper with feh
-exec --no-startup-id feh --bg-scale /home/lucas/.i3/wallpaper.jpg
+exec --no-startup-id feh --bg-scale /home/{{ user }}/.i3/wallpaper.jpg
 exec nagstamon
 # composition stuff (transparency etc.)
 exec compton -b
 # mopidy
-exec --no-startup-id mopidy --quiet --config /home/lucas/.config/mopidy/mopidy.conf
+exec --no-startup-id mopidy --quiet --config /home/{{ user }}/.config/mopidy/mopidy.conf
 # dropbox
-exec --no-startup-id /home/lucas/.dropbox-dist/dropboxd
+exec --no-startup-id /home/{{ user }}/.dropbox-dist/dropboxd
 # sct
 exec --no-startup-id sct

@@ -37,11 +37,11 @@ markup=none
 
 [mpc]
 label=▶
-command=/home/lucas/.i3/i3blocks/bin/mpc
+command=/home/{{ user }}/.i3/i3blocks/bin/mpc
 interval=5
 
 [volume]
-command=/home/lucas/.i3/i3blocks/bin/volume
+command=/home/{{ user }}/.i3/i3blocks/bin/volume
 label=♫
 instance=Master
 #instance=PCM
@@ -49,7 +49,7 @@ interval=5
 signal=10
 
 [newmail]
-command=/home/lucas/.i3/i3blocks/bin/newmail
+command=/home/{{ user }}/.i3/i3blocks/bin/newmail
 label=✉
 interval=30
 
@@ -60,13 +60,13 @@ interval=30
 # (defaults to 10 for 10%).
 [disk]
 label=/
-command=/home/lucas/.i3/i3blocks/bin/disk 5
+command=/home/{{ user }}/.i3/i3blocks/bin/disk 5
 instance=/
 interval=60
 
 [disk]
 label=~
-command=/home/lucas/.i3/i3blocks/bin/disk 5
+command=/home/{{ user }}/.i3/i3blocks/bin/disk 5
 instance=/home
 interval=60
 
@@ -76,14 +76,14 @@ interval=60
 # The address can be forced to IPv4 or IPv6 with -4 or -6 switches.
 [iface]
 #instance=wlan0
-command=/home/lucas/.i3/i3blocks/bin/iface
+command=/home/{{ user }}/.i3/i3blocks/bin/iface
 color=#859900
 interval=15
 separator=true
 
 [wifi]
 #instance=wlp3s0
-command=/home/lucas/.i3/i3blocks/bin/wifi
+command=/home/{{ user }}/.i3/i3blocks/bin/wifi
 interval=15
 # separator=false
 separator=true
@@ -96,7 +96,7 @@ separator=true
 # Number of windows in scratchpad - easily forgotten
 [scratchpad]
 label=✎
-command=/home/lucas/.i3/i3blocks/bin/scratchpad
+command=/home/{{ user }}/.i3/i3blocks/bin/scratchpad
 separator=true
 interval=30
 
@@ -133,7 +133,7 @@ interval=5
 #
 # The battery instance defaults to 0.
 [battery]
-command=/home/lucas/.i3/i3blocks/bin/battery
+command=/home/{{ user }}/.i3/i3blocks/bin/battery
 # label=BAT
 label=⚡
 #instance=1

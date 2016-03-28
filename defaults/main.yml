@@ -3,4 +3,5 @@ user: lucas
 texlive_version: 2014
 vagrant_version: 1.8.1
 
-mopidy_alsamixer_card: '0'
+default_audio_sink: '0'
+mopidy_alsamixer_card: '{{ default_audio_sink }}'
