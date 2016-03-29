@@ -121,10 +121,6 @@
     mode:  '0644'
   tags: ['wm', 'gui', 'i3']
 
-- name: i3 | include vars file
-  include_vars: i3wm.yml
-  tags: ['wm', 'gui', 'i3']
-
 - name: i3 | check dropbox status
   command: dropbox.py status
   become: yes
