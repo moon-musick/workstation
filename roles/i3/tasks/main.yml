@@ -1,5 +1,5 @@
 ---
-- name: i3 | ensure configuration directory exists
+- name: ensure configuration directory exists
   file:
     path:  "/home/{{ user }}/{{ item }}"
     owner: "{{ user }}"
@@ -14,7 +14,7 @@
   - .i3/i3blocks/conf
   tags: ['wm', 'gui', 'i3']
 
-- name: i3 | render configuration files
+- name: render configuration files
   template:
     dest: "/home/{{ user }}/.i3/{{ item }}"
     src:  "i3/{{ item }}.j2"
@@ -26,7 +26,7 @@
   - i3blocks/conf/config
   tags: ['wm', 'gui', 'i3']
 
-- name: i3 | render supporting scripts
+- name: render supporting scripts
   template:
     dest:  "/home/{{ user }}/.i3/bin/{{ item }}"
     src:   "i3/bin/{{ item }}.j2"
@@ -44,7 +44,7 @@
   - workspace
   tags: ['wm', 'gui', 'i3']
 
-- name: i3 | render i3blocks scripts
+- name: render i3blocks scripts
   template:
     dest: "/home/{{ user }}/.i3/i3blocks/bin/{{ item }}"
     src:  "i3/i3blocks/bin/{{ item }}.j2"
@@ -62,7 +62,7 @@
   - wifi
   tags: ['wm', 'gui', 'i3']
 
-- name: i3 | provide the wallpaper
+- name: provide the wallpaper
   copy:
     dest:  "/home/{{ user }}/.i3/wallpaper.png"
     src:   "i3/wallpaper.png"
@@ -72,7 +72,7 @@
   tags: ['wm', 'gui', 'i3']
 
 # FIXME; fix to use allow-unauthenticated somehow
-- name: i3 | ensure i3wm keyring is installed
+- name: ensure i3wm keyring is installed
   apt:
     name: sur5r-keyring
     state: present
@@ -80,12 +80,12 @@
   register: i3wm_keyring
   tags: ['wm', 'gui', 'i3']
 
-- name: i3 | ensure apt cache is up-do-date if i3wm keyring was modified
+- name: ensure apt cache is up-do-date if i3wm keyring was modified
   command: apt-get update
   when: i3wm_keyring.changed
   tags: ['wm', 'gui', 'i3']
 
-- name: i3 | ensure i3wm packages are installed
+- name: ensure i3wm packages are installed
   apt:
     name: "{{ item }}"
     state: present
@@ -103,7 +103,7 @@
   - suckless-tools
   tags: ['wm', 'gui', 'i3']
 
-- name: i3 | ensure dunst configuration directory exists
+- name: ensure dunst configuration directory exists
   file:
     path:  /home/{{ user }}/.config/dunst
     owner: "{{ user }}"
@@ -112,7 +112,7 @@
     state: directory
   tags: ['wm', 'gui', 'i3']
 
-- name: i3 | ensure dunst configuration is up to date
+- name: ensure dunst configuration is up to date
   template:
     dest:  /home/{{ user }}/.config/dunst/dunstrc
     src:   dunst/dunstrc.j2
@@ -121,7 +121,7 @@
     mode:  '0644'
   tags: ['wm', 'gui', 'i3']
 
-- name: i3 | check dropbox status
+- name: check dropbox status
   command: dropbox.py status
   become: yes
   become_user: "{{ user }}"
@@ -130,12 +130,12 @@
   changed_when: False
   tags: ['wm', 'gui', 'i3']
 
-- name: i3 | print dropbox status if not up-to-date
+- name: print dropbox status if not up-to-date
   debug: var=dropbox_status.stdout
   when: dropbox_status.stdout not in ['Aktualny', 'Up to date']
   tags: ['wm', 'gui', 'i3']
 
-- name: i3 | wait for dropbox if needed
+- name: wait for dropbox if needed
   pause: prompt='Ensure Dropbox is ready before proceeding.'
   when: dropbox_status.stdout not in ['Aktualny', 'Up to date']
   tags: ['wm', 'gui', 'i3']
@@ -143,21 +143,21 @@
 # apt module fails with weird errors when using 'with_items' with deb files
 # https://github.com/ansible/ansible/issues/8314
 # also, use force - those packages are likely to be held manually
-- name: i3 | ensure self-compiled i3 is installed
+- name: ensure self-compiled i3 is installed
   apt:
     deb: "/home/{{ user }}/Dropbox/ansible/packages/{{ i3gaps_debfile }}"
     state: present
     force: yes
   tags: ['wm', 'gui', 'i3']
 
-- name: i3 | ensure self-compiled i3blocks is installed
+- name: ensure self-compiled i3blocks is installed
   apt:
     deb: "/home/{{ user }}/Dropbox/ansible/packages/{{ i3blocks_debfile }}"
     state: present
     force: yes
   tags: ['wm', 'gui', 'i3']
 
-- name: i3 | ensure i3status and i3blocks symlinks exist
+- name: ensure i3status and i3blocks symlinks exist
   file:
     src: /home/{{ user }}/.i3/{{ item.src }}
     dest: /home/{{ user }}/{{ item.dest }}
