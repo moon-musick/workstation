@@ -2,3 +2,4 @@
 # vim: ft=ansible
 i3gaps_debfile:   'i3_4.11-370-g31a2aab_amd64.deb'
 i3blocks_debfile: 'i3blocks_1.4-8-g6cec173_amd64.deb'
+rofi_debfile: rofi_0.15.11-73-ga21f8dd_amd64.deb

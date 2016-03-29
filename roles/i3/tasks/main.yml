@@ -157,6 +157,13 @@
     force: yes
   tags: ['wm', 'gui', 'i3']
 
+
+- name: ensure rofi is installed
+  apt:
+    deb: "/home/{{ user }}/Dropbox/ansible/packages/{{ rofi_debfile }}"
+    state: present
+  tags: ['wm', gui', 'i3', 'rofi']
+
 - name: ensure i3status and i3blocks symlinks exist
   file:
     src: /home/{{ user }}/.i3/{{ item.src }}

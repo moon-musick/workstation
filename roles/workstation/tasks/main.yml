@@ -6,11 +6,11 @@
   tags:
   - dependency
 
-- include: general.yml
-- include: user.yml
-- include: dropbox.yml
-- include: git.yml
-- include: zsh.yml
+# - include: general.yml
+# - include: user.yml
+# - include: dropbox.yml
+# - include: git.yml
+# - include: zsh.yml
 - include: hr.yml
 - include: dotfiles.yml
 - include: python.yml
@@ -26,7 +26,7 @@
 - include: utils.yml
 - include: fzf.yml
 - include: xmonad.yml
-- include: i3wm.yml
+# - include: i3wm.yml
 - include: awesome.yml
 - include: chrome.yml
 # - include: notifyosdconfig.yml
