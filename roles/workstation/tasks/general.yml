@@ -1,10 +1,10 @@
 ---
 - name: dependencies | ensure general dependencies are installed
-  apt: >
-    name={{ item }}
-    state=present
-    update_cache=true
-    cache_valid_time=3600
+  apt:
+    name:             "{{ item }}"
+    state:            present
+    update_cache:     true
+    cache_valid_time: 3600
   with_items:
   - build-essential
   - autojump
@@ -27,11 +27,11 @@
   tags: ['shelltools', 'dependency']
 
 - name: dependencies | ensure general GUI-dependent packages installed
-  apt: >
-    name={{ item }}
-    state=present
-    update_cache=true
-    cache_valid_time=3600
+  apt:
+    name:             "{{ item }}"
+    state:            present
+    update_cache:     true
+    cache_valid_time: 3600
   with_items:
   - xclip
   - xautolock
@@ -44,8 +44,8 @@
   tags: ['gui', 'dependency']
 
 - name: dependencies | ensure zsh installed
-  apt: >
-    name=zsh
-    state=present
-    default_release=trusty-backports
+  apt:
+    name:            zsh
+    state:           present
+    default_release: trusty-backports
   tags: ['shelltools', 'dependency']
