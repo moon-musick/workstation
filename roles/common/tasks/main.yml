@@ -1,3 +1,6 @@
 ---
+- name: install common dependencies
+  include: dependencies.yml
+
 - name: run git tasks
   include: git.yml
