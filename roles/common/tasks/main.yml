@@ -2,5 +2,14 @@
 - name: install common dependencies
   include: dependencies.yml
 
+- name: run user setup
+  include: user.yml
+
+- name: install dropbox
+  include: dropbox.yml
+
+- name: setup zsh
+  include: zsh.yml
+
 - name: run git tasks
   include: git.yml
