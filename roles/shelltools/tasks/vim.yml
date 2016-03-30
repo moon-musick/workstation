@@ -1,0 +1,74 @@
+---
+- name: vim | add neovim repository key
+  apt_key: >
+    id=8231B6DD
+    keyserver=keyserver.ubuntu.com
+    state=present
+  tags: ['shelltools', 'dev', 'vim']
+
+- name: vim | add neovim repository
+  apt_repository: >
+    repo=ppa:neovim-ppa/unstable
+    state=present
+    update_cache=yes
+  tags: ['shelltools', 'dev', 'vim']
+
+- name: vim | ensure vim packages are installed
+  apt: >
+    name={{ item }}
+    state=present
+  with_items:
+    - vim-nox
+    - vim-gtk
+    - git
+    - cmake
+    - ack-grep
+    - silversearcher-ag
+    - exuberant-ctags
+    - build-essential
+    - neovim
+  tags: ['shelltools', 'dev', 'vim']
+
+# apparently the module returns 'changed' on every checkout
+# even if remote was not updated in any way
+- name: vim | ensure vim repo was cloned
+  git: >
+    repo={{ vim_repo }}
+    dest=/home/{{ user }}/.vim
+    accept_hostkey=yes
+    track_submodules=no
+  changed_when: False
+  become_user: "{{ user }}"
+  tags: ['shelltools', 'dev', 'vim']
+
+# FIXME; test termination issues
+- name: vim | ensure plugins are installed
+  shell: vim -u custom/plug.vim +PlugInstall +qall
+  args:
+    creates: /home/{{ user }}/.vim/plugged/YouCompleteMe
+    chdir: /home/{{ user }}/.vim
+  become_user: "{{ user }}"
+  tags: ['shelltools', 'dev', 'vim']
+
+- name: vim | ensure vimrc symlink is in place
+  file: >
+    src=/home/{{ user }}/.vim/.vimrc
+    path=/home/{{ user }}/.vimrc
+    owner={{ user }}
+    group={{ user }}
+    state=link
+  tags: ['shelltools', 'dev', 'vim']
+
+- name: vim | setup neovim configuration symlinks
+  file: >
+    path=/home/{{ user }}/{{ item.dest }}
+    src=/home/{{ user }}/{{ item.src }}
+    owner={{ user }}
+    group={{ user }}
+    state=link
+  with_items:
+  - dest: .config/nvim
+    src:  .vim
+  - dest: .config/nvim/init.vim
+    src:  .vim/.vimrc
+  tags: ['shelltools', 'dev', 'vim']

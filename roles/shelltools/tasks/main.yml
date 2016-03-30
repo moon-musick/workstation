@@ -1,0 +1,15 @@
+---
+# - name: setup zsh # dotfiles, FPM, hr
+  # include: zsh.vim
+
+- name: setup vim
+  include: vim.yml
+
+# - name: setup tmux
+#   include: tmux.vim
+#
+# - name: install python packages
+#   include: python.yml
+#
+# - name: install networking packages
+#   include: networking.yml
